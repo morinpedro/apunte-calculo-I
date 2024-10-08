@@ -1,0 +1,234 @@
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage[spanish]{babel}
+\usepackage{enumerate}
+\usepackage{graphicx,psfrag}
+\usepackage{tikz}
+% \usepackage{pgfplots}
+\usepackage{stackengine}
+\usepackage{xcolor}
+\usepackage{comment}
+\usepackage{array}
+\usepackage{color}
+\usepackage{srcltx}
+\usepackage{todonotes}
+\usepackage{multicol}
+\usepackage{xspace}
+\usepackage[%
+%   pdftex=true,  % si se usa pdftex
+   pdfpagemode=UseNone,
+breaklinks=true,
+%   pdfstartpage=3,   % para empezar en pag. 3
+   bookmarks=true,
+%   bookmarksopen=true,
+%   bookmarksnumbered=true,
+%   plainpages=false, % cuando existe p\'agina i y p\'agina 1
+%   pdfstartview=XYZ,
+%   pdfpagelabels=true, % ii en preambulo
+%   pagebackref=true, % referencias a citas
+   colorlinks,
+   linkcolor=blue,% cambiar a black para imprimir
+%   linktocpage, % link en el n\'umero de pagina en toc
+   anchorcolor=blue,
+   citecolor=black,% cambiar a black para imprimir
+   filecolor=blue,
+%    pagecolor=blue,
+   urlcolor=blue
+   ]{hyperref}
+
+\usepackage{etoolbox}
+\newcommand\getcurrentref[1]{%
+ \ifnumequal{\value{#1}}{0}
+  {??}
+  {\the\value{#1}}%
+}    
+
+\usepackage{cancel}
+%\newcounter{savectr}
+%\newcommand{\savectr}[1]{\setcounter{savectr}{\value{#1}}}
+%\newcommand{\backctr}[1]{\setcounter{#1}{\value{savectr}}}
+\newcounter{contadorejemplo}
+%\newcommand{\ejemplo}{\medskip\textbf{Ejemplo \arabic{contadorejemplo}:} \addtocounter{contadorejemplo}{1}}
+%\setcounter{contadorejemplo}{1}
+%\DeclareGraphicsExtensions{eps}
+
+\newcommand{\comentario}[1]{{\begin{quote}\small\color{gray}#1\end{quote}}}
+
+
+\newcommand{\completar}[1]{\todo[inline]{Completar. {#1}}}
+\newcommand{\sucan}{\ensuremath{\left(a_n\right)_{n\in\N}}\xspace}
+\newcommand{\sucxn}{\ensuremath{\left(x_n\right)_{n\in\N}}\xspace}
+\newcommand{\sucyn}{\ensuremath{\left(y_n\right)_{n\in\N}}\xspace}
+\newcommand{\sucSn}{\ensuremath{\left(S_n\right)_{n\in\N}}\xspace}
+\newcommand{\serieak}{\ensuremath{\sum_{k=1}^\infty a_k}\xspace}
+\newcommand{\seriean}{\ensuremath{\sum_{n=1}^\infty a_n}\xspace}
+\newcommand{\seriebk}{\ensuremath{\sum_{k=1}^\infty b_k}\xspace}
+\newcommand{\seriebn}{\ensuremath{\sum_{n=1}^\infty b_n}\xspace}
+\newcommand{\subsucan}{\ensuremath{\left(a_{n_k}\right)_{k\in\N}}\xspace}
+\newcommand{\sucbn}{\ensuremath{\left(b_n\right)_{n\in\N}}\xspace}
+\newcommand{\succn}{\ensuremath{\left(c_n\right)_{n\in\N}}\xspace}
+\newcommand{\niN}{{\ensuremath{n\in\N}}\xspace}
+\newcommand{\xiR}{{\ensuremath{x\in\R}}\xspace}
+\newcommand{\xoiR}{{\ensuremath{x_0\in\R}}\xspace}
+\newcommand{\limxo}{{\ensuremath{\lim_{x\to x_0}}}}
+\newcommand{\limho}{{\ensuremath{\lim_{h\to 0}}}}
+\newcommand{\limxop}{{\ensuremath{\lim_{x\to x_0^+}}}}
+\newcommand{\limxom}{{\ensuremath{\lim_{x\to x_0^-}}}}
+\newcommand{\ton}{\stackunder{\,$\longrightarrow$\,}{\scriptsize$n\to\infty$}}
+\newcommand{\tox}[1]{\stackunder{\,$\longrightarrow$\,}{\scriptsize$x\to{#1}$}}
+\newcommand{\toy}[1]{\stackunder{\,$\longrightarrow$\,}{\scriptsize$y\to{#1}$}}
+\newcommand{\note}[1]%
+{\noindent\centerline{\fbox{\parbox{.9\textwidth}{\textbf{#1}}}}}
+\newcommand{\snote}[1]%
+{\fbox{\textbf{#1}}}
+
+% \theoremstyle{plain}
+\parskip=10pt
+\usepackage{thmtools}
+
+\declaretheoremstyle[
+  shaded={rulecolor=black, rulewidth=0.7pt, bgcolor=white, 
+  textwidth=.95\textwidth, padding=6pt, leftmargin=5pt},
+  spaceabove=6pt, spacebelow=6pt,
+]{miestilo}
+\declaretheorem[
+  style=miestilo,
+  name=Teorema,
+  numberwithin=chapter,
+  ]{theorem}
+\declaretheorem[
+    style=miestilo,
+  name=Lema,
+  numberlike=theorem,
+  ]{lemma}
+\declaretheorem[
+    style=miestilo,
+  name=Corolario,
+  numberlike=theorem,
+]{corollary}
+\declaretheorem[
+    style=miestilo,
+    name=Proposición,
+  numberlike=theorem,
+  ]{proposition}
+\declaretheorem[
+    style=miestilo,
+    name=Definición,
+  numberlike=theorem,
+  ]{definition}
+%    \newtheorem{theorem}{Teorema}[chapter]
+%    \newtheorem{lemma}[theorem]{Lema}
+%    \newtheorem{corollary}[theorem]{Corolario}
+%    \newtheorem{proposition}[theorem]{Proposición}
+
+\theoremstyle{definition}
+   \newtheorem{remark}[theorem]{Observación}
+   \newtheorem{example}[theorem]{Ejemplo}
+%    \newtheorem{definition}[theorem]{Definición}
+%    \newtheorem{pb}{ }[chapter]
+%    \newtheorem{pbm}[pb]{*}
+%    \newtheorem{pbo}[pb]{**}
+
+\usepackage{attachfile2}
+
+%\usepackage{matlab-prettifier}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,
+  fontadjust=true,
+  basewidth=0.5em,
+  frame=single,
+  float=h!
+}
+
+%\lstset{language=Octave,basicstyle=\ttfamily}
+\newcommand{\includescript}[2]{\lstinputlisting[title={Script \texttt{#2}. \attachfile{#1/#2}}]{#1/#2}}
+
+\newcommand{\includefunction}[2]{\lstinputlisting[title={Función \texttt{#2}. \attachfile{#1/#2}}]{#1/#2}}
+
+
+\newcommand{\recuadro}[1]%
+{\medskip\noindent\centerline{\fbox{\parbox{.97\textwidth}{\medskip\centerline{\parbox{.95\textwidth}{#1}}\medskip}}}\medskip}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\cotan}{cotan}
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\dom}{Dom}
+\DeclareMathOperator{\im}{Im}
+
+\DeclareMathOperator{\SF}{SF}
+\newcommand{\SFS}{\SF^s}
+\newcommand{\SFC}{\SF^c}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\length}{longitud}
+\newcommand{\area}{\mathrm{\protect\acute{a}rea}}
+\newcommand{\dvol}{\,d\mathrm{vol}}
+\newcommand{\dA}{\,dA}
+\newcommand{\dx}{\,dx}
+\newcommand{\dy}{\,dy}
+\newcommand{\dz}{\,dz}
+\newcommand{\ds}{\,ds}
+\newcommand{\dr}{\,dr}
+\newcommand{\dtheta}{\,d\theta}
+\newcommand{\dsv}{\cdot d\ol{s}}
+\newcommand{\dS}{\,d\sigma}
+\newcommand{\dt}{\,dt}
+\newcommand{\du}{\,du}
+\newcommand{\dv}{\,dv}
+\newcommand{\LL}{\mathcal{L}}
+\DeclareMathOperator{\di}{div}
+\DeclareMathOperator{\proy}{Proy}
+\DeclareMathOperator{\Circ}{Circ}
+%\usepackage[notcite,notref]{showkeys}
+\newcommand{\Chi}{\raise2pt\hbox{$\chi$}}
+
+\newcommand{\pedro}{}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\D}{\displaystyle}
+\newcommand{\gr}{^{\text{o}}}
+\newcommand{\ux}{\D\frac{\partial u}{\partial x}}
+\newcommand{\uy}{\D\frac{\partial u}{\partial y}}
+\newcommand{\uxx}{\D\frac{\partial^2 u}{\partial x^2}}
+\newcommand{\uyy}{\D\frac{\partial^2 u}{\partial y^2}}
+\newcommand{\uzz}{\D\frac{\partial^2 u}{\partial z^2}}
+\newcommand{\phixx}{\phi_{xx}}
+\newcommand{\phiyy}{\phi_{yy}}
+\newcommand{\phizz}{\phi_{zz}}
+\newcommand{\phin}{\phi_n}
+\newcommand{\phinm}{\phi_{n\,m}}
+\newcommand{\phikl}{\phi_{k\,\ell}}
+\newcommand{\lambdanm}{\lambda_{n\,m}}
+\newcommand{\znm}{z_{n\,m}}
+\newcommand{\anm}{a_{n\,m}}
+\newcommand{\bnm}{b_{n\,m}}
+\newcommand{\fnm}[1][]{f_{n\,m_{#1}}}
+\newcommand{\ut}{\D\frac{\partial u}{\partial t}}
+\newcommand{\vphi}{\boldsymbol{\phi}}
+\newcommand{\enf}{\textbf}
+\newcommand{\nn}{\ol{n}}
+\newcommand{\pd}[3][]{\D\frac{\partial^{#1} {#2}}{\partial #3^{#1}}}
+\newcommand{\dd}[3][]{\frac{d^{#1} {#2}}{d #3^{#1}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ii}{\ol{i}}
+\newcommand{\jj}{\ol{j}}
+\newcommand{\kk}{\ol{k}}
+\DeclareMathOperator{\sop}{sop}
+
+\newcommand{\esp}{\R^3}
+\newcommand{\obs}{\Theta}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oll}[1]{\ol{\ol #1}}
+\newcommand{\olll}[1]{\ol{\ol{\ol #1}}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\olnabla}{\ol\nabla}

@@ -1,0 +1,664 @@
+\chapter{Repaso de Números Reales}
+\label{Cap:Reales}
+
+\section{Propiedades de cuerpo ordenado}
+
+Recordamos a continuación los axiomas de cuerpo ordenado que cumple el conjunto $\R$ de los números reales.
+
+Las propiedades básicas de la suma son cuatro:
+
+\begin{description}
+    \item[$S_1$. Conmutatividad de la suma:] Cualesquiera sean los números reales $a$ y $b$ vale
+    \[ a+b = b+a.\]
+
+    \item[$S_2$. Asociatividad de la suma:] Cualesquiera sean los números reales $a$, $b$ y $c$, vale
+    \[
+    a + (b+c) = (a+b) + c.
+    \]
+
+    \item[$S_3$. Existencia de elemento neutro para la suma:] Existe un número real llamado \emph{cero} y que indicamos 0 tal que, para todo número real $a$ vale:
+    \[ a+0 = a.\]
+
+    \item[$S_4$. Existencia del inverso aditivo:] Dado un número real $a$, existe un número real que llamamos \emph{inverso aditivo de $a$} o también \emph{opuesto de $a$}, e indicamos $-a$ tal que
+    \[ a+(-a) = 0.\]
+
+\end{description}
+
+Las propiedades básicas del producto son también cuatro, y se corresponden exactamente con las de la suma:
+
+\begin{description}
+    \item[$P_1$. Conmutatividad del producto:] Cualesquiera sean los números reales $a$ y $b$ vale
+    \[ a\cdot b = b\cdot a.\]
+
+    \item[$P_2$. Asociatividad del producto:] Cualesquiera sean los números reales $a$, $b$ y $c$, vale
+    \[
+    a \cdot (b \cdot c) = (a \cdot b) \cdot c.
+    \]
+
+    \item[$P_3$. Existencia de elemento neutro para el producto:] Existe un número real distinto de cero, llamado \emph{uno} y que indicamos 1 tal que, para todo número real $a$ vale:
+    \[ a \cdot 1 = a.\]
+
+    \item[$P_4$. Existencia del inverso multiplicativo:] Dado un número real $a$, distinto de cero, existe un número real que llamamos \emph{inverso multiplicativo de $a$} o también \emph{recíproco de $a$}, e indicamos $a\inv$ tal que
+    \[ a \cdot a\inv = 1.\]
+
+\end{description}
+
+También tenemos una propiedad que vincula la suma con el producto:
+
+\begin{description}
+    \item[$D$. Propiedad distributiva:] Cualesquiera sean los números reales $a$, $b$ y $c$ vale:
+    \[ a\cdot(b+c) = a\cdot b+a\cdot c.\]
+\end{description}
+
+Finalmente, existe en los números reales un \emph{orden}. La notación $a<b$ significa
+\emph{$a$ es menor que $b$} y es exactamente lo mismo que $b>a$, que se lee \emph{$b$ es mayor que $a$}. Para el orden, tenemos las siguientes propiedades:
+
+\begin{description}
+    \item[$O_1$. Tricotomía:] Si $a$ y $b$ son números reales, vale una y sólo una de las siguientes posibilidades:
+    \[
+    a<b,\qquad a=b, \qquad a>b.
+    \]
+
+    \item[$O_2$. Transitividad:] Si $a$, $b$ y $c$ son números reales que verifican
+    \[ a<b \qquad\text{y}\qquad b<c\]
+    entonces necesariamente \ $a<c$.
+
+    \item[$O_3$. Monotonía de la suma:] Si $a$ y $b$ son números reales que verifican
+    \[ a<b, \]
+    entonces cualquiera sea el número real $c$ vale:
+    \[ a+c < b+c.\]
+
+    \item[$O_4$. Monotonía del producto:] Si $a$ y $b$ son números reales que verifican
+    \[ a<b, \]
+    entonces cualquiera sea el número real $c$ mayor que cero vale:
+    \[ a \cdot c < b \cdot c.\]
+
+
+\end{description}
+
+\mauri{Se puede probar como ejercicio que 
+$a < b$ si y solo si $-b < -a$, con lo cual, 
+por la propiedad $O_4$ anterior tenemos que:
+Si $a$ y $b$ son números reales que verifican
+    \[ a<b, \]
+    entonces cualquiera sea el número real $c$ menor que cero vale:
+    \[ a \cdot c > b \cdot c.\]}
+
+Recordamos algunas propiedades que se deducen de estos axiomas:
+
+\begin{description}
+    \item[Propiedad cancelativa para la suma:] Si $a$, $b$ y $c$ son números reales tales que
+    \[ a+c = b+c\]
+    entonces \ $a=b$.
+
+    \item[Unicidad del cero:] Si $a$ y $b$ son números reales tales que
+    \[a+b=a,\]
+    entonces debe ser \ $b=0$.
+
+    \item[$a\cdot 0 = 0$:] Cualquiera sea el número real $a$, vale que $a\cdot 0 = 0$.
+
+    \item[Propiedad cancelativa para el producto:] Si $a$, $b$ y $c$ son números reales tales que $c\neq 0$ y
+    \[ a\cdot c = b \cdot c\]
+    entonces \ $a=b$.
+
+    \item[Reglas de los signos:]
+    \begin{itemize}
+        \item Si $a$ es un número real, entonces \ $-(-a) = a$.
+        \item Si $a$ y $b$ son números reales, entonces \ $(-a)\cdot b = -(a\cdot b)$.
+        \item Si $a$ y $b$ son números reales, entonces \ $(-a)\cdot (-b) = a\cdot b$.
+    \end{itemize}
+
+    \item[Por último: $0<1$.]
+\end{description}
+
+Finalmente, decimos que $a$ es menor o igual a $b$, y escribimos $a\le b$, cuando $a<b$ o $a=b$.
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+    \input{ejercicios-ch-1-s-1.tex}
+\end{enumerate}
+
+\section{Cotas superiores e inferiores, máximo y mínimo}
+
+\begin{definition}
+    Dado un conjunto $A$ de números reales, se dice que $c$ es una cota inferior de $A$ si
+    \[
+    c \le a,\qquad \forall a\in A.
+    \]
+    Es decir, un número real es una cota inferior de un conjunto cuando es menor o igual que todos los elementos del conjunto.
+\end{definition}
+
+\begin{itemize}
+\item Existen conjuntos que no tienen cotas inferiores. Pensar ejemplos.
+\item Si $c$ es una cota inferior, entonces todos los elementos de $(-\infty,c]$ son cotas inferiores. Demostrar
+\item Si un conjunto tiene una cota inferior, se dice que es \emph{acotado inferiormente}.
+\end{itemize}
+
+\begin{definition}
+Dado un conjunto $A$ de números reales, se dice que $c$ es una cota superior de $A$ si
+\[
+a \le c,\qquad \forall a\in A.
+\]
+Es decir, un número real es una cota superior de un conjunto cuando es mayor o igual que todos los elementos del conjunto.
+\end{definition}
+
+\begin{itemize}
+    \item Existen conjuntos que no tienen cotas superiores. Pensar ejemplos.
+    \item Si $c$ es una cota superior, entonces todos los elementos de $[c,\infty)$ son cotas superiores. Demostrar
+    \item Si un conjunto tiene una cota superior, se dice que es \emph{acotado superiormente}.
+\end{itemize}
+
+Cuando un conjunto es acotado inferiormente y acotado superiormente, se dice simplemente que es \emph{acotado}.
+
+\begin{definition}
+    Dado un conjunto $A$ de números reales, se dice que $m$ es un mínimo de $A$ si
+    \[ m\in A,\qquad \text{y} \qquad m\text{ es una cota inferior de $A$}, \]
+    o, lo que es lo mismo,
+    \[ m\in A,\qquad \text{y} \qquad m\le a,\ \forall a\in A. \]
+\end{definition}
+
+\begin{itemize}
+    \item Si un conjunto no es acotado inferiormente, entonces no tiene mínimo.
+    \item Hay conjuntos acotados inferiormente que no tienen mínimo. Pensar ejemplos.
+    \item Hay conjuntos acotados inferiormente que sí tienen mínimo. Pensar ejemplos.
+    \item Un conjunto finito siempre tiene mínimo.
+    \item Si $m$ y $m'$ son mínimos de un conjunto $A$, entonces $m=m'$. Es decir, el mínimo es único.
+    Como el mínimo es único, cuando un conjunto $A$ tiene mínimo, se denota con $\min A$.
+
+\end{itemize}
+
+
+\begin{definition}
+    Dado un conjunto $A$ de números reales, se dice que $M$ es un máximo de $A$ si
+    \[ M\in A,\qquad \text{y} \qquad M\text{ es una cota superior de $A$}, \]k
+    o, lo que es lo mismo,
+    \[ M\in A,\qquad \text{y} \qquad a\le M,\ \forall a\in A. \]
+\end{definition}
+
+\begin{itemize}
+    \item Si un conjunto no es acotado superiormente, entonces no tiene máximo.
+    \item Hay conjuntos acotados superiormente que no tienen máximo. Pensar ejemplos.
+    \item Hay conjuntos acotados superiormente que sí tienen máximo. Pensar ejemplos.
+    \item Un conjunto finito siempre tiene máximo.
+    \item Si $M$ y $M'$ son máximos de un conjunto $A$, entonces $M=M'$. Es decir, el máximo es único.
+    Como el máximo es único, cuando un conjunto $A$ tiene máximo, se denota con $\max A$.
+\end{itemize}
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-1-s-2}
+\end{enumerate}
+
+\section{Supremo, ínfimo, axioma de completitud}
+
+\begin{definition}
+    Dado un conjunto $A$ de números reales, se dice que $c$ es un supremo de $A$ si cumple las dos siguientes propiedades:
+    \begin{enumerate}[{\rm(i)}]
+        \item $c$ es una cota superior de $A$;
+        \item Si $d$ es cota superior de $A$, entonces $c \le d$.
+    \end{enumerate}
+    Es decir, $c$ es un supremo de $A$ si es \emph{la menor de las cotas superiores}.
+
+\end{definition}
+
+
+\begin{itemize}
+    \item Si un conjunto no es acotado superiormente, entonces no tiene supremo.
+    \item Si un conjunto tiene máximo, entonces el máximo es el supremo.
+    \item Hay conjuntos acotados superiormente que tienen supremo, pero no tienen máximo. Pensar ejemplos.
+    \item Si $c$ y $c'$ son supremos de un conjunto $A$, entonces $c=c'$. Es decir, el supremo es único.
+    Como el supremo es único, cuando un conjunto $A$ tiene supremo, se denota con $\sup A$.
+    \item Si un conjunto tiene supremo, el supremo puede pertenecer al conjunto o no. Si pertenece al conjunto, entonces el conjunto tiene máximo y el máximo y el supremo coinciden. Si el supremo no pertenece al conjunto, entonces el conjunto no tiene máximo.
+\end{itemize}
+
+
+
+En este curso tomaremos la \emph{propiedad de completitud} como un axioma, que se agrega a los vistos anteriormente. En cursos de cálculo avanzado se hace una construcción de los números reales a partir de los racionales y se demuestra que esta construcción implica la validez de la propiedad de completitud, que se enuncia como sigue:
+
+\paragraph{Propiedad de completitud.} Si $A$ es un conjunto no vacío de números reales, y $A$ es acotado superiormente, entonces existe el supremo de $A$.
+
+
+\begin{definition}
+    Dado un conjunto $A$ de números reales, se dice que $c$ es un ínfimo de $A$ si cumple las dos siguientes propiedades:
+    \begin{enumerate}[{\rm(i)}] 
+        \item $c$ es una cota inferior de $A$;
+        \item Si $d$ es cota inferior de $A$, entonces $c \ge d$.
+    \end{enumerate}
+    Es decir, $c$ es un ínfimo de $A$ si es \emph{la mayor de las cotas inferiores}.
+
+\end{definition}
+
+
+\begin{itemize}
+    \item Si un conjunto no es acotado inferiormente, entonces no tiene ínfimo.
+    \item Si un conjunto tiene mínimo, entonces el mínimo es el ínfimo.
+    \item Hay conjuntos acotados inferiormente que tienen ínfimo, pero no tienen mínimo. Pensar ejemplos.
+    \item Si $c$ y $c'$ son ínfimos de un conjunto $A$, entonces $c=c'$. Es decir, el ínfimo es único.
+    Como el ínfimo es único, cuando un conjunto $A$ tiene ínfimo, se denota con $\inf A$.
+    \item Si un conjunto tiene ínfimo, el ínfimo puede pertenecer al conjunto o no. Si pertenece al conjunto, entonces el conjunto tiene mínimo y el mínimo y el ínfimo coinciden. Si el ínfimo no pertenece al conjunto, entonces el conjunto no tiene mínimo.
+\end{itemize}
+
+
+\paragraph{Caracterización del supremo.} Hay una forma de caracterizar al supremo de un conjunto que resulta de mucha utilidad:
+
+\begin{proposition}\label{P:supremo-caracterizacion}
+    Sea $A$ un conjunto acotado superiormente y no vacío (por lo que tiene supremo).
+    Entonces el número real $c$ es el supremo de $A$ si y sólo si cumple las dos siguientes condiciones:
+    \begin{enumerate}[{\rm(i)}]
+        \item $c$ es cota superior de $A$;
+        \item para cada $\epsilon >0$ existe $a\in A$ tal que $c-\epsilon < a$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+%    \completar
+\mauri{Por la definición de supremo, la primera condición es la misma, por lo tanto es trivial.}
+
+\mauri{Supongamos primero que $c=\sup A$ y sea
+$\epsilon >0$. Es claro que $c-\epsilon < c$, 
+entonces por la definición de supremo 
+$c-\epsilon$ no puede ser cota superior de $A$, 
+es decir, no puede ocurrir que 
+$a\leq c-\epsilon$, para todos los elementos de $A$. Entonces, existe $a\in A$ tal que $c-\epsilon < a$.}
+
+\mauri{Por otro lado, si $d$ es una cota superior 
+de $A$, debemos ver que $d \geq c$. Esto tiene que 
+pasar, puesto que si no ocurre, se tiene que 
+$d < c$ y considerando $\epsilon = c-d > 0$, la 
+hipótesis afirma que existe $a \in A$ tal que 
+\[ c - (c - d) = d < a\,,  \]
+lo que contradice la definición de cota superior.}
+
+\end{proof}
+
+
+De manera análoga se puede caracterizar el ínfimo.
+
+\begin{proposition}\label{P:infimo-caracterizacion}
+    Sea $A$ un conjunto acotado inferiormente y no vacío (por lo que tiene ínfimo).
+    Entonces el número real $c$ es el ínfimo de $A$ si y sólo si cumple las dos siguientes condiciones:
+    \begin{enumerate}[{\rm(i)}]
+        \item $c$ es cota inferior de $A$;
+        \item para cada $\epsilon >0$ existe $a\in A$ tal que $c+\epsilon > a$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\paragraph{Principio de Arquímedes (o propiedad de arquimedianidad).} Como consecuencia de la propiedad de completitud podemos enunciar y probar el principio de Arquímedes.
+
+\begin{proposition}
+    Si $a$ es un número real cualquiera, entonces existe un número natural $n$ tal que $n>a$.
+\end{proposition}
+
+\begin{proof}
+    Supongamos, por el contrario, que existe un número real $a$ tal que $n \le a$, para todo $n \in \N$.
+    Luego $\N$ es un conjunto acotado superiormente, y no vacío, pues $1\in \N$. Por la propiedad de completitud, el conjunto de los naturales tiene un supremo, que llamamos $c$, es decir $c = \sup \N$.
+
+    Luego, por la proposición~\ref{P:supremo-caracterizacion}, para $\epsilon = 1$, existe $n_0 \in \N$ tal que $n_0 > c-\epsilon = c-1$. Luego $n_0 + 1 > c$, pero como $\N$ es inductivo, $n_0+1\in\N$. Esto contradice que $c$ sea una cota superior de $\N$. Esta contradicción provino de suponer que existe un número real $a$ tal que $n \le a$, para todo $n \in \N$.
+    Luego, si $a\in\R$, existe necesariamente un número natural $n>a$.
+\end{proof}
+
+\begin{corollary}\label{1sobrenmenorqueeps}
+    Si $\epsilon$ es un número real positivo, entonces existe un número natural $n$ tal que $\D\frac1n < \epsilon$.
+\end{corollary}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\begin{lemma}\label{P:densidad de Q en R}
+    Entre dos número reales $a$ y $b$ 
+    existe un número racional $t$. 
+    Más precisamente, si $a < b$ existe 
+    $t \in \Q$ tal que $a < t < b$.
+\end{lemma}
+
+\begin{proof}
+    Para demostrar este Lema haremos uso 
+    de los resultados que venimos obteniendo, considerando una serie de 
+    casos.
+    \begin{itemize}
+        \item Si $a = 0$ y $b > 0$ entonces por el Colorario 
+        \ref{1sobrenmenorqueeps}, existe $\niN$ tal que $0<\frac1n < b$ y tomando $t=\frac1n$ este caso está probado.
+        \item Si $a < 0$ y $b =0$ observamos que $0 < -a$ y por el 
+        item anterior existe $\frac1n$ tal que $0 < \frac1n < -a$. Definiendo $t=-\frac1n \in \Q$ se tiene el resultado.
+        \item Si $a < 0 < b$ entonces tomamos $t=0$ y nada hay que probar.
+        \item Si $0 < a < b$ vamos a suponer por un ratito que este caso lo probamos.
+        \item Si $a < b < 0$ entonces se 
+        cumple que $0 < -b < -a$ y por el item anterior existe $r\in \Q$ tal que $-b < r < -a$, o equivalentemente $a < t < b$, tomando $t=-r$.
+    \end{itemize}
+    En resumen, para demostrar el Lema será suficiente probar el caso en que ambos son positivos. Para esto, consideremos $\epsilon=b-a > 0$ y 
+    $\niN$ tal que $\frac1n < b-a$ (tal $n$ existe por el Corolario \ref{1sobrenmenorqueeps}). 
+    Consideremos el conjunto
+    \[ A=\left\{p \in \N\,: ~ p\,\frac1n > a\right\}\,. \]
+    Observar que $A$ contiene a todos los 
+    naturales $p$ tales que $\frac{p}{n}$ supera a $a$, como estamos buscando uno que cumpla con esto pero que también sea menor que $b$ debemos ser cautelosos al definir. 
+    Notemos además que $A \subset \N$ y $A \neq \emptyset$ por el principio de Arquímedes. Luego, por el principio de la buena ordenación de los naturales tiene sentido definir 
+    \[  m = \min A \,.\]
+    Probaremos que $\frac{m}{n}$ es el 
+    racional buscado. En efecto, como $m \in A$, es claro que 
+    \[ m \, \frac1n = \frac{m}{n} > a\,.\]
+%
+    Por otro lado, si suponemos que 
+    $\frac{m}{n} \geq b$ entonces 
+    \[  (m-1)\,\frac1n = \frac{m}{n} - \frac1n \geq b - (b - a) = a\,,\]
+    con lo cual $m-1 \in A$ y como $m-1 < m$ contradice el hecho que $m$ sea el mínimo. En conclusión, se tiene que $a < \frac{m}{n} < b$ y la proposición queda probada.
+\end{proof}
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-1-s-3}
+\end{enumerate}
+
+\section{Potencias de exponente real}
+
+\subsection{Potencias naturales}
+
+La definición rigurosa de potencia de un número real con exponente natural se hace por inducción:
+Sea $a\in\R$:
+\begin{itemize}
+    \item $a^1 = a$
+    \item si $n\in \N$, entonces $a^{n+1} = a^n \cdot a$
+\end{itemize}
+De esta forma, queda bien definido $a^n$, para todo $n \in \N$.
+
+A partir de esta definición, podemos demostrar, también por inducción, la siguiente proposición:
+
+\begin{proposition}\label{P:potencias naturales}
+    Sea $a\in\R$ y sean $m,n\in \N$. Entonces
+    \begin{enumerate}[{\rm (i)}]
+        \item $a^{m+n} = a^m \cdot a^n$;
+        \item $a^{m\cdot n} = (a^m)^n$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+La siguiente proposición tiene una interesante demostración por inducción de un hecho que no es \emph{obvio} como los de la proposición anterior.
+
+\begin{proposition}[Desigualdad de Bernoulli]\label{P:Bernoulli}
+    Si $h \in \R$ y $h > -1$, entonces, para todo $n \in \N$,
+    \[
+    (1+h)^n \ge 1 + n h.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+
+\subsection{Potencias enteras}
+
+La definición de potencia para números enteros se hace de tal manera que siga siendo cierta la Proposición~\ref{P:potencias naturales}.
+
+Para definir $a^0$, observamos que para que sea cierta esa proposición, hace falta que, si $n\in\N$,
+\[
+a^0 \cdot a^n = a^{0+n} = a^n.
+\]
+Si $a\neq 0$, podemos multiplicar por $\big(a^n\big)^{-1}$,
+y por lo tanto estamos obligados a definir definir $a^0 = 1$, para $a\neq 0$.
+
+Definimos ahora $a^{-n}$ para $n\in \N$, y $a\neq 0$
+. Nuevamente, por la proposición mencionada, hace falta que, si $n\in\N$,
+\[
+a^{-n} \cdot a^n = a^{-n+n} = a^0 = 1,
+\]
+y por lo tanto estamos obligados a definir definir $a^{-n} = \big( a^n \big)^{-1} = \frac{1}{a^n}$.
+
+Con estas definiciones resulta que
+
+\begin{proposition}\label{P:potencias enteras}
+    Sea $a\in\R$ y sean $m,n\in \Z$. Entonces
+    \begin{enumerate}[{\rm (i)}]
+        \item $a^{m+n} = a^m \cdot a^n$;
+        \item $a^{m\cdot n} = (a^m)^n$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\subsection{Potencias racionales}
+% Ver Noriega, pág. 48, columna 1.
+
+Hasta ahora hemos logrado definir:
+\begin{itemize}
+    \item $a^n$, para todo número real $a$ y todo $n\in \N$.
+    \item $a^n$, para todo número real $a\neq 0$ y todo $n \in \Z$. 
+\end{itemize}
+
+La definición de $a^n$ para $n\in\Z$ se basó en que se siga cumpliendo la igualdad $a^{m+n}=a^m\cdot a^n$. 
+
+Ahora vamos a definir $a^{m/n}$, para $m\in\Z$, $n\in\N$ de manera que siga siendo válida la otra propiedad de la potenciación: $\big(a^m\big)^n = a^{m\cdot n}$.
+
+Supongamos ahora que estuviese definido $a^{m/n}$ para $m\in\Z$, $n\in\N$. Entonces, suponiendo válida la propiedad mencionada en el párrafo anterior, debería ser
+\[
+    \big(a^{m/n}\big)^n = a^{\frac mn n} = a^m,
+\]
+y por lo tanto, si $a^{m/n}$ elevado a la $n$ da $a^m$, debe ser $a^{m/n}$ la raíz $n$-ésima de $a^m$: $\D a^{m/n} = \sqrt[n]{a^m}$. En base a este razonamiento se define.
+
+\begin{definition}
+    Sea $a\in\R$, $a>0$. Si $r \in \Q$, entonces 
+    existen $m\in\Z$ y $n\in\N$ tales que \mauri{$r=m/n$}. Definimos
+    \[
+        \mauri{a^r} = a^{m/n} = \sqrt[n]{a^m}.
+    \]
+\end{definition}
+
+Se habrá dado cuenta que todo racional puede escribirse como cociente de un entero por un natural, pero de múltiples formas, por ejemplo: $1/2 = 2/4 = 3/6$. Para que esta definición sea correcta, hace falta que para cualquiera de estas expresiones, la definición dé el mismo resultado. Para eso hace falta pedir que $a>0$.
+
+Con esta nueva definición, se siguen cumpliendo las propiedades que hemos querido mantener:
+
+\begin{proposition}
+    Sea $a$ un número real positivo y sean $t,s\in\Q$. Entonces
+    \begin{enumerate}[{\rm (i)}]
+        \item $a^{t+s} = a^t \cdot a^s$;
+        \item $a^{t\cdot s} = (a^t)^s$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+También se cumplen las siguientes propiedades:
+
+\begin{proposition}\label{P:potencia-monotona}
+    Sean $a,b$ números reales tales que $0<a<b$ y sea $t$ un número racional positivo. Entonces $a^t < b^t$.
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\begin{proposition}\label{P:exponencial-monotona}
+    Sean $a$ un número real y sean $t,s$ números racionales tales que $t<s$, entonces:
+    \begin{enumerate}[{\rm (i)}]
+        \item Si $a>1$, entonces $a^t < a^s$.
+        \item Si $0<a<1$, entonces $a^t > a^s$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\subsection{Potencias reales}
+
+Según la Proposición~\ref{P:exponencial-monotona}, si $a>1$, la función exponencial dada por $f_a:\Q\to\R$, $f_a(t)= a^t$ es creciente. Es decir, $t<s$ implica que $a^t < a^s$. Si $a=1$, dicha función es constantemente 1, $f_a(t)=1$, para todo $t\in\Q$.
+Finalmente, si $0<a<1$, la función $f_a$ es decreciente.
+
+Queremos ahora dar sentido a la definición de $a^x$, para $a>0$ y $x\in\R$, de manera que se siga cumpliendo lo enunciado en el párrafo anterior.
+
+Claramente, para $a=1$, definimos $1^x= 1$, para todo $x\in\R$.
+Para los otros casos, necesitamos trabajar un poco más.
+
+\begin{lemma}\label{L:exponencial-continuidad}
+    Sea $a>1$ y sea $x\in\R$, arbitrario. 
+    Entonces, dado $\epsilon>0$ existen $r,r'\in\Q$ tales que
+    \begin{itemize}
+        \item $r<x<r'$;
+        \item $0<a^{r'} - a^{r} < \epsilon$.
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+Sea $a$ un número real mayor que $1$ y 
+$x \in \R$ arbitrario. Para el primer punto basta considerar dos números reales $s$ y $t$ tales que $s<x<t$ y por el Lema \ref{P:densidad de Q en R} existen racionales $r$ y $r'$ tales que 
+$s<r<x<r'<t$, con lo cual es válido el punto. 
+
+Para el segundo punto se requiere un poco más de astucia puesto que queremos controlar la cantidad $a^{r'} - a^{r}$, para lo cual el truco es tomar de forma ingeniosa los números $s$ y $t$ que mencionamos antes.
+
+Tomemos en principio un número natural $n$ que definiremos luego con mayor precisión. La idea es no alejarnos tanto de $x$ con lo cual tomemos $s=x-\frac{1}{2n}$ y $t=x+\frac{1}{2n}$ y tenemos $r$ y $r'$ con las siguientes propiedades:
+\[ x-\frac{1}{2n} <r<x<r'< x+\frac{1}{2n}\,;\]
+\[ r'-r < x+\frac{1}{2n} - 
+\Big( x-\frac{1}{2n} \Big) = \frac1n\,.\]
+Sea $\epsilon >0$ dado. Dado que 
+\[ a^{r'} - a^{r} = a^{r'-r+r} - a^{r}
+= a^{r'-r}a^{r} - a^{r}
+=(a^{r'-r}-1)\,a^{r}\,,\]
+debemos estimar cada término de manera que el producto sea menor que $\epsilon$.
+Sea $M$ cualquier número racional fijo mayor que $x$. Entonces $a^r < a^M$. Por otro lado, como $r'>r$ entonces $r'-r>0$ y $a^{r'-r}>1$. Así, usando la desigualdad de Bernoulli \ref{P:Bernoulli} con $h=a^{r'-r}-1>0$ se tiene
+\[ a^{r'-r}-1 \leq \frac{(a^{r'-r})^n-1}{n} < \frac{a^{\frac1n n}-1}{n} = \frac{a-1}{n}\,. \]
+Con todo esto, por la Proposición 
+\ref{P:exponencial-monotona} y el Corolario \ref{1sobrenmenorqueeps}, es posible elegir $n$ suficientemente grande tal que 
+\[  0<a^{r'} - a^{r} < \frac{a-1}{n}\,a^M < \epsilon\,,\]
+y con esto queda probado el lema.
+\end{proof}
+
+Supongamos ahora que ya está definido $a^x$ para todo $x\in\R$, y $a>1$, de modo que valga que si $x<y$, entonces $a^x<a^y$.
+Consideremos el conjunto $A=\{a^r: r\in\Q, r\le x\}$, formado por todas las potencias $a^r$ para $r$ racional y $r\le x$.
+Por lo que acabamos de decir, resulta que $a^r\le a^x$, para todo $r\le x$ y luego $a^x$ es cota superior del conjunto $A$.
+Si dado $\epsilon > 0$ elegimos $r$ y $r'$ como en el Lema~\ref{L:exponencial-continuidad}  resulta que 
+\[
+    0 < a^x - a^r \le a^{r'} - a^r < \epsilon ,
+\]
+y luego $a^x$ es el supremo del conjunto $A$.
+Observamos entonces que si queremos que se cumpla la Proposición~\ref{P:exponencial-monotona} para todos los exponentes reales, debe ser necesariamente $a^x= \sup\{a^r: r\in\Q, r\le x\}$, si $a>1$, y análogamente $a^x= \inf\{a^r: r\in\Q, r\le x\}$ si $0<a<1$.
+
+\begin{definition}
+    Sea $a\in\R$, $a>0$ y $x \in \R$, entonces definimos
+    \begin{itemize}
+        \item $a^x= \sup\{a^r: r\in\Q, r\le x\}$, si $a>1$;
+        \item $a^x= \inf\{a^r: r\in\Q, r\le x\}$, si $0<a<1$.
+    \end{itemize}
+\end{definition}
+
+A partir de esta definición, que se basa en las anteriores, se puede probar ahora que valen todas las propiedades que enunciamos anteriormente, para $a\in\R$, $a>0$, y $x\in\R$, que resumimos a continuación:
+
+\begin{theorem}\label{T:exponencial propiedades}
+    Sea $a\in\R$, $a>0$, entonces:
+    \begin{itemize}
+        \item $a^{x+y} = a^x \cdot a^y$, si $x,y\in\R$;
+        \item $a^{x\cdot y} = \big(a^x\big)^y$, si $x,y\in\R$;
+        \item Si $a>1$ y $x<y$, entonces $a^x < a^y$;
+        \item Si $0<a<1$ y $x<y$, entonces $a^x > a^y$;
+        \item Si $a>1$, $a^x= \sup\{a^r: r\in\Q, r\le x\} = \inf\{a^r: r\in\Q, r\ge x\}$;
+        \item Si $0<a<1$, $a^x= \sup\{a^r: r\in\Q, r\ge x\} = \inf\{a^r: r\in\Q, r\le x\}$;
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-1-s-4}
+\end{enumerate}
+
+\section{Valor absoluto y propiedades útiles}
+
+\begin{definition}
+    Dado un número real $x$, llamaremos \emph{módulo} o \emph{valor absoluto} de $x$ al mismo $a$ si $a$ es no negativo o al opuesto $-a$ si $a$ es negativo
+    \[
+        |x| = \begin{cases}
+            x, \quad&\text{si }x\ge 0,\\
+            -x, \quad&\text{si }x< 0.
+        \end{cases}
+    \]
+\end{definition}
+
+Observemos que cualquiera sea $x$, resulta $|x|\ge 0$, y $0$ es el único número cuyo módulo es cero. En otras palabras, $|x|>0$, para todo $x\neq 0$, y $|0|=0$.
+
+Observamos que siempre se cumple $x \le |x|$, puesto que si $x < 0$, entonces, como 
+$0\le |x|$, por la transitividad resulta $x < |x|$; y si $x \ge 0$, resulta que $x = |x|$.
+
+
+Si pensamos en la representación de $\R$ como una recta, el módulo de $x$ es la distancia que hay entre $x$ y $0$, y más aún $|x-y|$ es la distancia que hay entre $x$ e $y$.
+
+También es fácil ver que $|a|=\sqrt{a^2}$.
+Utilizando esta igualdad es fácil demostrar que 
+\begin{itemize}
+    \item $|x\,y|=|x|\,|y|$, cualesquiera sean $x,y\in\R$.
+    \item $|x/y|=|x|/|y|$, cualesquiera sean $x,y\in\R$, $y\neq 0$.
+\end{itemize}
+
+Una desigualdad muy sencilla y también muy útil es la \emph{desigualdad triangular}, que se enuncia en la siguiente proposición.
+
+\begin{proposition}
+    Si $x,y\in \R$, entonces 
+    \[ |x+y| \le |x|+|y|.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Supongamos por el contrario que existen $x,y\in \R$ tales que $|x+y|>|x|+|y|$.
+    Claramente, si esto ocurre, $x\neq 0$ y $y\neq 0$, por lo que ambos términos de la desigualdad son positivos, 
+    y por lo tanto $|x+y|^2>(|x|+|y|)^2$. O sea
+    \[
+        |x+y|^2 > |x|^2 + 2\,|x|\,|y| + |y|^2 = |x|^2 + 2\,|x\,y| + |y|^2 .
+    \]
+    Usando ahora que $|a|=\sqrt{a^2}$ para cualquier $a\in \R$, resulta
+    \[
+        \big(\sqrt{(x+y)^2}\big)^2 > \big(\sqrt{x^2}\big)^2 + 2\, |x\,y| + \big(\sqrt{y^2}\big)^2.
+    \]
+    Y ahora podemos usar que para cualquier número $a>0$, resulta $\big(\sqrt{a})^2 = a$, que implica
+    \[
+        \big(x+y\big)^2 > x^2 + 2\, |x\,y| + y^2.
+    \]
+    Es decir,
+    \[
+        x^2+ 2\,x\,y + y^2 > x^2 + 2\, |x\,y| + y^2,
+    \]
+    que a su vez implica $x\,y > |x\,y|$. Esto contradice el hecho que $a \le |a|$ para todo $a\in\R$.
+    Esta contradicción provino de suponer que $|x+y|>|x|+|y|$, por lo que queda demostrada la afirmación de esta proposición.
+\end{proof}
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-1-s-5}
+\end{enumerate}
+
+
+% \mara{Se me ocurre que se podría crear una subsección que sea `Ejercicios' que tenga los de la sección 1.5, y nuclear todos los ejercicios del capítulo en una subsección `Ejercicios del capítulo' o algo así.}
+% Buena idea. Ya lo hice en este capítulo.
+
+% \mauri{Algo que después usan consecuencia de la desigualdad triangular es que $|a+b| \geq |a|-|b|$ que sale redefiniendo simplemente $x=a+b$ e 
+% $y=-b$ y reordenando la desigualdad. Tal vez se puede poner como observación o como ejercicio.} 
+% está como ejercicio en la lista de ejercicios.
+
+\section{Ejercicios del capítulo~\getcurrentref{chapter}}
+
+\begin{enumerate}
+\input{ejercicios-ch-1-s-1}
+\input{ejercicios-ch-1-s-2}
+\input{ejercicios-ch-1-s-3}
+\input{ejercicios-ch-1-s-4}
+\input{ejercicios-ch-1-s-5}
+\end{enumerate}
+
+
+

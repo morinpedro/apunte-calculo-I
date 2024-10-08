@@ -1,0 +1,535 @@
+\chapter{Series}
+
+\section{Definición de serie}
+
+Consideremos una sucesión cualquiera \sucan. Para cada \niN sabemos lo que significa la suma de los $n$ primeros términos de la sucesión, que indicamos
+\[
+\sum_{k=1}^n a_k = a_1+a_2+\dots+a_n.
+\]
+En este capítulo queremos darle sentido, si es posible, a la definición de suma de \emph{todos} los términos de la sucesión, que indicaremos
+\[
+\serieak = a_1+a_2 +a_3+\cdots.
+\]
+
+En busca de esa definición, consideremos las siguientes \emph{sumas parciales}
+\begin{align*}
+    S_1 &= a_1 \\
+    S_2 &= a_1 + a_2 \\
+    S_3 &= a_1 + a_2 + a_3\\
+    &\vdots \\
+    S_n &= a_1 + a_2 + a_3 + \dots + a_n \\
+    &\vdots 
+\end{align*}
+Si estuviera definido \serieak sería razonable que los valores $S_n$ se acerquen a ese valor. Pero eso es lo mismo que pensar que la sucesión $\left(S_n\right)_\niN$ tenga límite, lo que en general no ocurre.
+
+Por ejemplo, consideremos la sucesión dada por $a_n = (-1)^{n+1}$.
+Para esta sucesión, tenemos
+\begin{align*}
+    S_1 &= a_1 = 1\\
+    S_2 &= a_1 + a_2 = 1 + (-1) = 0\\
+    S_3 &= a_1 + a_2 + a_3 = 1 + (-1) + 1 = 1\\
+    &\vdots \\
+    S_n &= a_1 + a_2 + a_3 + \dots + a_n = \begin{cases} 1, &\text{si $n$ es impar,}\\
+    0, &\text{si $n$ es par}. 
+    \end{cases}
+    \\
+    &\vdots 
+\end{align*}
+La sucesión de sumas parciales es
+\[ 
+1,\,0,\,1,\,0,\,\dots, 
+\]
+que claramente no es convergente.
+Luego, no parece posible dar una definición de \serieak \emph{para cualquier} sucesión \sucan. 
+Esto nos lleva a la siguiente definición.
+
+\begin{definition}\label{D:sumaserie}
+Para una sucesión \sucan definimos la sucesión de sumas parciales $\left(S_n\right)_\niN$ de la siguiente manera:
+\[
+S_n = \sum_{k=1}^n a_k, \qquad \niN.
+\]
+Si la sucesión $\left(S_n\right)_\niN$ es convergente, decimos que el límite de esa sucesión es la suma de los $a_k$ para $k=1$ hasta $\infty$: 
+\[
+\sum_{k=1}^\infty a_k = \lim S_n.
+\]
+O sea $\D \sum_{k=1}^\infty a_k = \lim_{n\to\infty} \Big(\sum_{k=1}^n a_k\Big)$.
+\end{definition}
+
+Brevemente, entonces, la suma de infinitos números reales es el límite de la sumas parciales, si dicho límite existe. Pero exista o no ese límite, vamos a encontrar de importancia el estudio de la sucesiones de sumas parciales correspondientes a una sucesión dada \sucan.
+
+La expresión \emph{sucesión de sumas parciales correspondientes a una sucesión} \sucan es un poco larga como para estar usándola continuamente (y debemos hacerlo). Esto ha originado una abreviatura para esa expresión bastante singular: en lugar de decir, \emph{la sucesión de sumas parciales correspondiente a la sucesión \sucan} se dice \emph{la serie \seriean}.
+
+De esta manera, aunque no exista \serieak (en el sentido de la Definición~\ref{D:sumaserie}), siempre existe la \emph{serie \serieak}. Por ejemplo, no existe $\sum_{k=1}^\infty (-1)^{k+1}$, pero sí existe \emph{la serie $\sum_{k=1}^\infty (-1)^{k+1}$}: es la sucesión $1$, $0$, $1$, $0$, \dots.
+
+Más aún, aunque exista \seriean, no es lo mismo que \emph{la serie \seriean}, pues \seriean es un número, el límite de una sucesión, mientras que \emph{la serie \seriean} es dicha sucesión.
+
+De acuerdo a lo anterior, está claro qué quiere decir que una serie sea convergente: como la serie por definición es una sucesión (la de las sumas parciales), entonces eso querrá decir que dicha sucesión es convergente.
+
+El núcleo de este capítulo estará en la determinación de criterios que nos permitan decidir si una serie es convergente o no.
+
+Empezamos probando lo siguiente:
+
+\begin{proposition}\label{P:serie convergente termino tiende a cero}
+    Si la serie \seriean converge, entonces $\lim a_n = 0$.
+\end{proposition}
+
+\begin{proof}
+    Que la serie \seriean sea convergente quiere decir que la sucesión \sucSn de sumas parciales converge, digamos a un límite $\ell\in\R$. Luego,
+    \[
+    \lim (S_{n+1}-S_n) = \lim S_{n+1} - \lim S_n = \ell - \ell = 0.
+    \]
+    Pero $S_{n+1} - S_n = \sum_{k=1}^{n+1} a_k - \sum_{k=1}^n a_k = a_{n+1}$, es decir, $\lim a_{n+1} = 0$, o lo que es lo mismo $\lim a_n = 0$.
+\end{proof}
+
+Desafortunadamente, la recíproca de esta Proposición~\ref{P:serie convergente termino tiende a cero} no es cierta: \emph{no} es cierto que si $a_n \to 0$ entonces la serie \seriean converge; veremos en la sección siguiente un ejemplo de esto.
+
+Ya estamos en condiciones de examinar un ejemplo muy importante, la llamada \emph{serie geométrica de razón $r$}. Esta es la serie
+\[
+\sum_{k=1}^\infty r^{k-1}, \qquad \text{también indicada }
+\sum_{k=0}^\infty r^k,
+\]
+definida para $r\in\R$ arbitrario. Veamos cuál es su comportamiento según cuál sea el valor de $r$.
+
+Recordemos que, para $r\neq 1$, tenemos una fórmula para la suma parcial 
+\[ 
+S_n = 1+r+r^2 + \dots + r^{n-1} = \frac{r^n-1}{r-1}
+\]
+(si no recuerda esta fórmula, puede probarla por inducción).
+Luego, existe $\lim S_n$ si y sólo si existe $\lim \frac{r^n-1}{r-1}$.
+Pero como aquí aparece $r^n$, dicho límite existirá cuando exista $\lim r^n$.
+Si $|r|<1$, $\lim r^n = 0$ y por lo tanto
+\[
+\lim S_n = \lim \frac{r^n-1}{r-1} = \frac{0-1}{r-1} = \frac{1}{1-r}.
+\]
+Es decir, si $|r|<1$ la serie geométrica $\sum_{k=0}^\infty r^k$ converge a $1/(1-r)$.
+
+Para cualquier otro valor de $r\in\R$ la serie no converge. En efecto, si $|r|\ge 1$ no es cierto que $r^n \to 0$ y por lo tanto, la Proposición~\ref{P:serie convergente termino tiende a cero} implica que no es posible que la serie $\sum_{k=0}^\infty r^k$ converja.
+
+Los siguientes dos lemas nos permiten realizar operaciones algebraicas con las series.
+
+\begin{lemma}
+Si la serie \serieak es convergente, entonces para todo número real $c$ también converge la serie $\sum_{k=1}^\infty c\, a_k$ y además
+\[
+\sum_{k=1}^\infty c\, a_k = c \serieak.
+\]
+\end{lemma}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\begin{lemma}  
+Si la serie \serieak y la serie $\sum_{k=1}^\infty b_k$ convergen, entonces la serie $\sum_{k=1}^\infty (a_k+b_k)$ también converge, y además
+\[
+\sum_{k=1}^\infty (a_k+b_k) = \serieak + \sum_{k=1}^\infty b_k.
+\]
+\end{lemma}
+
+\begin{proof}
+    Ejercicio.
+\end{proof}
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-3-s-1}
+\end{enumerate}
+
+\section{Series de términos positivos. \\ Criterios de convergencia}
+
+En esta sección nos limitaremos a estudiar series \seriean para las cuales $a_n\ge 0$, para todo \niN. 
+Observamos que bajo esta hipótesis, la sucesión de sumas parciales es creciente, ya que
+\[
+S_{n+1} =  \sum_{k=1}^{n+1} a_k = \left( \sum_{k=1}^n a_k \right) + a_{n+1} 
+= S_n + \underbrace{a_{n+1}}_{\ge 0} \ge S_n.
+\]
+Luego, por la Proposición~\ref{P:sucesion monotona acotada}, si la sucesión de sumas parciales está acotada, entonces existe $\lim S_n$ y por lo tanto la serie \seriean converge; y si la sucesión $S_n$ no está acotada, entonces $\lim S_n = +\infty$ y decimos que la serie \emph{diverge}. Tenemos entonces un criterio de convergencia:
+
+\begin{proposition}[Criterio de comparación]\label{P:series comparacion} 
+   Sean \sucan y \sucbn dos sucesiones tales que, a partir de un cierto $N_0$:
+   \[
+   0 \le a_n \le b_n,
+   \]
+   y supongamos que la serie $\sum_{n=1}^\infty b_n$ converge. Entonces la serie $\sum_{n=1}^\infty a_n$ también converge.
+\end{proposition}
+
+\begin{proof}
+    Para cada \niN definimos:
+    \[
+    S_n = \sum_{k=1}^n a_k,
+    \qquad
+    S_n' = \sum_{k=1}^n b_k.
+    \]
+    Como por hipótesis la serie $\sum_{n=1}^\infty b_n$ converge, resulta que la sucesión $\left(S_n'\right)_\niN$ converge y por lo tanto es acotada, i.e., existe $M > 0$ tal que:
+    \[
+    S_n' \le M, \quad\text{para todo \niN}.
+    \]
+    Ahora bien, si $n>N_0$ resulta
+    \begin{align*}
+        S_n &= \sum_{k=1}^n a_k 
+        = \sum_{k=1}^{N_0} a_k + \sum_{k=N_0+1}^n a_k
+        \le \sum_{k=1}^{N_0} a_k + \sum_{k=N_0+1}^n b_k
+        \\
+        &\le \sum_{k=1}^{N_0} a_k + \sum_{k=1}^n b_k
+        \le \sum_{k=1}^{N_0} a_k + S_n'
+        \le \underbrace{\sum_{k=1}^{N_0} a_k + M}_{M'}.
+    \end{align*}
+    Por lo tanto, $S_n \le M'$ para todo $n > N_0$ y como \sucSn es creciente
+    resulta que $S_n \le M'$ para todo \niN. 
+    Al ser \sucSn creciente y acotada, resulta convergente.
+\end{proof}
+
+\begin{corollary}
+Sean \sucan y \sucbn dos sucesiones tales que, a partir de un cierto $N_0$:
+   \[
+   0 \le a_n \le b_n,
+   \]
+   y supongamos que la serie $\sum_{n=1}^\infty a_n$ diverge. Entonces la serie $\sum_{n=1}^\infty b_n$ también diverge.
+\end{corollary}
+
+\begin{corollary}
+Sean \sucan y \sucbn dos sucesiones de términos positivos (o sea $a_n>0$ y $b_n>0$ para todo \niN) tales que
+\[
+\lim \frac{a_n}{b_n} = s > 0.
+\]
+Entonces \seriean converge si y sólo si \seriebn converge.
+\end{corollary}
+
+\begin{proof}
+    Supongamos que \seriebn converge. Como $\lim a_n/b_n = s$, entonces existe $N_0\in\N$ tal que, para $n\ge N_0$
+    \[
+    \left| \frac{a_n}{b_n} - s \right| < 1,
+    \]
+    que implica, en particular, que 
+    \[
+    \frac{a_n}{b_n} - s < 1 \quad\implies\quad a_n < b_n (s+1), \ \forall n\ge N_0.
+    \]
+    Ahora bien, como \seriebn converge, también converge $\sum_{k=1}^\infty b_n(s+1)$.
+    Por el criterio de comparación de la Proposición~\ref{P:series comparacion} resulta que \seriean es convergente.
+
+    Supongamos ahora que \seriean es convergente. En este caso usamos que $\lim b_n/a_n = 1/s > 0$ y el mismo razonamiento de recién nos lleva a que \seriebn converge.
+\end{proof}
+
+Este corolario resulta particularmente útil para \emph{eliminar la hojarasca} de los términos generales de algunas series. Por ejemplo, consideremos la serie
+\[
+\sum_{n=1}^\infty \frac{2^n+3}{3^n+2}.
+\]
+Para $n$ grande, en el numerador, $3$ resulta despreciable frente a $2^n$ y en el denominador $2$ es despreciable frente a $3^n$. Pensando en eso, consideramos 
+\[
+a_n = \frac{2^n+3}{3^n+2}\qquad\text{y}\qquad
+b_n = \frac{2^n}{3^n}.
+\]
+Entonces
+\[
+\frac{a_n}{b_n} = \frac{\frac{2^n+3}{3^n+2}}{\frac{2^n}{3^n}}
+= \frac{2^n+3}{2^n}\frac{3^n}{3^n+2}
+= \left(1+\frac{3}{2^n}\right) \left(\frac{1}{1+2/3^n}\right)
+\to 1 \cdot 1 = 1> 0.
+\]
+Por lo tanto, como la serie \seriebn converge, también converge la serie \seriean.
+
+Veamos ahora un criterio de gran importancia sobre convergencia de series de términos positivos:
+
+\begin{proposition}[Criterio de Cauchy o de la raíz]
+    Sea \sucan una sucesión de términos positivos tal que
+    \[
+    \lim \sqrt[n]{a_n} = s
+    \]
+Entonces:
+\begin{itemize}
+    \item Si $s<1$, la serie \seriean es convergente.
+    \item Si $s>1$, la serie \seriean es divergente.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Supongamos primero que $s<1$ y sea $t\in\R$ tal que $s<t<1$.
+    Entonces, como $\lim \sqrt[n]{a_n} = s < t$, existe $N_0\in\N$ tal que 
+    \[
+    \sqrt[n]{a_n} < t, \quad \text{para todo $n\ge N_0$},
+    \]
+    es decir,
+    \[
+    a_n < t^n, \quad \text{para todo $n\ge N_0$}.
+    \]
+    Como $t<1$ la serie $\sum_{n=1}^\infty t^n$ es convergente, y por el criterio de comparación resulta que \seriean es convergente.
+
+    Supongamos ahora que $s>1$, entonces existe $N_0\in\N$ tal que 
+    \[
+    \sqrt[n]{a_n} > 1, \quad \text{para todo $n\ge N_0$},
+    \]
+    es decir,
+    \[
+    a_n > 1, \quad \text{para todo $n\ge N_0$}.
+    \]
+    Luego no es cierto que $a_n \to 0$, que era una condición necesaria para que la serie \seriean converja.
+    Por lo tanto la serie \seriean no converge.
+\end{proof}
+
+
+Veamos por ejemplo, si la serie $\sum_{n=1}^\infty \frac{1}{n^n}$ converge. Para ello, consideramos la raíz $n$-ésima del término $n$-ésimo:
+\[
+\sqrt[n]{\frac{1}{n^n}}
+= \frac1n \to 0,
+\]
+y como $0<1$ la serie $\sum_{n=1}^\infty \frac{1}{n^n}$ converge.
+
+Veamos otro ejemplo, no tan obvio:
+determinemos si la serie
+$\D\sum_{k=1}^\infty \frac{(8k^3-2k^2+100000)^{k}}{(9k+1)^{3k}}$,
+con término general $\D a_k = \frac{(8k^3-2k^2+100000)^{k}}{(9k+1)^{3k}}$
+es convergente.
+Veamos:
+\[
+\sqrt[k]{a_k} = \sqrt[k]{\frac{(8k^3-2k^2+100000)^{k}}{(9k+1)^{3k}}}
+= \frac{8k^3-2k^2+100000}{(9k+1)^{3}}.
+\]
+No es difícil ver que el límite cuando $k\to\infty$ del último término es 
+$8/9^3 < 1$. Por lo tanto la serie converge.
+
+
+Probamos ahora un último criterio sobre convergencia de series de términos positivos:
+
+\begin{proposition}[Criterio de D'Alembert o criterio del cociente]
+Sea \sucan una sucesión de términos positivos tal que
+\[
+\lim \frac{a_{n+1}}{a_n} = s.
+\]
+Entonces:
+\begin{itemize}
+    \item Si $s<1$, la serie \seriean es convergente.
+    \item Si $s>1$, la serie \seriean es divergente.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Supongamos primero que $s<1$ y sea $t\in\R$ tal que $s<t<1$.
+    Entonces, como $\lim a_{n+1}/a_n = s < t$, existe $N_0\in\N$ tal que 
+    \[
+    \frac{a_{n+1}}{a_n} < t, \quad \text{para todo $n\ge N_0$}.
+    \]
+    Pero entonces
+    \begin{align*}
+    a_{N_0+1} &< t \, a_{N_0},\\
+    a_{N_0+2} &< t \, a_{N_0+1} < t^2 \, a_{N_0},\\
+    a_{N_0+3} &< t \, a_{N_0+2} < t^3 \, a_{N_0},
+    \end{align*}
+    y, en general, $a_{N_0+p} < t^p a_{N_0}$, para $p\in\N$.
+    Re-escribiendo esta desigualdad, para $n>N_0$, tenemos que
+    \[
+    a_n < t^{n-N_0} \, a_{N_0} = t^n \, \underbrace{\frac{a_{N_0}}{t^{N_0}}}_{c}.
+    \]
+    Llamando $c= \frac{a_{N_0}}{t^{N_0}}$, resulta que 
+    \[
+    a_n < c\, t^n,\quad\text{para $n > N_0$},
+    \]
+    con $0<t<1$. Pero luego la serie $\sum_{n=1}^\infty c\,t^n$ converge y por el criterio de comparación también la serie \seriean converge.
+
+    Supongamos ahora que $s>1$, entonces existe $N_0\in\N$ tal que 
+    \[
+    \frac{a_{n+1}}{a_n} > 1, \quad \text{para todo $n\ge N_0$}.
+    \]
+    De la misma manera que en la primera parte, concluimos que 
+    \[
+    a_n > a_{N_0} 1^n > a_{N_0}, \quad\text{para $n > N_0$},
+    \]
+    Luego no es cierto que $a_n \to 0$, que era una condición necesaria para que la serie \seriean converja.
+    Por lo tanto la serie \seriean no converge.
+\end{proof}
+
+Veamos un ejemplo de aplicación de este criterio.
+Consideremos la serie \seriean con $a_n = \frac{n!}{n^n}$. Y veamos el cociente $a_{n+1}/a_n$:
+\[
+\frac{a_{n+1}}{a_n} 
+= \frac{\frac{(n+1)!}{(n+1)^{n+1}}}{\frac{n!}{n^{n}}}
+= \frac{(n+1)!}{(n+1)^{n+1}} \frac{n^{n}}{n!}
+= (n+1) \frac{n^{n}}{(n+1)^{n+1}} 
+= \frac{n^{n}}{(n+1)^n} 
+= \left(\frac{n}{n+1}\right)^n \to e^{-1} < 1,
+\]
+y por lo tanto la serie \seriean converge.
+
+Antes de pasar a los ejercicios, analicemos la convergencia de la llamada \emph{serie armónica}: la serie $\D \sum_{n=1}^\infty \frac1n$.
+
+El siguiente razonamiento informal muestra que esta serie diverge:
+Observemos que
+\[
+1+\frac12 + \Big(\frac13 + \frac 14\Big)
+> 
+1+\frac12 + \Big(\frac14 + \frac 14\Big)
+= 1 + \frac12 + \frac12,
+\]
+y también 
+\[
+1+\frac12 + \Big(\frac13 + \frac 14\Big) + \Big( \frac15 + \frac16 + \frac17 + \frac18 \Big)
+> 
+1+\frac12 + \Big(\frac14 + \frac 14\Big) + \Big( \frac18 + \frac18 + \frac18 + \frac18 \Big) 
+= 1 + \frac12 + \frac12 + \frac12.
+\]
+Y de la misma manera
+\[
+1+\frac12 + \dots + \frac1{16} > 
+ 1 + \frac12 + \frac12 + \frac12 + \frac12.
+\]
+Así, vemos que 
+\[
+\sum_{k=1}^{2^n} \frac1k \ge 1 + \frac n2, \quad\text{para todo \niN}.
+\]
+(Esto se prueba por inducción).
+Por lo tanto, la sucesión de sumas parciales no es acotada, ya que $\lim 1 + \frac n 2 = +\infty$.
+
+Con un razonamiento similar se prueba que la \emph{serie armónica generalizada}
+\[
+% \text{la serie}\quad
+\sum_{n=1}^\infty \frac{1}{n^p} \quad
+\begin{cases} 
+\text{converge} \quad&\text{si $p>1$},\\
+\text{diverge} \quad&\text{si $p\le1$}.
+\end{cases}
+\]
+
+Si observamos el término general de la serie armónica generalizada $a_n = \frac{1}{n^p}$
+y quisiéramos aplicar el criterio de la raíz, vemos que 
+\[
+\sqrt[n]{a_n} = \frac{1}{\sqrt[n]{n^p}} \to 1, \quad\text{cuando $n\to\infty$},
+\]
+y esto es un ejemplo para ver que si $\lim \sqrt[n]{a_n} = 1$ no puede decirse nada acerca de la serie \seriean. Ya que en este caso, si $p>1$ la serie converge y si $p\le 1$ la serie diverge.
+
+La misma serie armónica generalizada sirve para ver que el criterio del cociente es inconcluyente cuando $\lim a_{n+1}/a_n = 1$. Veamos
+\[
+\frac{a_{n+1}}{a_n} = \frac{1/(n+1)^p}{1/n^p} = \frac{n^p}{(n+1)^p}
+= \Big( \frac{n}{n+1} \Big)^p \to 1, \quad\text{cuando $n\to\infty$}.
+\]
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-3-s-2}
+\end{enumerate}
+
+\section{Series alternadas. Convergencia absoluta}
+
+Se dice que una serie es \emph{alternada} si es de la forma
+\[
+\sum_{n=1}^\infty (-1)^{n-1} a_n, \quad \text{con } a_n\ge 0,\ \forall \niN.
+\]
+Veremos ahora un único criterio para series de este tipo:
+
+\begin{proposition}[Criterio de Leibniz]
+    Si una sucesión \sucan verifica:
+    \begin{enumerate}
+        \item $a_n\ge 0$, para todo \niN;
+        \item $a_{n+1} \le a_n$, para todo \niN (sucesión decreciente);
+        \item $\lim a_n = 0$;
+    \end{enumerate}
+    entonces la serie alternada $\sum_{n=1}^\infty (-1)^{n-1} a_n$ converge.
+\end{proposition}
+
+\begin{proof}
+La idea de la demostración se basa en observar la sucesión de sumas parciales $\big(S_n\big)_\niN$:
+\begin{align*}
+S_1 &= a_1 & 
+S_2 &= a_1 - a_2
+\\
+S_3 &= a_1 - a_2 + a_3 = S_1 + \underbrace{-a_2+a_3}_{\le 0}&
+S_4 &= a_1 - a_2 + a_3 - a_4 = S_2 + \underbrace{a_3 - a_4}_{\ge 0}
+\\
+S_5 &= S_3 + \underbrace{-a_4+a_5}_{\le 0}&
+S_6 &= S_4 + \underbrace{a_5 - a_6}_{\ge 0}
+\\
+&\quad\vdots & &\quad\vdots
+\end{align*}
+Por lo tanto
+\[
+S_2 \le S_4 \le S_6 \le S_8 \le \dots \le S_7 \le S_5 \le S_3 \le S_1.
+\]
+Más precisamente
+\begin{itemize}
+    \item La subsucesión $\big(S_{2n}\big)_\niN$ de términos de índice par es creciente.
+    \item La subsucesión $\big(S_{2n-1}\big)_\niN$ de términos de índice impar es decreciente.
+    \item $S_{2n}\le S_1$ y $S_{2n-1}\ge S_2$, para todo \niN.
+\end{itemize}
+    Es decir, ambas subsucesiones son monótonas y acotadas, y por lo tanto convergen.
+
+    Además, $S_{2n-1}-S_{2n} = a_{2n} > 0$ y $S_{2n-1}-S_{2n} = a_{2n}\to 0$. Por lo tanto ambas tienen el mismo límite.
+    Con un poquito más de esfuerzo se demuestra que toda la sucesión $\big(S_n\big)_\niN$
+    tiene límite y luego la serie converge.
+
+    Los detalles se discutirán en el coloquio de demostraciones.
+\end{proof}
+
+Como ejemplo, vemos que la serie $\sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}$ converge, ya que aquí $a_n = \frac1n$ y cumple las hipótesis de la proposición anterior.
+
+Es importante observar en este ejemplo, que si definimos $b_n = \frac{(-1)^{n-1}}{n}$, 
+entonces la serie \seriebn converge pero $\sum_{n=1}^\infty |b_n|$ no converge, ya que esta última es la serie armónica. Por lo tanto, vemos que hay series que convergen, pero si miramos la serie de los valores absolutos de los términos, esta puede no converger.
+Esto nos conduce a la siguiente definición:
+
+\begin{definition}
+    Se dice que una serie \seriean converge \emph{absolutamente}, o que \emph{es absolutamente convergente} si la serie $\sum_{n=1}^\infty |a_n|$ converge.
+\end{definition}
+
+Terminamos este capítulo con una última proposición.
+
+\begin{proposition}
+    Toda serie absolutamente convergente es convergente.
+\end{proposition}
+
+\begin{proof}
+    Sea \seriean una serie absolutamente convergente. Es decir, la serie $\sum_{n=1}^\infty |a_n|$ converge. Por definición, la sucesión de sumas parciales $S_n = \sum_{k=1}^n |a_k|$ es convergente, y por el Teorema\ref{T:converge sii Cauchy} la sucesión $(S_n)_\niN$ es de Cauchy. 
+    
+    Sea $\epsilon > 0$, como $(S_n)_\niN$ es de Cauchy, existe $N_0\in\N$ tal que 
+    \[
+    |S_n - S_m| < \epsilon, \qquad \text{para todo $n,m\ge N_0$}.
+    \]
+
+    Consideremos ahora la sucesión de sumas parciales de \seriean. Definimos $S_n' = \sum_{k=1}^n a_k$. Entonces, si $n>m$,
+    \begin{align*}
+    S_n' - S_m' &= \sum_{k=1}^n a_k - \sum_{k=1}^m a_k
+    = \sum_{k=m+1}^n a_k \\
+    &= a_{m+1} + a_{m+2} + \dots + a_n.
+    \end{align*}
+    Luego,
+    \begin{align*}
+    |S_n' - S_m'| 
+    &= |a_{m+1} + a_{m+2} + \dots + a_n|
+    \\
+    &\le |a_{m+1}| + |a_{m+2}| + \dots + |a_n| 
+    \\
+    &= S_n - S_m = |S_n - S_m|.
+    \end{align*}
+    Luego, 
+    \[
+    |S_n' - S_m'| 
+    \le |S_n - S_m| < \epsilon,
+    \qquad \text{para todo $n,m\ge N_0$}.
+    \]
+    Es decir, la sucesión $(S_n')_\niN$ es de Cauchy, y por el Teorema~\ref{T:converge sii Cauchy}, converge, o lo que es lo mismo, la serie \seriean converge.
+\end{proof}
+
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-3-s-3}
+\end{enumerate}
+
+\begin{comment}
+\section{Desarrollos decimales (???)}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\item 
+\end{enumerate}
+\end{comment}
+
+\section{Ejercicios del capítulo~\getcurrentref{chapter}}
+
+\begin{enumerate}
+\input{ejercicios-ch-3-s-1}
+\input{ejercicios-ch-3-s-2}
+\input{ejercicios-ch-3-s-3}
+\end{enumerate}
+
