@@ -1967,11 +1967,18 @@ $|g(h)| \le C|h|$, para todo $|h|<p$, para algún $p>0$ y $C>0$, entonces $f\cir
     \]
     Sea ahora $\eps > 0$. Como $f(H)=o(H)$, existe $\eta > 0$ tal que
     \[
-    \left| \frac{f(H)}{H} \right| \le \frac{\eps}{C}, \quad\text{para todo } H \in (-\eta,\eta) .
+    \left| \frac{f(H)}{H} \right| < \frac{\eps}{C}, \quad\text{para todo } H \in (-\eta,\eta) .
     \]
-    Si ahora elegimos $\delta = \min\{\eta,p\}$ resulta que
+    Si ahora elegimos $\delta = \min\Big\{\frac\eta C,p\Big\}$ resulta que, si  $h\in(-\delta,\delta)$, con $g(h)\neq0$,
     \[
-    \left| \frac{f\circ g(h)}{h} \right| < \frac{\eps}C = \eps, \quad\text{para todo }h \in (-\delta,\delta).
+    \left| \frac{f\circ g(h)}{h} \right|
+    = \left| \frac{f(g(h))}{g(h)} \right|\cdot \left|\frac{g(h)}{h} \right|
+    < \frac{\eps}C \cdot C = \eps.
+    \]
+    Si $h\in(-\delta,\delta)$, con $g(h)=0$,
+    \[
+        \left| \frac{f\circ g(h)}{h} \right|=
+        \left| \frac{f(0)}{h} \right| = 0 < \epsilon.
     \]
     Hemos demostrado que dado $\eps > 0$ existe $\delta > 0$ tal que
     \[

@@ -1209,6 +1209,7 @@ Veamos un último ejemplo:
 
 \section{Regla de L'Hospital}
 
+\begin{comment}
 Vemos ahora un Teorema del Valor Medio Generalizado:
 \begin{theorem}[Teorema del Valor Medio Generalizado (de Cauchy)]
     Si $f$ y $g$ son continuas en $[a,b]$ y derivables en $(a,b)$, entonces existe $c\in(a,b)$ tal que
@@ -1246,6 +1247,7 @@ Vemos ahora un Teorema del Valor Medio Generalizado:
 
 Como consecuencia de este teorema, vemos un resultado que nos da una igualdad de mucha utilidad para el cálculo de límites.
 
+
 \begin{proposition}[Regla de L'Hospital, caso $0/0$]
     Sean $f$ y $g$ funciones definidas y derivables en un intervalo $(a,b)$.
     Para $x_0\in(a,b)$, supongamos que $g'(x)\neq 0$, para todo $x\neq x_0$ y $f(x_0)=g(x_0)=0$.
@@ -1277,6 +1279,36 @@ Como consecuencia de este teorema, vemos un resultado que nos da una igualdad de
     Es decir, $\D\limxo \frac{f(x)}{g(x)}=\ell$.
 \end{proof}
 
+\end{comment}
+
+El siguiente teorema nos da una igualdad de mucha utilidad para el cálculo de límites:
+
+\begin{proposition}[Regla de L'Hospital, caso $0/0$]
+    Sean $f$ y $g$ funciones definidas y derivables en un intervalo $(a,b)$.
+    Supongamos que para $x_0\in(a,b)$ queremos calcular $\D\limxo \frac{f(x)}{g(x)}$, pero $f(x_0)=\limxo f(x)=0$ y $g(x_0)=\limxo g(x)=0$, es decir, tenemos un indeterminado del tipo $\frac00$.
+    Supongamos también que $f'$ y $g'$ son continuas en $(a,b)$.
+    Si $g'(x_0)\neq 0$, entonces existe $\D\limxo \frac{f(x)}{g(x)}$ y además $\D\limxo \frac{f(x)}{g(x)}=\frac{f'(x_0)}{g'(x_0)}$, es decir
+    \[
+        \limxo \frac{f(x)}{g(x)}=\frac{f'(x_0)}{g'(x_0)}=\limxo \frac{f'(x)}{g'(x)}.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Recordemos primero que $\D\limxo \frac{f(x)}{g(x)}=\limho \frac{f(x_0+h)}{g(x_0+h)}$. Y por la definición alternativa de derivada~\eqref{eq:derivada-o(h)}
+    \begin{align*}
+        f(x_0+h) &= \underbrace{f(x_0)}_{0} + h \cdot f'(x_0) + o(h) = h \cdot f'(x_0) + o(h),\\
+        g(x_0+h) &= \underbrace{g(x_0)}_{0} + h \cdot g'(x_0) + o(h) = h \cdot g'(x_0) + o(h).
+    \end{align*}
+    Luego
+    \begin{align*}
+        \frac{f(x_0+h)}{g(x_0+h)} &= \frac{ h \cdot f'(x_0) + o(h)}{h \cdot g'(x_0) + o(h)}
+        = \frac hh  \cdot \frac{ f'(x_0) + \frac{o(h)}h}{ g'(x_0) + \frac{o(h)}h}
+        \toh{0} \frac{f'(x_0) + 0}{g'(x_0) + 0}
+        = \frac{  f'(x_0)}{ g'(x_0)}.
+    \end{align*}
+    Es decir, $\D\limxo \frac{f(x)}{g(x)}=\frac{f'(x_0)}{g'(x_0)}=\limxo \frac{f'(x)}{g'(x)}$.
+\end{proof}
+    
 \begin{example}
     Utilizaremos esta regla para calcular $\D\lim_{x\to 1} \frac{\ln x}{x-1}$.
     El numerador y el denominador tienden a $0$ cuando $x\to1$:
@@ -1359,7 +1391,7 @@ La demostración de esta proposición y las que siguen a continuación quedan fu
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
+\input{ejercicios-ch-5-s-6.tex}
 \end{enumerate}
 
 
