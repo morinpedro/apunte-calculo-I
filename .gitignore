@@ -12,6 +12,7 @@ main.pdf
 *.cb
 *.cb2
 .*.lb
+*.atfi
 
 ## Intermediate documents:
 *.dvi

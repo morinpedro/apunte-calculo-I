@@ -621,7 +621,7 @@ La potencia del Cálculo Diferencial en sus diversas aplicaciones depende del he
         &= \ln\bigg( \big(1+\frac{1}{x/h}\big)^{x/h} \bigg)^{1/x}
         = \frac1x \ln \big(1+\frac{1}{x/h}\big)^{x/h}.
     \end{align*}        
-    Ahora bien,
+    Ahora bien, con el cambio de variables $y=\frac xh$, como $\lim_{h\to 0}y = \infty$,
     \[
     \lim_{h\to 0} \big(1+\frac{1}{x/h}\big)^{x/h} 
     = \lim_{y\to\infty} \big(1+\frac{1}{y}\big)^{y}
@@ -753,7 +753,7 @@ Luego
 \end{align*}
 Por lo tanto
 \[
-f\circ g'(x_0) = f'(y_0)\, g'(x_0) = f'\big(g(x_0)\big) \, g'(x_0).
+(f\circ g)'(x_0) = f'(y_0)\, g'(x_0) = f'\big(g(x_0)\big) \, g'(x_0).
 \qedhere
 \]
 \end{proof}
@@ -878,6 +878,7 @@ Por ejemplo, si consideramos la función $f(x)=\cos(x)$, entonces el máximo de 
 Los puntos mínimos de $f$ son aquellos puntos donde $\cos(x)=-1$, es decir $x=\pi+2n\pi$, $n\in\Z$.
 Recordemos que $f'(x)=-\sen(x)$, y observemos que $f'(x)=-\sen(x)=0$, para todos los puntos máximos y mínimos de $f$, que son todos los puntos de la forma $n\pi$, $n\in\Z$.
 
+\bigskip
 \centerline{\includegraphics[width=.8\textwidth]{pics/seno-coseno.png}}
 
 
@@ -1070,8 +1071,22 @@ Presentamos ahora un teorema importante que nos va a servir para calcular las de
 \end{theorem}
 
 \begin{proof}
-    La demostración se verá en la clase de \emph{Coloquio de demostraciones}.
+    La demostración se verá en la clase de \emph{Coloquio de Demostraciones}.
 \end{proof}
+
+Si bien esta demostración es un poco complicada, la parte complicada es demostrar que $f\inv$ es derivable. Suponiendo que es derivable, la fórmula es sencilla a partir de la regla de la cadena. En efecto, por definición de función inversa, $f\circ f\inv(y) = y$, luego, por un lado
+\[
+\frac{d (f\circ f\inv)(y)}{dy} = \frac{dy}{dy} = 1,
+\]
+y por otro lado, usando la regla de la cadena,
+\[
+    \frac{d (f\circ f\inv)(y)}{dy} = f'\big(f\inv(y)\big)\cdot (f\inv)'(y).
+\]
+Luego,
+\[
+    f'\big(f\inv(y)\big)\cdot (f\inv)'(y)=1
+    \quad\implies\quad  (f\inv)'(y)= \frac1{f'\big(f\inv(y)\big)}.
+\]
 
 \begin{example}
     Consideremos la función $f:\R\to\R$ dada por $f(x)=\sen x$. 
@@ -1193,6 +1208,152 @@ Veamos un último ejemplo:
 
 
 \section{Regla de L'Hospital}
+
+Vemos ahora un Teorema del Valor Medio Generalizado:
+\begin{theorem}[Teorema del Valor Medio Generalizado (de Cauchy)]
+    Si $f$ y $g$ son continuas en $[a,b]$ y derivables en $(a,b)$, entonces existe $c\in(a,b)$ tal que
+    \[
+        \big( f(b)-f(a) \big) \cdot g'(c) = \big( g(b)-g(a) \big)\cdot f'(c).
+    \]
+    Si, además $g'(x)\neq 0$ para todo $x\in(a,b)$, entonces
+    \[
+    \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Consideremos la función
+    \[
+    h(x) = \big( f(b)-f(a) \big) \cdot \big(g(x)-g(a)\big) 
+    - \big( g(b)-g(a) \big)\cdot \big(f(x)-f(a)\big).
+    \]
+    Esta función $h(x)$ es continua en $[a,b]$ y derivable en $(a,b)$ por ser producto y suma de funciones de ese tipo. Además:
+    \begin{align*}
+        h(a) &= \big( f(b)-f(a) \big) \cdot \big(g(a)-g(a)\big) 
+        - \big( g(b)-g(a) \big)\cdot \big(f(a)-f(a)\big) = 0,
+        \\
+        h(b) &= \big( f(b)-f(a) \big) \cdot \big(g(b)-g(a)\big) 
+        - \big( g(b)-g(a) \big)\cdot \big(f(b)-f(a)\big) = 0.
+    \end{align*}
+    Entonces $h$ satisface las hipótesis del Teorema de Rolle, y existe $c\in(a,b)$ tal que $h'(c)=0$. Pero
+    \[
+        h'(x) = \big( f(b)-f(a) \big) \cdot g'(x)
+        - \big( g(b)-g(a) \big)\cdot f'(x).
+    \]
+    Luego, $\D \big( f(b)-f(a) \big) \cdot g'(c)
+    - \big( g(b)-g(a) \big)\cdot f'(c)= 0$, que es lo que se quería demostrar.
+\end{proof}
+
+Como consecuencia de este teorema, vemos un resultado que nos da una igualdad de mucha utilidad para el cálculo de límites.
+
+\begin{proposition}[Regla de L'Hospital, caso $0/0$]
+    Sean $f$ y $g$ funciones definidas y derivables en un intervalo $(a,b)$.
+    Para $x_0\in(a,b)$, supongamos que $g'(x)\neq 0$, para todo $x\neq x_0$ y $f(x_0)=g(x_0)=0$.
+    Bajo estas hipótesis, si existe $\D\limxo \frac{f'(x)}{g'(x)}=\ell$, entonces existe $\D\limxo \frac{f(x)}{g(x)}$ y además $\D\limxo \frac{f(x)}{g(x)}=\ell$, es decir
+    \[
+        \limxo \frac{f(x)}{g(x)}=\limxo \frac{f'(x)}{g'(x)}.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Sea $\ell = \limxo \frac{f'(x)}{g'(x)}=\ell$. Entonces, dado $\epsilon>0$, existe $\delta>0$ tal que
+    \[
+    0<|x-x_0|<\delta\quad\implies\quad \Big| \frac{f'(x)}{g'(x)}-\ell \Big|<\epsilon.\]
+    Ahora bien, para cada $x$ tal que $0<|x-x_0|<\delta$, existe $c$ entre $x$ y $x_0$, tal que
+    \[
+    \frac{f(x)}{g(x)}=\frac{f(x)-f(x_0)}{g(x)-g(x_0)} = \frac{f'(c)}{g'(c)}.
+    \]
+    Como $c$ está entre $x$ y $x_0$, resulta que $0<|c-x_0|<|x-x_0|<\delta$, y entonces
+    \[
+    \Big| \frac{f(x)}{g(x)}-\ell\Big| 
+    = 
+    \Big| \frac{f'(c)}{g'(c)}-\ell\Big| < \epsilon.
+    \]
+    Hemos demostrado entonces que, dado $\epsilon>0$, existe $\delta>0$ tal que
+    \[
+        \Big| \frac{f(x)}{g(x)}-\ell\Big| <\epsilon,
+        \quad\text{para todo $x$ tal que $0<|x-x_0|<\delta$}.
+    \]    
+    Es decir, $\D\limxo \frac{f(x)}{g(x)}=\ell$.
+\end{proof}
+
+\begin{example}
+    Utilizaremos esta regla para calcular $\D\lim_{x\to 1} \frac{\ln x}{x-1}$.
+    El numerador y el denominador tienden a $0$ cuando $x\to1$:
+    \[
+        \lim_{x\to 1} \ln x = \ln 1 = 0,
+        \qquad
+        \lim_{x\to 1} (x-1) = 1-1=0.
+    \]
+    Por lo tanto es un límite indeterminado de la forma $\frac00$. Si derivamos el numerador y el denominador tenemos
+    \[
+    \frac{d \ln x}{dx} = \frac1x\tox{1}1, \qquad \frac{d(x-1)}{dx}=1\tox{1}1.
+    \]
+    Calculamos ahora el límite del cociente de estas dos derivadas:
+    \[
+        \lim_{x\to 1} \frac{\ln x}{x-1}= \lim_{x\to 1} \frac{\frac{d \ln x}{dx}}{\frac{d(x-1)}{dx}}
+    =\lim_{x\to 1} \frac{\frac1x}{1}=\lim_{x\to 1} \frac1x=1.
+    \]
+\end{example}
+
+\begin{example}
+    La regla de L'Hospital puede aplicarse de manera repetida. Por ejemplo, para calcular $\D\lim_{x\to 0}\frac{1-\cos x}{x^2}$ que otra vez es del tipo $\frac00$, observamos que 
+    \[
+    \dd[]{(1-\cos x)}{x}=0-(-\sen x)=\sen x,
+    \quad\text{y}\quad
+    \dd[]{x^2}{x}=2x.
+    \]
+    Ambas derivadas tienden a cero cuando $x\to 0$, por lo tanto seguimos teniendo un \emph{indeterminado}. Volvemos a derivar
+    \[
+        \dd[]{\sen x}{x}=\cos x,
+        \quad\text{y}\quad
+        \dd[]{2x}{x}=2.
+    \]
+    Estas nuevas derivadas tienden a $1$ y a $2$, respectivamente, cuando $x\to 0$, por lo tanto, $\D\lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac12$. Todo este razonamiento es muy complicado de escribir de esta manera.
+    
+    Una manera más sencilla de escribirla es la siguiente:
+    \[
+        \lim_{x\to 0}\frac{1-\cos x}{x^2}
+        \eqLH \lim_{x\to 0}\frac{\sen x}{2x}
+        \eqLH \lim_{x\to 0}\frac{\cos x}{2} = \frac12.
+    \]
+    Donde usamos \,$\eqLH$\, para indicar que en ese paso estamos usando la regla de L'Hospital.
+\end{example}
+
+
+\begin{proposition}[Regla de L'Hospital, caso $\infty/\infty$]
+    Sean $f$ y $g$ funciones definidas y derivables en un intervalo $(a,b)$.
+    Para $x_0\in(a,b)$, supongamos que $\limxo f(x)=\limxo g(x)=\infty$.
+    Bajo estas hipótesis, si existe $\D\limxo \frac{f'(x)}{g'(x)}=\ell$, entonces existe $\D\limxo \frac{f(x)}{g(x)}$ y además $\D\limxo \frac{f(x)}{g(x)}=\ell$, es decir
+    \[
+        \limxo \frac{f(x)}{g(x)}=\limxo \frac{f'(x)}{g'(x)}.
+    \]
+\end{proposition}
+
+La demostración de esta proposición y las que siguen a continuación quedan fuera del alcance de este apunte, y serán discutidas en los \emph{Coloquios de Demostraciones}.
+
+\begin{proposition}[Regla de L'Hospital, 2$^{\text{do}}$ caso $0/0$]
+    Sean $f$ y $g$ funciones definidas y derivables en un intervalo $(a,b)$.
+    Para $x_0\in(a,b)$, supongamos que $g'(x)\neq 0$, para todo $x\neq x_0$ y $f(x_0)=g(x_0)=0$.
+    Bajo estas hipótesis,
+    \[
+    \text{si}\quad \D\limxo \frac{f'(x)}{g'(x)}=\infty
+    \quad\text{entonces}\quad
+    \D\limxo \frac{f(x)}{g(x)}=\infty.
+    \]
+\end{proposition}
+
+\begin{proposition}[Regla de L'Hospital, 2$^{\text{do}}$ caso $\infty/\infty$]
+    Sean $f$ y $g$ funciones definidas y derivables en un intervalo $(a,b)$.
+    Para $x_0\in(a,b)$, supongamos que $\limxo f(x)=\limxo g(x)=\infty$.
+    Bajo estas hipótesis, 
+    \[
+    \text{si}\quad \D\limxo \frac{f'(x)}{g'(x)}=\infty
+    \quad\text{entonces}\quad
+    \D\limxo \frac{f(x)}{g(x)}=\infty.
+    \]
+\end{proposition}
+
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}

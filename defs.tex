@@ -15,6 +15,7 @@
 \usepackage{todonotes}
 \usepackage{multicol}
 \usepackage{xspace}
+\usepackage{stackengine}
 \usepackage[%
 %   pdftex=true,  % si se usa pdftex
    pdfpagemode=UseNone,
@@ -78,6 +79,7 @@ breaklinks=true,
 \newcommand{\ton}{\stackunder{\,$\longrightarrow$\,}{\scriptsize$n\to\infty$}}
 \newcommand{\tox}[1]{\stackunder{\,$\longrightarrow$\,}{\scriptsize$x\to{#1}$}}
 \newcommand{\toy}[1]{\stackunder{\,$\longrightarrow$\,}{\scriptsize$y\to{#1}$}}
+\newcommand{\eqLH}{\stackon{\,=}{\,\,\scriptsize{(L'H)}}\,\,}
 \newcommand{\note}[1]%
 {\noindent\centerline{\fbox{\parbox{.9\textwidth}{\textbf{#1}}}}}
 \newcommand{\snote}[1]%
