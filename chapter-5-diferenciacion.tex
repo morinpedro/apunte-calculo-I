@@ -511,6 +511,28 @@ p'(x) = n\, a_n \, x^{n-1} + (n-1) \, a_{n-1} \, x^{n-2} + \dots + 2\, a_2 \, x 
 Y por la regla del cociente, también todas las funciones racionales son derivables en todo punto de su dominio (todos los puntos donde el denominador no se anula).
 
 
+\subsection*{Derivadas de orden superior.}
+Como vimos al principio de esta sección, si una función $f$ es derivable, podemos formar una nueva función $f'$, la derivada de $f$. Si $f'$ es a su vez derivable, podemos tomar su derivada $(f')'$, llamada \emph{derivada segunda de $f$} y se designa por $f''$. Si esta función es derivable, podemos volver a calcular su derivada, que será la derivada tercera y se denotará $f'''$, etc. Para derivadas de orden superior a $3$, denotaremos el orden de las derivadas con un supra-índice entre paréntesis. Por ejemplo, la derivada cuarta es $f^{(4)}$, y la $n$-ésima es $f^{(n)}$.
+Por ejemplo, si $f(x)=x^5$, tenemos que
+\[
+f'(x)=5\,x^4,\quad
+f''(x)=20\,x^3,\quad
+f'''(x)=60\,x^2,\quad
+f^{(4)}(x)=120\,x,\quad
+f^{(5)}(x)=120,
+\]
+y $f^{(6)}(x)=0$, con $f^{(n)}(x)=0$, para todo $n\ge 6$.
+
+También podemos usar la notación de Leibniz para las derivadas de orden superior. Si $y=x^5$,
+\[
+\dd{y}{x}=5\,x^4,\quad
+\dd[2]{y}{x}=20\,x^3,\quad
+\dd[3]{y}{x}=60\,x^2,\quad
+\dd[4]{y}{x}=120\,x,\quad
+\dd[5]{y}{x}=120,\quad
+\]
+con $\D\dd[n]{f}{x}=0$, para todo $n\ge 6$.
+
 
 
 
@@ -1023,7 +1045,7 @@ La respuesta es efectivamente afirmativa:
 
 El siguiente resultado es una consecuencia importante del Teorema del Valor Medio, que nos permite deducir información de $f$ a partir de información sobre su derivada $f'$.
 
-\begin{proposition}
+\begin{proposition}\label{P:signo-derivada=>tendencia}
     Sea $f$ una función continua en $[a,b]$ y derivable en $(a,b)$:
     \begin{enumerate}
         \item Si $f'(x)>0$ para todo $x\in(a,b)$, entonces $f$ es estrictamente creciente en $[a,b]$, 
@@ -1204,6 +1226,289 @@ Veamos un último ejemplo:
 
 \begin{enumerate}
 \input{ejercicios-ch-5-s-5}
+\end{enumerate}
+
+\section{Máximos y mínimos locales}
+
+\begin{definition}
+    Consideremos una función $f:I\to \R$, donde $I$ es un intervalo.
+    Decimos que $f$ tiene un \emph{máximo local en $x_0$} cuando existe $\delta>0$ tal que
+    \[
+    f(x_0)\ge f(x), \quad\text{para todo $x$ en $(x_0-\delta,x_0+\delta)\cap I$}.
+    \]
+    Decimos que $f$ tiene un \emph{mínimo local en $x_0$} cuando existe $\delta>0$ tal que
+    \[
+    f(x_0)\le f(x), \quad\text{para todo $x$ en $(x_0-\delta,x_0+\delta)\cap I$}.
+    \]
+\end{definition}
+
+\begin{figure*}[htbp]
+    \centerline{\includegraphics[width=.8\textwidth]{pics/max-min-locales-int-cerrado.png}}
+\caption{Máximos y mínimos locales en un intervalo cerrado.}
+\end{figure*}
+
+Observamos lo siguiente, con respecto a los máximos y mínimos de una función $f$ en un intervalo cerrado $[a,b]$:
+\begin{itemize}
+    \item Si $f$ es creciente en un intervalo $[a,a+\delta]$, para algún $\delta>0$, entonces $f(a)$ es un mínimo local de $f$.
+    \item Si $f$ es decreciente en un intervalo $[a,a+\delta]$, para algún $\delta>0$, entonces $f(a)$ es un máximo local de $f$.
+    \item Si $f$ es creciente en un intervalo $[b-\delta,b]$, para algún $\delta>0$, entonces $f(b)$ es un máximo local de $f$.
+    \item Si $f$ es decreciente en un intervalo $[b-\delta,b]$, para algún $\delta>0$, entonces $f(b)$ es un mínimo local de $f$.
+    \item Si $x_0\in(a,b)$ y $f$ es decreciente en $[x_0-\delta,x_0]$ y creciente en $[x_0,x_0+\delta]$, para algún $\delta>0$, entonces $f$ tiene un mínimo local en $x_0$.
+    \item Si $x_0\in(a,b)$ y $f$ es creciente en $[x_0-\delta,x_0]$ y decreciente en $[x_0,x_0+\delta]$, para algún $\delta>0$, entonces $f$ tiene un máximo local en $x_0$.
+\end{itemize}
+
+\begin{figure*}[htbp]
+    \centerline{\includegraphics[width=.8\textwidth]{pics/max-min-locales-int-abierto.png}}
+\caption{Máximos y mínimos locales en un intervalo abierto.}
+\end{figure*}
+
+
+A continuación vemos un teorema que nos permite determinar los puntos \emph{candidatos} a puntos máximos o mínimos.
+
+\begin{theorem}
+    Sea $f:I\to\R$. Si $f$ tiene un máximo o un mínimo local en $x_0$, entonces ocurre una de las tres siguientes:
+    \begin{itemize}
+        \item $x_0$ es un extremo del intervalo;
+        \item $f'(x_0)$ no existe;
+        \item $f'(x_0)=0$.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Supongamos que $f$ tiene un máximo local en $x_0$ que no es un extremo del intervalo y que $f'(x_0)$ existe; si $x_0$ es un extremo del intervalo o $f'(x_0)$ no existe, no hay nada que probar.
+
+    Luego, existe $\delta > 0$ tal que $f(x)\ge f(x_0)$, para todo $x\in(x_0-\delta,x_0+\delta)$.
+
+    Si existe $f'(x_0)$, entonces
+    \[
+    f'(x_0)= \limxop \frac{f(x)-f(x_0)}{x-x_0} = \limxom \frac{f(x)-f(x_0)}{x-x_0}.
+    \]
+    Ahora bien, si $x_0<x<x_0+\delta$, entonces $f(x)\ge f(x_0)$ y por lo tanto $\frac{f(x)-f(x_0)}{x-x_0}\ge 0$. Luego
+    \[
+    f'(x_0) = \limxop \frac{f(x)-f(x_0)}{x-x_0} \ge 0.
+    \]
+    Además, si $x_0-\delta <x<x_0$, entonces $f(x)\ge f(x_0)$ y por lo tanto $\frac{f(x)-f(x_0)}{x-x_0}\le 0$. Luego
+    \[
+    f'(x_0) = \limxom \frac{f(x)-f(x_0)}{x-x_0} \le 0.
+    \]
+    Esto implica que $f'(x_0)=0$.
+
+    El caso en que $f$ tiene un mínimo local es similar.
+\end{proof}
+
+Los puntos \emph{candidatos} a ser puntos máximos o mínimos de una función reciben el nombre de \emph{puntos críticos}.
+\begin{definition}[Puntos críticos]
+    Dada una función $f:I\to \R$, llamamos puntos críticos a los siguientes puntos:
+    \begin{itemize}
+        \item Extremos del intervalo que pertenezcan al intervalo;
+        \item Puntos $x_0$ del interior de $I$ donde la derivada no existe;
+        \item Puntos $x_0$ donde $f'(x_0)=0$.
+    \end{itemize}
+\end{definition}
+
+En vista del teorema y de la definición anteriores, cuando buscamos máximos y mínimos locales, los únicos números que necesitamos considerar son los puntos críticos de $f$.
+Ilustramos ahora con ejemplos la técnica para hallar los máximos y mínimos locales con algunos ejemplos. En cada ejemplo, el primer paso consiste en hallar los puntos críticos.
+
+\begin{example}
+    Consideremos la función $f(x)=3-x^2$ en $\R$. 
+    El intervalo considerado es $(-\infty,+\infty)$ que no tiene extremos.
+    Esta función es polinomial y por lo tanto derivable, con 
+    \[f'(x)=-2x.\]
+    Ahora planteamos la ecuación $f'(x)=0$, es decir $-2x=0$, que tiene como única solución $x=0$.
+
+    Es decir, $x=0$ es el único punto crítico. El número $f(0)=3$ es un máximo local porque $f(x)=3-x^2\le 3$, para todo $x\in\R$.
+\end{example}
+
+\begin{example}
+    Consideremos ahora la siguiente función en $[0,+\infty]$
+    \[ 
+    f(x)=|x-3|+2=\begin{cases}
+        -x+5,\quad&\text{si $x<3$},
+        \\
+        x-1,\quad&\text{si $x\ge 3$}.
+    \end{cases}
+    \]
+    cuya derivada es 
+    \[ 
+    f'(x)=\begin{cases}
+        -1,\quad&\text{si $x<3$},
+        \\
+        \text{no existe},\quad&\text{si $x=3$},
+        \\
+        1,\quad&\text{si $x> 3$}.
+    \end{cases}
+    \]
+    El intervalo que estamos considerando tiene un solo extremo, $x=0$, y la derivada de $f$ no se anula nunca. Por lo tanto, los puntos críticos son:
+    \begin{itemize}
+        \item $x=0$, extremo izquierdo del intervalo;
+        \item $x=3$, $f'(3)$ no existe.
+    \end{itemize}
+    Si observamos cerca de $x=0$, la función es $f(x)=-x+5$, para $0\le x<3$, por lo tanto
+    \[f(0)= 5 \ge -x+5, \quad\text{para todo $0\le x < 3$}.\]
+    Entonces $f$ tiene un máximo local en $x=0$.
+
+    En el otro punto crítico, $x=3$, vemos, que:
+    \[
+    f(3)=2\le f(x)=|x-3|+2=\begin{cases}
+        -x+5,\quad&\text{si $0<x\le 3$},
+        \\
+        x-1,\quad&\text{si $x\ge 3$}.
+    \end{cases}
+    \]
+    Por lo tanto, $f$ tiene un mínimo local en $x=3$.
+\end{example}
+
+\begin{example}
+    Consideremos ahora $f(x)=x^3$, en el intervalo $[-1,1]$. Esta función es derivable con $f'(x)=3\, x^2$. Los puntos críticos son:
+    \begin{itemize}
+        \item $x=-1$, extremo izquierdo;
+        \item $x=1$, extremo derecho;
+        \item $x=0$, donde $f'$ se anula.
+    \end{itemize}
+    Si analizamos el valor de la función en estos tres puntos, vemos que
+    
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            $x$ & $f(x)$ \\
+            \hline 
+            $-1$ & $-1$ \\
+            $0$ & $0$ \\
+            $1$ & $1$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    En $x=-1$ hay un mínimo local y en $x=1$ hay un máximo local, dado que $f'(x)=3 x^2\ge 0$ en $(-1,1)$ y por lo tanto $f$ es creciente. ?`Qué ocurre en $x=0$? Este punto es un punto crítico, donde no hay ni un máximo ni un mínimo, ya que:
+    \[
+    \begin{cases}
+        f(x) \ge f(0)=0,\quad&\text{si $x\ge 0$},
+        \\
+        f(x) \le f(0)=0,\quad&\text{si $x\le 0$}.
+    \end{cases}\]
+\end{example}
+
+Concluimos en base al último ejemplo que los puntos críticos son los \emph{candidatos} a ser puntos máximos o mínimos, pero no son todos puntos máximos o mínimos. Una herramienta para determinar si un punto crítico corresponde a un máximo o mínimo local la da la siguiente proposición.
+
+\begin{proposition}[Criterio de la derivada primera]
+    Supongamos que $x_0$ es un punto crítico de $f$ donde $f$ es continua, en el interior del intervalo que estamos considerando. Supongamos que existe $\delta>0$ tal que:
+    \begin{enumerate}
+        \item $f'(x)>0$ para todo $x\in(x_0-\delta,x_0)$ y $f'(x)<0$, para todo $x\in(x_0,x_0+\delta)$, entonces $f(x_0)$ es un máximo local; 
+        \item $f'(x)<0$ para todo $x\in(x_0-\delta,x_0)$ y $f'(x)>0$, para todo $x\in(x_0,x_0+\delta)$, entonces $f(x_0)$ es un mínimo local; 
+        \item $f'(x)$ tiene el mismo signo en $(x_0-\delta,x_0)$ y en $(x_0,x_0+\delta)$, entonces $f(x_0)$ no es ni un máximo ni un mínimo local.
+    \end{enumerate}
+\end{proposition}
+
+Esta proposición puede decirse, en palabras, de la siguiente manera:
+\begin{quote}
+    \begin{enumerate}
+        \item $f'>0$ a la izquierda de $x_0$ y $f'<0$ a la derecha de $x_0$, entonces $f(x_0)$ es un máximo local; 
+        \item $f'<0$ a la izquierda de $x_0$ y $f'>0$ a la derecha de $x_0$, entonces $f(x_0)$ es un mínimo local; 
+        \item $f'$ no cambia de signo en $x_0$, entonces $f(x_0)$ no es ni un máximo ni un mínimo local.
+    \end{enumerate}
+\end{quote}
+
+\centerline{
+\includegraphics[width=.8\textwidth]{pics/max-min-locales-derivada.png}
+}
+La demostración es sencilla, haciendo uso de la Proposición~\ref{P:signo-derivada=>tendencia}.
+\begin{proof}
+    \begin{enumerate}
+        \item Por la Proposición~\ref{P:signo-derivada=>tendencia}, $f$ es creciente en $[x_0-\delta,x_0]$ y decreciente en $[x_0,x_0+\delta]$, por lo tanto $f(x_0)\ge f(x)$, para todo $x\in[x_0-\delta,x_0+\delta]$.
+        \item Por la Proposición~\ref{P:signo-derivada=>tendencia}, $f$ es decreciente en $[x_0-\delta,x_0]$ y creciente en $[x_0,x_0+\delta]$, por lo tanto $f(x_0)\le f(x)$, para todo $x\in[x_0-\delta,x_0+\delta]$.
+        \item Hay aquí dos casos:
+        \begin{enumerate}
+            \item $f'(x)<0$ en $(x_0-\delta,x_0)$ y en $(x_0,x_0+\delta)$. En este caso, por la Proposición~\ref{P:signo-derivada=>tendencia}, $f$ es estrictamente decreciente en $[x_0-\delta,x_0+\delta]$.
+            Por lo tanto, $f(x_0)<f(x)$, para todo $x\in (x_0-\delta,x_0)$; y
+            $f(x_0)>f(x)$, para todo $x\in (x_0,x_0+\delta)$.
+            \item $f'(x)>0$ en $(x_0-\delta,x_0)$ y en $(x_0,x_0+\delta)$. En este caso, por la Proposición~\ref{P:signo-derivada=>tendencia}, $f$ es estrictamente creciente en $[x_0-\delta,x_0+\delta]$.
+            Por lo tanto, $f(x_0)>f(x)$, para todo $x\in (x_0-\delta,x_0)$; y
+            $f(x_0)<f(x)$, para todo $x\in (x_0,x_0+\delta)$.
+        \end{enumerate}
+        En ambos casos, $f(x_0)$ no es ni un máximo ni un mínimo local de $f$.\qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    Consideremos la función $f(x) = 2x^3-x^4$ en $\R$. Su derivada es
+    $$ f'(x) = 6\,x^2-4\,x^3 = 2\, x^2\, (3-2x).$$
+    La derivada se anula en $x=0$ y en $x=3/2$. Resumimos el signo de $f'$ en la siguiente tabla:
+
+    \begin{center}
+\def\arraystretch{1.5}
+\begin{tabular}{|c|c|c|}
+            \hline
+            $x \in(-\infty,0)$ & $x\in(0, 3/2)$ & $x\in(3/2,+\infty)$ \\
+            \hline
+            $f'>0$& 
+            $f'>0$ & 
+            $f'<0$ \\
+            \hline
+            $f$ crece & 
+            $f$ crece & 
+            $f$ decrece \\
+            \hline
+        \end{tabular}
+    \end{center}
+    Luego, $f$ tiene un máximo local en $x=3/2$, pero no tiene ni un máximo ni un mínimo local en $x=0$.
+\end{example}
+
+\begin{proposition}[Criterio de la derivada segunda]
+    Supongamos que $f'(x_0)=0$ y que existe $f''(x_0)$.
+    \begin{itemize}
+        \item Si $f''(x_0)>0$, entonces $f$ tiene un mínimo local en $x_0$.
+        \item Si $f''(x_0)<0$, entonces $f$ tiene un máximo local en $x_0$.
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Veamos el primer caso, el segundo queda como ejercicio para el lector.
+    Supongamos que $f'(x_0)=0$ y $f''(x_0)>0$. Como $f''(x_0)$ es la derivada de $f'(x_0)$ resulta que existe un $\delta>0$ tal que, 
+    $$ 
+    \text{si}\quad x_0-\delta<x_1<x_0<x_2<x_0+\delta, 
+    \quad\implies\quad 
+    \frac{f'(x_1)- f'(x_0)}{x_1-x_0}>0,\ \text{y}\ 
+    \frac{f'(x_2)- f'(x_0)}{x_2-x_0}>0,
+    $$
+    como $x_1<x_0<x_2$, $x_1-x_0<0$ y $x_2-x_0>0$, luego,
+    $$ 
+    \text{si}\quad x_0-\delta<x_1<x_0<x_2<x_0+\delta, 
+    \qquad\text{entonces}\quad 
+    f'(x_1)< f'(x_0) = 0 <f'(x_2).
+    $$
+    Es decir, 
+    $$
+    f'(x)<0\quad\text{para $x\in(x_0-\delta,x_0)$}
+    \qquad\text{y}\qquad
+    f'(x)>0\quad\text{para $x\in(x_0,x_0+\delta)$}.
+    $$
+    Por el criterio de la derivada primera, $f$ tiene un mínimo local en $x_0$.
+\end{proof}
+
+\begin{example}
+    Consideramos $f(x)=2\, x^3-3\, x^2-12\, x+5$, para la cual
+    $$ f'(x) = 6\, x^2 - 6\, x-12 = 6(x^2-x-2) = 6(x-2)(x+1),
+    $$ 
+    y $$ f''(x) = 12\, x-6.$$
+    Los puntos críticos son $x=2$ y $x=-1$; la derivada primera en cada uno de estos puntos es $0$.
+    Dado que $f''(2)=18>0$ y $f''(-1)=-18<0$, podemos concluir por el criterio de la segunda $f(2)=-15$ es un mínimo local y $f(-1)=12$ es un máximo local.
+\end{example}
+
+\begin{example}
+    Para mostrar lo que puede suceder si la derivada segunda es cero en un punto crítico $x_0$, consideremos las siguientes tres funciones:
+    $$ f(x)=x^3,\qquad g(x)=x^4,\qquad, h(x)=-x^4. $$
+    En cada caso, $x=0$ es un punto crítico, ya que
+    $$ f'(x)=3\, x^2,\qquad g(x)=4\, x^3,\qquad, h(x)=-4 \, x^3; $$
+    y también la derivada segunda de estas tres funciones se anula en $x=0$:
+    $$ f''(x)=6\, x,\qquad g(x)=12\, x^2,\qquad, h(x)=-12 \, x^2. $$
+    En el primer caso, $f(x)=x^3$ no tiene ni un máximo ni un mínimo local en $x=0$. En cambio $g(x)=x^4$ tiene un mínimo local y $h(x)=-x^4$ tiene un máximo local, lo que puede verificarse por el criterio de la derivada primera.
+    
+\end{example}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-5-s-6}
 \end{enumerate}
 
 
@@ -1391,7 +1696,7 @@ La demostración de esta proposición y las que siguen a continuación quedan fu
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\input{ejercicios-ch-5-s-6.tex}
+\input{ejercicios-ch-5-s-7.tex}
 \end{enumerate}
 
 
