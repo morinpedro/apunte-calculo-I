@@ -17,7 +17,7 @@ Este cociente recibe el nombre de \emph{cociente incremental}.
 Ese cociente depende de $h$, pero si tomamos $h$ cada vez más pequeño, entonces tendremos una \emph{variación instantánea} de $f$ en $x_0$. Más precisamente:
 
 \begin{definition}
-Sea $f$ una función definida en un intervalo abierto $(a,b)$ y sea $x_0\in(a,b)$. Decimos que \emph{$f$ es derivable en $x_0$} si existe el límite:
+Sea $f$ una función definida en un intervalo abierto $(a,b)$ y sea $x_0\in(a,b)$. Decimos que \emph{$f$ es derivable o diferenciable en $x_0$} si existe el límite:
 \[
 \lim_{h\to 0} \frac{f(x_0+h)-f(x_0)}{h}.
 \]
@@ -29,6 +29,7 @@ Es decir, \emph{la derivada de $f$ en $x_0$} es
 f'(x_0) = \lim_{h\to 0} \frac{f(x_0+h)-f(x_0)}{h},
 \]
 siempre que el límite exista.
+
 
 \begin{example}
     Consideremos la función $f(x)=x^2$. Veamos si es derivable en $x_0=2$, es decir, veamos si existe $f'(2)$:
@@ -116,7 +117,7 @@ Esto no es así para todas las funciones, por ejemplo, la función \emph{valor a
 
     ?`Cuál es la recta tangente al gráfico de $y=|x|$ en el origen $(0,0)$? ?`Existe?
 
-    Aunque sí es derivable en $x_0$ si $x_0\neq 0$.
+    Aunque sí es diferenciable en $x_0$ si $x_0\neq 0$.
     Queda como ejercicio verificar que
     \[
     f'(x_0) = \begin{cases}
@@ -186,7 +187,7 @@ f(x_0+h) = f(x_0) + f'(x_0) \, h + o(h).
 \]
 Más precisamente
 \begin{quote}
-    $f$ es derivable en $x_0$ si existe un número que denotamos $f'(x_0)$ para el que se cumple que 
+    $f$ es derivable o diferenciable en $x_0$ si existe un número que denotamos $f'(x_0)$ para el que se cumple que 
     \begin{equation}\label{eq:derivada-o(h)}
     f(x_0+h) = f(x_0) + f'(x_0) \, h + o(h).
     \end{equation}
@@ -212,7 +213,7 @@ Más precisamente
     Luego $f'(x_0)=3\, x_0^2$.
 \end{example}
 
-\paragraph{Derivabilidad vs. Continuidad.}
+\paragraph{Derivabilidad vs.\ Continuidad.}
 
 La noción de derivada es \emph{puntual}, hemos definido qué quiere decir que una función es derivable \emph{en un punto $x_0$}.
 
@@ -223,7 +224,7 @@ Tenemos ya otra noción puntual, que es la de \emph{continuidad}. ?`Cómo se rel
 \end{proposition}
 
 \begin{proof}
-    Si $f$ es derivable en $x_0$, entonces existe un número $f'(x_0)$ que cumple
+    Si $f$ es diferenciable en $x_0$, entonces existe un número $f'(x_0)$ que cumple
     \[
     f(x_0+h) = f(x_0) + f'(x_0) \, h + o(h).
     \]
@@ -240,7 +241,7 @@ Tenemos ya otra noción puntual, que es la de \emph{continuidad}. ?`Cómo se rel
     $\D \lim_{x\to x_0}f(x)=f(x_0)$.
 \end{proof}
 
-La recíproca de esta proposición no es cierta. Basta con pensar en la función \emph{valor absoluto}, que es continua en $x_0=0$, pero no es derivable en ese punto.
+La recíproca de esta proposición no es cierta. Basta con pensar en la función \emph{valor absoluto}, que es continua en $x_0=0$, pero no es diferenciable en ese punto.
 
 \begin{example}
     Otro ejemplo interesante es el dado por la siguiente función:
@@ -315,7 +316,7 @@ Por lo tanto $g'(x_0) = c\, f'(x_0)$.
 \end{example}
 
 \begin{proposition}
-    Si $f$ y $g$ son derivables en $x_0$, entonces $f+g$ es derivable en $x_0$ y además
+    Si $f$ y $g$ son diferenciables en $x_0$, entonces $f+g$ es diferenciable en $x_0$ y además
     \[
     (f+g)'(x_0) = f'(x_0)+g'(x_0).
     \]
@@ -388,7 +389,7 @@ Por lo tanto $(f\cdot g)'(x_0) = f'(x_0)\cdot g(x_0)+f(x_0)\cdot g'(x_0)$.
 \end{proof}
 
 \begin{proposition}
-    Si $g$ es derivable en $x_0$, y $g(x_0)\neq 0$, entonces $1/g$ es derivable en $x_0$ y además
+    Si $g$ es diferenciable en $x_0$, y $g(x_0)\neq 0$, entonces $1/g$ es diferenciable en $x_0$ y además
     \[
     \Big(\frac1g\Big)'(x_0) = - \frac{g'(x_0)}{g(x_0)^2}.
     \]
@@ -1320,7 +1321,7 @@ Ilustramos ahora con ejemplos la técnica para hallar los máximos y mínimos lo
 \end{example}
 
 \begin{example}
-    Consideremos ahora la siguiente función en $[0,+\infty]$
+    Consideremos ahora la siguiente función en $[0,+\infty)$
     \[ 
     f(x)=|x-3|+2=\begin{cases}
         -x+5,\quad&\text{si $x<3$},
@@ -1504,6 +1505,26 @@ La demostración es sencilla, haciendo uso de la Proposición~\ref{P:signo-deriv
     
 \end{example}
 
+Vemos a continuación un ejemplo de aplicación.
+\begin{example}
+    De todos los rectángulos con perímetro $p$, queremos encontrar aquél que tenga área máxima.
+    Si tenemos un rectángulo con perímetro $p$, se cumplirá que tiene dos lados (opuestos) de longitud $a$ y dos lados de longitud $b$ y debe ser:
+    \[ 2a+2b=p.\]
+    Es decir, $a+b=p/2$. El área del rectángulo será $a\cdot b$. Tenemos que encontrar entonces $a$ 
+    y $b$ que cumplan:
+    \[
+    a+b=\frac p2\quad\text{y}\quad \text{se maximice }a\cdot b.
+    \]
+    Para encontrar este máximo, observamos que podemos despejar $a=\frac p2-b$ con lo que el área a maximizar resulta $\big(\frac p2-b\big)b$. Podemos llamar $x=b$ y observamos que los posibles valores de $x$ son $0<x<\pi/2$. Luego, queremos encontrar el máximo de la función
+    \[
+    f:(0,p/2)\to \R,\qquad
+    f(x)=\Big(\frac p 2 - x\Big)\cdot x.
+    \]
+    Su derivada es $f'(x) = \frac p2-2x$, que vale cero para $x_0=\frac p4$. 
+    En este punto $f$ alcanza un máximo, ya que $f''(x_0) = -2 \, x_0=-\frac p2< 0$.
+
+    Concluimos entonces que el rectángulo tiene área máxima cuando $b=\frac p4$, es decir, cuando dicho rectángulo es un cuadrado.
+\end{example}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
@@ -1644,7 +1665,7 @@ El siguiente teorema nos da una igualdad de mucha utilidad para el cálculo de l
     \[
         \dd[]{\sen x}{x}=\cos x,
         \quad\text{y}\quad
-        \dd[]{2x}{x}=2.
+        \dd[]{(2x)}{x}=2.
     \]
     Estas nuevas derivadas tienden a $1$ y a $2$, respectivamente, cuando $x\to 0$, por lo tanto, $\D\lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac12$. Todo este razonamiento es muy complicado de escribir de esta manera.
     
@@ -1691,6 +1712,33 @@ La demostración de esta proposición y las que siguen a continuación quedan fu
     \]
 \end{proposition}
 
+La regla de L'Hospital también puede aplicarse a los casos en que la variable $x$ tiende a infinito (en lugar de a $x_0$). Veamos su aplicación en dos ejemplos:
+
+\begin{example}
+    Calculemos $\D\lim_{x\to+\infty} \frac{\ln x}x$. Tanto el numerador como el denominador tienden a $\infty$ cuando $x\to+\infty$, así que es posible aplicar la regla de L'Hospital:
+    \[
+        \lim_{x\to+\infty} \frac{\ln x}x 
+        \eqLH \lim_{x\to+\infty} \frac{1/x}1 
+        = \lim_{x\to+\infty} \frac1x = 0.
+    \]
+\end{example}
+
+\begin{example}
+    Calculemos $\D\lim_{x\to+\infty} \frac{x^3}{e^x}$. Tanto el numerador como el denominador tienden a $\infty$ cuando $x\to+\infty$, así que es posible aplicar la regla de L'Hospital:
+    \[
+        \lim_{x\to+\infty} \frac{x^3}{e^x}
+        \eqLH
+        \lim_{x\to+\infty} \frac{3x^2}{e^x}
+        \eqLH
+        \lim_{x\to+\infty} \frac{6x}{e^x}
+        \eqLH
+        \lim_{x\to+\infty} \frac{6}{e^x}
+        = 0.
+    \]
+    En base a este ejemplo, vemos que por inducción podemos probar que,
+    cualquiera sea $n\in\N$,
+    $\D\lim_{x\to+\infty} \frac{x^n}{e^x}=0$. En palabras, se dice que $e^x$ \emph{tiende a infinito más rápido que cualquier potencia de $x$}.
+\end{example}
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
@@ -1700,14 +1748,14 @@ La demostración de esta proposición y las que siguen a continuación quedan fu
 \end{enumerate}
 
 
-\section{Estudio de funciones}
+% \section{Estudio de funciones}
 
 
-\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+% \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
-\begin{enumerate}
-\item 
-\end{enumerate}
+% \begin{enumerate}
+% \item 
+% \end{enumerate}
 
 
 
@@ -1715,3 +1763,13 @@ La demostración de esta proposición y las que siguen a continuación quedan fu
 
 
 
+
+\begin{enumerate}
+    \input{ejercicios-ch-5-s-1.tex}
+    \input{ejercicios-ch-5-s-2.tex}
+    \input{ejercicios-ch-5-s-3.tex}
+    \input{ejercicios-ch-5-s-4.tex}
+    \input{ejercicios-ch-5-s-5.tex}
+    \input{ejercicios-ch-5-s-6.tex}
+    \input{ejercicios-ch-5-s-7.tex}
+\end{enumerate}
