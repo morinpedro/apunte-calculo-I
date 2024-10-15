@@ -1526,6 +1526,66 @@ Vemos a continuación un ejemplo de aplicación.
     Concluimos entonces que el rectángulo tiene área máxima cuando $b=\frac p4$, es decir, cuando dicho rectángulo es un cuadrado.
 \end{example}
 
+\subsection*{Concavidad y convexidad}
+
+Por definición, la derivada $f'(x)$ representa la pendiente de la curva $y=f(x)$. 
+La derivada de la función $f'(x)$ está dada por $f''(x)$, la \emph{segunda derivada de $f$}.
+Si la segunda derivada $f''(x)$ es positiva en un intervalo $(a,b)$, entonces en ese intervalo $f'(x)$ es \emph{creciente}. Por lo tanto, la curva $y=f(x)$ tiene su lado convexo hacia abajo y es \emph{abierta} hacia arriba. En este caso se dice que \emph{la gráfica de $y=f(x)$ es cóncava hacia arriba}.
+Si $f''(x)$ es negativa en el intervalo $(a,b)$, \emph{la gráfica de $y=f(x)$ es cóncava hacia abajo}.
+Los puntos donde $f''(x)=0$ o donde no existe $f''(x)$ y la función cambia su concavidad se denominan \emph{puntos de inflexión}.
+
+Más precisamente. Supongamos que $f$ es una función continua en el intervalo $[a,b]$. Entonces
+\begin{itemize}
+    \item Si $f''(x)>0$ para todo $x\in(a,b)$, se dice que \emph{la gráfica de $y=f(x)$ es cóncava hacia arriba} o \emph{$f$ es convexa} en $[a,b]$. El intervalo $[a,b]$ es un intervalo de convexidad de $f$ (es un intervalo donde $f'$ es creciente).
+    \item Si $f''(x)<0$ para todo $x\in(a,b)$, se dice que \emph{la gráfica de $y=f(x)$ es cóncava hacia abajo} o \emph{$f$ es cóncava} en $[a,b]$. El intervalo $[a,b]$ es un intervalo de concavidad de $f$ (es un intervalo donde $f'$ es decreciente).
+    \item Si $f''(x)>0$ en $(a,c)$ y $f''(x)<0$ en $(c,b)$. Se dice que $c$ es un \emph{punto de inflexión} de $f$.
+    \item Si $f''(x)<0$ en $(a,c)$ y $f''(x)>0$ en $(c,b)$. Se dice que $c$ es un \emph{punto de inflexión} de $f$.
+\end{itemize}
+
+Veamos unos ejemplos.
+\begin{example}
+    Consideremos la función $f(x) = \sen(x)$ en el intervalo $[-\pi,\pi]$. Analizaremos los intervalos de crecimiento y decrecimiento, y los de convexidad y concavidad.
+
+    La derivada de $f$ es $f'(x)=\cos(x)$, $f'(x)>0$ en $(-\pi/2,\pi/2)$ y $f'(x)<0$ en $(-\pi,-\pi/2)$ y en $(\pi/2,\pi)$. Por lo tanto:
+    \begin{itemize}
+        \item $f$ es creciente en $[-\pi/2,\pi/2]$.
+        \item $f$ es decreciente en $[-\pi,-\pi/2]$.
+        \item $f$ es decreciente en $[\pi/2,\pi]$.
+    \end{itemize}
+
+    \centerline{\includegraphics[width=.8\textwidth]{pics/concavidad-convexidad-seno.png}}
+
+    La derivada segunda de $f$ es $f''(x)=-\sen(x)$. Tenemos que $f''(x)>0$ en $(-\pi,0)$ y $f''(x)<0$ en $(0,\pi)$. Por lo tanto
+    \begin{itemize}
+        \item $f$ es convexa en $[-\pi,0]$.
+        \item $f$ es cóncava en $[0,\pi]$.
+        \item $x=0$ es un punto de inflexión de $f$.
+    \end{itemize}
+\end{example}
+
+\begin{example}
+    Consideremos ahora la función $f(x)$ de la cual sólo tenemos la gráfica de su derivada:
+
+    \noindent
+    \begin{minipage}{.5\textwidth}
+        Observamos que $f'(x)>0$ en $(a,c)$ y que $f'(x)<0$ en $(c,d)$. Luego
+        \begin{itemize}
+            \item $f$ es creciente en $[a,c]$.
+            \item $f$ es decreciente en $[c,d]$.
+        \end{itemize}
+        Observamos también que $f'(x)$ es creciente en $[a,b]$ y decreciente en $[b,d]$. Luego
+        \begin{itemize}
+            \item $f$ es convexa en $[a,b]$.
+            \item $f$ es cóncava en $[b,d]$.
+            \item Hay un punto de inflexión en $x=b$.
+        \end{itemize}
+        \end{minipage}
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=.9\textwidth]{pics/f-prima-ej-1.png}
+    \end{minipage}
+\end{example}
+
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
