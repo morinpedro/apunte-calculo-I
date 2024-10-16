@@ -665,34 +665,79 @@ $$
 \end{enumerate}
 
 
-\section{Propiedades de la integral}
 
+\section{Algunos problemas de áreas}
 
+Al comienzo de este capítulo vimos que si $f$ es no negativa y continua en $[a,b]$, entonces $\int_a^b f(x)\dx$ da el área de la región delimitada por la gráfica de  $f$, y el eje $x$ entre las rectas $x=a$ y $x=b$.
+
+\noindent
+\begin{minipage}{.7\textwidth}
+$$ \area(\Omega)=\int_a^b f(x)\dx.$$
+\end{minipage}
+\begin{minipage}{.29\textwidth}
+  \centering
+  \includegraphics[width=.9\textwidth]{pics/area-bajo-curva.png}
+\end{minipage}
+
+\begin{example}
+  Hallar el área debajo de la gráfica de la función raíz cuadrada entre $x=0$ y $x=1$.
+
+  Como $\sqrt{x}\ge0$ para todo $x$, dicha área se calcula de la siguiente manera:
+  \[
+  \int_0^1 \sqrt{x}\dx = \int_0^1 x^{1/2}\dx 
+  = \Big[ \frac{x^{1/2+1}}{1/2+1} \Big]_0^1
+  = \Big[ \frac23x^{3/2} \Big]_0^1
+  = \frac23 \cdot 1 - \frac23 \cdot 0 = \frac23.
+  \]
+\end{example}
+
+\centerline{\includegraphics[width=.9\textwidth]{pics/areas-1.png}}
+
+\begin{example}
+  Hallar el área de la región comprendida entre la curva $y=4-x^2$ y el eje $x$.
+
+  En este caso no nos dicen entre qué valores hay que tomar $x$. Entonces, tenemos que ver las intersecciones entre la curva $y=4-x^2$ y el eje $x$. Las intersecciones se encuentran en $x=-2$ y $x=2$.
+  Luego calculamos el área integrando entre $-2$ y $2$:
+  \[
+  \int_{-2}^2 (4-x^2)\dx = \Big[ 4\, x-\frac13 x^3 \Big]_{-2}^2
+  = \frac{32}3.
+  \]
+\end{example}
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
   \input{ejercicios-ch-6-s-3.tex}
-\end{enumerate}
+\end{enumerate}  
 
 
-\section{Integrabilidad de las funciones continuas}
-
-
-\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
-
-\begin{enumerate}
-\item 
-\end{enumerate}
-
-
-\section{El teorema fundamental del Cálculo}
+\section{Integrales indefinidas}
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
-\end{enumerate}
+  \input{ejercicios-ch-6-s-4.tex}
+\end{enumerate}    
+
+
+\section{Integración por sustitución}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+  \input{ejercicios-ch-6-s-5.tex}
+\end{enumerate}  
+
+\section{Integración por partes}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+  \input{ejercicios-ch-6-s-6.tex}
+\end{enumerate}  
+
 
 
 \section{Integrales impropias}
@@ -701,27 +746,17 @@ $$
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
+  \input{ejercicios-ch-6-s-7.tex}
 \end{enumerate}
 
 
-\section{El método de sustitución}
+\section{Algunas propiedades adicionales de la integral}
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
-\end{enumerate}
-
-
-\section{El método de integración por partes}
-
-
-\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
-
-\begin{enumerate}
-\item 
+  \input{ejercicios-ch-6-s-8.tex}
 \end{enumerate}
 
 
