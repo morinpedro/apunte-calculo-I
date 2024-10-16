@@ -275,6 +275,232 @@ Ahora veamos algunos ejemplos sencillos que nos ayudarán a comprender la defini
       \int_{-2}^{2} x \dx = \frac12 \big(2^2 - (-2)^2\big) = \frac12 \cdot 0 = 0.
     \end{align*}\end{example}
 
+\begin{example}
+  Consideremos un último ejemplo, de una función \emph{discontinua}, pero \emph{continua a trozos}.
+  Sea 
+  \[
+  f(x)=\begin{cases}
+    0, \quad&\text{si $x\neq 1$},
+    \\
+    1, \quad&\text{si $x=1$}.
+  \end{cases}
+  \]
+  Afirmamos que $\int_0^2 f(x)\dx=0$, es decir, cambiar el valor de la función en un punto no afecta el valor de la integral.
+  Claramente, cualquiera sea la partición $P$ del intervalo $[0,2]$, se tiene que 
+  \[
+  0=L(P,f) \le 0 \le U(P,f).
+  \]
+  Veamos que $0$ es el único número que cumple dicha desigualdad para toda partición.
+  Consideremos la partición $P_\epsilon = \{0, 1-\epsilon, 1+\epsilon, 2\}$, para $0<\epsilon<1$.
+  Luego, $L(P_\epsilon,f)=0$ y 
+  \[
+  U(P,f)=0 (x_1-x_0) + 1 (x_2-x_1) + 0 (x_3-x_2)
+  = (x_2-x_1)= \big((1+\epsilon)-(1-\epsilon)\big)=2\epsilon.
+  \]
+  El único número que cumple $0\le I \le 2\epsilon$ para todo $\epsilon\in(0,1)$ es $I=0$.
+  Por lo tanto $\int_0^2 f(x)\dx=0$.
+\end{example}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-6-s-1.tex}
+\end{enumerate}
+
+
+\section{La función \texorpdfstring{$F(x)=\int_a^x f(t)\dx$}{integral hasta \emph{x}}}
+
+En los ejemplos de la sección anterior tuvimos que confiar en que se nos ocurriera una idea para saber cómo encontrar el número $I$ que da la integral. En esta sección estudiaremos propiedades de la integral que nos permitirán encontrar una forma más sistemática y sencilla de calcular integrales.
+
+Para ello necesitamos primero la siguiente Proposición.
+
+\begin{proposition}
+  Sea $f$ es continua en $[a,b]$, y sean $P$ y $Q$ dos particiones del intervalo $[a,b]$.
+  Si $P\subset Q$, entonces 
+  \[
+  L(P,f) \le L(Q,f)
+  \qquad\text{y}\qquad
+  U(Q,f) \le U(P,f).
+  \]
+  Es decir, al agregar puntos a una partición, \emph{las sumas inferiores crecen} y \emph{las sumas superiores decrecen}.
+\end{proposition}
+
+\begin{proof}
+  Basta con probar el caso en que $Q$ tiene un punto más que $P$, luego proceder por inducción.
+  Supongamos entonces que $P=\{a=x_0<x_2<\dots<x_n=b\}$ y que $Q = P\cup \{p\}$. Sea $i_0\in\{x_1,x_2,\dots,x_n\}$ tal que $x_{i_0-1}<p<x_{i_0}$.
+  Gráficamente, la situación en ese intervalo se vería así:
+
+  \centerline{\includegraphics[width=.8\textwidth]{pics/sumas-insertar-punto.png}}
+
+  Por lo tanto, el único término de la suma inferior de $P$ que se cambia, cambia por dos términos que al sumarlos dan mayor o igual al término original.
+  Y el único término de la suma superior de $P$ que se cambia, cambia por dos términos que al sumarlos dan menor o igual al término original. 
+  De aquí concluimos la afirmación de la proposición.
+\end{proof}
+
+El siguiente teorema es bastante obvio si pensamos en la interpretación geométrica de la integral como un área.
+
+\begin{theorem}
+  Si $f$ es continua en $[a,b]$ y $a<c<b$, entonces
+  \[
+  \int_a^b f(x)\dx = \int_a^c f(x)\dx + \int_c^b f(x)\dx.
+  \]
+\end{theorem}
+
+\noindent
+\begin{minipage}{.6\textwidth}
+  \[ \area(I)+\area(II)=\area(\text{región completa})\]
+\end{minipage}
+\begin{minipage}{.4\textwidth}
+\centerline{\includegraphics[width=.8\textwidth]{pics/integral-suma-intervalos.png}}
+\end{minipage}
+
+\begin{proof}
+  Para demostrar el teorema basta con que demostremos que para toda partición $P$ de $[a,b]$ se verifica que
+  \[
+  L(P,f) \le \int_a^c f(x)\dx + \int_c^b f(x)\dx \le U(P,f).
+  \]
+  Consideremos entonces una partición arbitraria $P$ de $[a,b]$ y sea $Q=P\cup\{c\}\supset P$.
+  Por la proposición anterior 
+  \[
+  L(P,f) \le L(Q,f)
+  \qquad\text{y}\qquad
+  U(Q,f) \le U(P,f).
+  \]
+  Ahora consideramos subparticiones de $Q$ en los intervalos $[a,c]$ y $[c,b]$:
+  \[
+  Q_1 = Q\cap[a,c]\qquad\text y\qquad 
+  Q_2 = Q\cap[c,b].
+  \]
+  Luego $Q_1$ y $Q_2$ son particiones de $[a,c]$ y de $[c,b]$ respectivamente, por lo tanto:
+  \[
+  L(Q_1,f)\le \int_a^c f(x)\dx \le U(Q_1,f)
+  \qquad\text{y}\qquad
+  L(Q_2,f)\le \int_c^b f(x)\dx \le U(Q_2,f).
+  \]
+  Sumando estas desigualdades obtenemos
+  \[
+  L(Q_1,f)+L(Q_2,f)\le \int_a^c f(x)\dx + \int_c^b f(x)\dx \le U(Q_1,f)+U(Q_2,f).
+  \]
+  Finalmente observamos que 
+  \[
+    L(Q_1,f)+L(Q_2,f) = L(Q,f)
+    \qquad\text y\qquad
+    U(Q_1,f)+U(Q_2,f) = U(Q,f),
+  \]
+  que implica lo que queríamos demostrar.
+  \end{proof}
+
+  Hasta ahora sólo hemos definido integrales \emph{de izquierda a derecha}: desde un número $a$ hasta un número $b$, con $b>a$. También puede integrarse en sentido opuesto, a través de la siguiente definición:
+  \[
+  \int_b^a f(x)\dx 
+  = -\int_a^b f(x)\dx .
+  \]
+  Además, la integral cuando los extremos de integración coinciden se define como cero:
+  \[
+  \int_c^c f(x)\dx = 0.
+  \]
+  De esta manera, la siguiente condición se cumple independientemente del orden en que se encuentren $a$, $b$ y $c$:
+  \[
+    \int_a^c f(x)\dx + \int_c^b f(x)\dx=\int_a^b f(x)\dx .
+  \]
+
+\noindent
+\begin{minipage}{.4\textwidth}  Dada una función continua $f$, definimos 
+  \[
+  F(x)=\int_a^x f(t)\dt.
+  \]
+  Es decir, $F(x)$ es el área de la región sombreada en las figuras, que varía al variar $x$.
+\end{minipage}
+\begin{minipage}{.6\textwidth}
+  \begin{center}
+    \includegraphics[width=.95\textwidth]{pics/integral-hasta-x.png}
+  \end{center}
+\end{minipage}
+
+El siguiente teorema se conoce como Teorema Fundamental del Cálculo, y relaciona el concepto nuevo de integral con el de derivada, de la siguiente manera:
+
+\begin{theorem}
+  Si $f$ es continua en $[a,b]$ y definimos $F:[a,b]\to\R$ como 
+  \[
+  F(x)=\int_a^x f(t)\dt,
+  \]
+  Entonces $F$ es continua en $[a,b]$ y diferenciable en $(a,b)$ y más aún, 
+  \[
+  F'(x)=f(x),\quad\text{para todo $x\in(a,b)$.}
+  \]
+\end{theorem}
+
+\begin{proof}
+  Comenzamos considerando $x\in[a,b)$ y veremos que 
+  \[\lim_{h\to 0^+}\frac{F(x+h)-F(x)}{h}=f(x).\]
+  Si $x<x+h\le b$, entonces
+  \[F(x+h)-F(x)=\int_a^{x+h}f(t)\dt - \int_a^x f(t)\dt = \int_x^{x+h}f(t)\dt.\]
+  Definimos ahora 
+  $$ M_h = \max_{[x,x+h]}f\qquad\text y\qquad
+  m_h = \min_{[x,x+h]}f.$$
+  Entonces, 
+  $$ M_h \cdot \big( (x+h)-x \big) = M_h \cdot h $$
+  es una suma superior para $f$ en $[x,x+h]$ y
+  $$ m_h \cdot \big( (x+h)-x \big) = m_h \cdot h $$ 
+  es una suma inferior para $f$ en $[x,x+h]$.
+  Luego
+  $$ m_h \cdot h \le \int_x^{x+h}f(t)\dt \le M_h\cdot h,$$
+  que a su vez implica
+  $$ m_h \le \frac{\int_x^{x+h}f(t)\dt}h \le M_h.$$
+  Es decir,
+  $$ m_h \le \frac{F(x+h)-F(x)}h \le M_h.$$
+  Como $f$ es continua en $[a,b]$
+  \[
+  \lim_{h\to0^+} m_h = f(x) = \lim_{h\to 0^+} M_h,
+  \]
+  y por el teorema del emparedado
+  \begin{equation}\label{eq:TFC-der}
+    \lim_{h\to 0^+} \frac{F(x+h)-F(x)}h = f(x).
+  \end{equation}
+
+  De manera análoga se puede demostrar que, para $x\in(a,b]$ se verifica
+  \begin{equation}\label{eq:TFC-izq}
+    \lim_{h\to 0^-} \frac{F(x+h)-F(x)}h = f(x).
+  \end{equation}
+  Esto implica que para $x\in(a,b)$ se cumplen~\eqref{eq:TFC-der} y~\eqref{eq:TFC-der} a la vez, 
+  \[
+  F'(x)= \lim_{h\to 0} \frac{F(x+h)-F(x)}h = f(x).
+  \]
+  Esto muestra que $F(x)$ es diferenciable en $(a,b)$ y su derivada es $F'(x)=f(x)$.
+
+  Solo queda probar que $F$ es continua por derecha en $a$ y continua por izquierda en $b$.
+  A partir de~\eqref{eq:TFC-der} en $a$ obtenemos
+  $$ 
+  \lim_{h\to 0^+} \frac{F(a+h)-F(a)}h = f(a),
+  $$ 
+  Que a su vez implica que
+  $$ 
+  \lim_{h\to 0^+} \big(F(a+h)-F(a)\big)
+  = \lim_{h\to 0^+}\Big( h\cdot \frac{F(a+h)-F(a)}h \Big)= f(a)\cdot 0 = 0.
+  $$ 
+  Por lo tanto $\lim_{h\to 0^+} F(a+h)=F(a)$ y $F$ es continua por derecha en $a$.
+  Análogamente se puede demostrar que $F$ es continua por izquierda en $b$, usando~\eqref{eq:TFC-izq}.
+\end{proof}
+
+\begin{example}
+  Si $F$ está definida por 
+  \[
+  F(x)=\int_{-1}^x (2t+t^2) \dt,
+  \qquad \text{para $-1\le x\le 5$},
+  \]
+  Entonces $F'(x) = 2x+x^2$.
+\end{example}
+
+
+\begin{example}
+  Si $F$ está definida por 
+  \[
+  F(x)=\int_{0}^x \sen(\pi t) \dt,
+  \qquad \text{para $x\in\R$},
+  \]
+  Entonces $F'(x) = \sen(\pi x)$.
+\end{example}
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
