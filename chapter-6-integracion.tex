@@ -309,7 +309,8 @@ Ahora veamos algunos ejemplos sencillos que nos ayudarán a comprender la defini
 \end{enumerate}
 
 
-\section{La función \texorpdfstring{$F(x)=\int_a^x f(t)\dx$}{integral hasta \emph{x}}}
+\section{El Teorema Fundamental del Cálculo}
+  %La función \texorpdfstring{$F(x)=\int_a^x f(t)\dx$}{integral hasta \emph{x}}}
 
 En los ejemplos de la sección anterior tuvimos que confiar en que se nos ocurriera una idea para saber cómo encontrar el número $I$ que da la integral. En esta sección estudiaremos propiedades de la integral que nos permitirán encontrar una forma más sistemática y sencilla de calcular integrales.
 
@@ -351,7 +352,7 @@ El siguiente teorema es bastante obvio si pensamos en la interpretación geomét
 \begin{minipage}{.6\textwidth}
   \[ \area(I)+\area(II)=\area(\text{región completa})\]
 \end{minipage}
-\begin{minipage}{.4\textwidth}
+\begin{minipage}{.39\textwidth}
 \centerline{\includegraphics[width=.8\textwidth]{pics/integral-suma-intervalos.png}}
 \end{minipage}
 
@@ -420,7 +421,7 @@ El siguiente teorema es bastante obvio si pensamos en la interpretación geomét
 
 El siguiente teorema se conoce como Teorema Fundamental del Cálculo, y relaciona el concepto nuevo de integral con el de derivada, de la siguiente manera:
 
-\begin{theorem}
+\begin{theorem}\label{T:TFC}
   Si $f$ es continua en $[a,b]$ y definimos $F:[a,b]\to\R$ como 
   \[
   F(x)=\int_a^x f(t)\dt,
@@ -502,11 +503,165 @@ El siguiente teorema se conoce como Teorema Fundamental del Cálculo, y relacion
   Entonces $F'(x) = \sen(\pi x)$.
 \end{example}
 
+A continuación veremos cómo este teorema nos sirve para calcular integrales definidas de un gran número de funciones. Para ello hacemos primero la siguiente definición.
+
+\begin{definition}[Antiderivada]
+  Sea $f$ una función continua en $[a,b]$. Una función $G$ se llama \emph{antiderivada} de $f$ en $[a,b]$ si y sólo si
+  \[
+  G\text{ es continua en $[a,b]$ \quad y \quad}
+  G'(x)=f(x) \text{ para todo $x\in(a,b)$.}\]
+\end{definition}
+
+El Teorema~\ref{T:TFC} nos dice que, si $f$ es continua en $[a,b]$, entonces la función $F(x)$ definida por 
+\[
+  F(x)=\int_a^x f(t)\dt.
+\]
+es una antiderivada de $f$.
+A partir del \emph{Teorema Fundamental del Cálculo} llegamos a un método que nos permite calcular integrales. Podemos calcular $\D\int_a^b f(t)\dt$ hallando una antiderivada de $f$.
+
+\begin{theorem}[Regla de Barrow]
+   Sea $f$ una función continua en $[a,b]$. Si $G$ es una antiderivada de $f$ en $[a,b]$, entonces
+   $$ \int_a^b f(t)\dt = G(b)-G(a). $$
+\end{theorem}
+
+\begin{proof}
+  Consideremos la función $F:[a,b]\to \R$ definida por $\D  F(x)=\int_a^x f(t)\dt$. 
+  Luego, por un lado, 
+  $$F(a)=\int_a^a f(t)\dt = 0,\qquad\text y\qquad  F(b)=\int_a^b f(t)\dt.$$
+
+  Por otro lado, por el Teorema~\ref{T:TFC},
+  $F(x)$ es una antiderivada de $f$, al igual que $G$. Luego,
+  \[
+  F'(x)=f(x)\quad\text y\quad G'(x)=f(x),\qquad\text{para todo $x\in(a,b)$.}
+  \]
+  Por el Corolario~\ref{C:f=g+k}, resulta que existe una constante $k\in\R$ tal que 
+  \[
+  F(x) = G(x) + k,
+  \qquad\text{para todo $x\in[a,b]$.}
+  \]
+  Como $F(a)=0$, resulta que $G(a)+k=0$, es decir, $k = -G(a)$.
+  Por lo tanto
+  \[
+  F(x) = G(x) - G(a),
+  \qquad\text{para todo $x\in[a,b]$.}
+  \]
+  En particular, 
+  \[
+  F(b) = \int_a^b f(t)\dt = G(b)-G(a),
+  \]
+  que es lo que se quería demostrar.
+\end{proof}
+
+De este último teorema, obtenemos un procedimiento para calcular integrales.
+\begin{quote}
+  Para calcular $\D\int_a^b f(t)\dt$, debemos hacer lo siguiente:
+  \begin{enumerate}
+    \item Hallar una antiderivada $G$ de $f$.
+    \item Calcular $G(b)-G(a)$. Ese resultado es $\D\int_a^b f(t)\dt$.
+    \item FIN.
+  \end{enumerate}
+\end{quote}
+
+
+\begin{example}
+  Calcular $\D \int_1^4 x^2 \dx$.
+
+  Debemos hallar una antiderivada de $f(x)=x^2$. Inspeccionando la tabla de derivadas, vemos que $\dd[]{x^3}{x} = 3 \,x^2$. Luego, $\D\dd{}{x}\frac{x^3}3 = x^2$ y por lo tanto $G(x)=\D\frac{x^3}3 $ es una antiderivada de $f(x)=x^2$. Luego, aplicando el teorema fundamental del Cálculo,
+  \[
+    \int_1^4 x^2 \dx = G(4) - G(1) = \frac{4^3}3-\frac{1^3}3 = \frac{64}3-\frac13=21.
+  \]
+\end{example}
+
+\begin{example}
+  Consideremos ahora el cálculo de $\D\int_0^{\pi/2} \sen x \dx$.
+
+  Tenemos que hallar una antiderivada de $\sen x$.
+  Inspeccionando nuestra memoria, recordamos que $\dd{\cos x}{x}=-\sen x$, luego $-\cos x$ es una antiderivada de $\sen x$. Entonces
+  \[
+  \int_0^{\pi/2} \sen x\dx = (-\cos \frac\pi2)-(-\cos 0)=0-(-1)=1.
+  \]
+\end{example}
+
+Resulta un poco trabajoso escribir todo ese texto sobre la antiderivada, para eso viene bien la notación siguiente:
+\[
+\big[G(x)\big]_a^b = G(b)-G(a).
+\]
+Así, el cálculo de las integrales de los ejemplos anteriores se puede escribir en una sola línea, dejando en claro los pasos, de la siguiente manera:
+\begin{align*}
+  \int_1^4 x^2 \dx &= \Big[ \frac{x^3}{3}\Big]_1^4 =\frac{4^3}3-\frac{1^3}3 = \frac{64}3-\frac13=21,
+  \\
+  \int_0^{\pi/2} \sen x\dx &= \Big[ -\cos x \Big]_{0}^{\pi/2} = (-\cos \frac\pi2)-(-\cos 0)=0-(-1)=1.
+\end{align*}
+
+En general, el cálculo de antiderivadas no es tan sencillo como el de derivadas, pero con lo que sabemos, y la observación que sigue, podemos calcular antiderivadas de una gran familia de funciones:
+
+\begin{remark}
+  Si $F$ y $G$ son antiderivadas de $f$ y $g$ respectivamente, entonces una antiderivada de $c\, f(x)+d\, g(x)$ es 
+  $c\, F(x) + d\, G(x)$, cualesquiera sean las constantes $c$ y $d$.
+  En efecto, como la derivada es lineal
+  $$ 
+  \dd[]{}{x}\big[c\, F(x) + d\, G(x) \big] = c\, F'(x)+d\,G'(x) = c\, f(x)+d\, g(x).
+  $$
+\end{remark}
+
+Esto implica que la integral es lineal.
+
+\begin{corollary}[Linealidad de la integral]
+Si $f$ y $g$ son funciones continuas en $[a,b]$ y $c$ y $d$ son dos constantes, entonces
+$$ 
+\int_a^b   c\, f(x)+d\, g(x) \dx 
+=
+c\, \int_a^b  f(x) \dx 
++
+d\, \int_a^b   g(x) \dx .
+$$
+\end{corollary}
+
+\begin{proof}
+  Sean $F$ y $G$ antiderivadas de $f$ y $g$, respectivamente.
+  Por el comentario previo, $c\, F(x) + d\, G(x)$ es una antiderivada de $c\, f(x)+d\, g(x)$.
+  Luego
+  \begin{align*}
+    \int_a^b   c\, f(x)+d\, g(x) \dx  &= \Big[c\, F(x) + d\, G(x)\Big]_a^b
+    \\
+    &= \big[c\, F(b) + d\, G(b)\big] - \big[c\, F(a) + d\, G(a)\big]
+    \\
+    &= c \big[F(b)-F(a)\big] + d \big[G(b)-G(a)\big] 
+    \\
+    &= c\, \int_a^b  f(x) \dx 
+    +
+    d\, \int_a^b   g(x) \dx .
+    \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{example}
+  Con este último resultado podemos calcular la integral de funciones un poco más complicadas:
+  \begin{align*}
+    \int_0^\pi 9x^2 - 2 \sen x\dx
+    &= 9 \int_0^\pi x^2 \dx - 2 \int_0^\pi \sen x\dx
+    \\
+    &= 9 \Big[ \frac{x^3}3\Big]_0^\pi  - 2 \Big[-\cos x\Big]_0^\pi
+    \\
+    &= 9 \Big[ \frac{\pi^3}3-\frac{0^3}3\Big]  - 2 \Big[(-\cos \pi)-(-\cos 0)\Big]
+    \\
+    &= 9 \frac{\pi^3}3 - 2 \Big[(1)-(-1)\Big]
+    = 3 \pi^3 - 4.
+  \end{align*}
+\end{example}
+
+\begin{remark}
+  !`Atención! Sólo \emph{las constantes} pueden sacarse fuera de la integral:
+  \[
+  \underbrace{\int_0^\pi x\, \sen x\dx}_{\text{número}} \neq \underbrace{x \  \overbrace{\int_0^\pi \sen x\dx}^{\text{número}}}_{\text{expresión variable}}.
+  \]
+  Para ver fácilmente que esto no es cierto, basta con observar que el lado izquierdo es un número y el lado derecho es una expresión variable, que aún depende de $x$.
+\end{remark}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
+  \input{ejercicios-ch-6-s-2.tex}
 \end{enumerate}
 
 
@@ -516,7 +671,7 @@ El siguiente teorema se conoce como Teorema Fundamental del Cálculo, y relacion
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
+  \input{ejercicios-ch-6-s-3.tex}
 \end{enumerate}
 
 
