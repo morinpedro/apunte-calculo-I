@@ -815,6 +815,113 @@ Por la linealidad de la integral, tenemos que
 
 \section{Integrales indefinidas}
 
+Consideremos una función continua $f$. Si $F$ es una antiderivada de $f$ en $[a,b]$, entonces
+\[
+\int_a^b f(x)\dx = \Big[F(x)\Big]_a^b.
+\]
+Si $C$ es una constante, 
+\[
+  \Big[F(x)+C\Big]_a^b 
+  = \big[F(b)+C\big]-\big[F(a)+C\big]= F(b)-F(a)
+  = \Big[F(x)\Big]_a^b = \int_a^b f(x)\dx.
+\]
+Esto es así porque $F(x)+C$ es también una antiderivada de $f$ ya que
+\[
+\dd[]{}{x} \big(F(x)+C\big) = F'(x) = f(x).
+\]
+Y además, \emph{todas} las antiderivadas de $f$ son de la forma $F(x)+C$, con $C$ una constante.
+
+Si no tenemos un interés especial en el intervalo $[a,b]$ y sólo queremos resaltar el hecho que $F$ es una antiderivada de $f$ para algún intervalo, entonces omitiremos $a$ y $b$ y simplemente escribiremos
+\[
+\int f(x)\dx = F(x)+C.
+\]
+Cuando se expresan de este modo, las antiderivadas se llaman \emph{integrales indefinidas}.
+La consstante $C$ se denomina \emph{constante de integración}; es una constante \emph{arbitraria} porque se le puede asignar cualquier valor real.
+
+La integral indefinida de una función $f$, es $\int f(x)\dx$, y es una \emph{familia} de funciones: es la familia de \emph{todas} las antiderivadas de $f$. Por ejemplo:
+\[
+\int x^2\dx = \frac{x^3}{3} + C 
+\qquad\text y \qquad
+\int \sqrt{s}\ds = \frac23 s^{3/2}+C.
+\]
+En base a la tabla de derivadas y a los ejercicios del capítulo anterior tenemos la siguiente tabla de integrales indefinidas:
+
+\begin{multicols}{2}
+  $\D \int x^\alpha \dx = \frac{x^{\alpha+1}}{\alpha+1} + C$, si $\alpha\neq -1$
+  
+  $\D \int \frac1x\dx = \ln|x| + C$
+  
+  $\D \int a^x \dx = \ln a\, a^x  + C$, si $a>0$
+  
+  $\D \int \sen x\dx = -\cos x + C$
+  
+  $\D \int \cos x \dx = \sen x + C$
+  
+  $\D \int \sec^2 x\dx = \tan x + C$
+  
+  $\D \int \cosec^2 x\dx = \cot x + C$
+  
+  $\D \int \senh x \dx = \cosh x + C$
+  
+  $\D \int \cosh x \dx = \senh x + C$
+  
+\end{multicols}
+
+Las propiedades de linealidad de la integral definida son también válidas para la integral indefinida:
+\[
+\int c\, f(x)+g(x)\dx = c \int f(x)\dx + \int g(x)\dx.
+\]
+Así, por ejemplo
+\[
+\int 3x^5 + 6 \sen x \dx = \frac{x^6}2 - 6 \cos x + C.
+\]
+
+\begin{example}
+  Hallar $f$ sabiendo que $\D f'(x)=x^3+2$ y $f(0)=1$.
+
+  Dado que $f'$ es la derivada de $f$, $f$ es una antiderivada de $f'$. Luego
+  \[
+  f(x)=\int (x^3+2)\dx = \frac{x^4}{4}+2x+C ,
+  \]
+  para algún valor de la constante $C$.
+  Para hallar $C$ usaremos el hecho que $f(0)=1$:
+  \[
+  1=f(0)=\frac{0^4}{4}+2\cdot 0+C = C, 
+  \]
+  y obtenemos que $C=1$. Luego
+  $\D f(x)= \frac{x^4}{4}+2x+1$.
+\end{example}
+
+\begin{example}\label{ej:velocidad}
+  Consideremos un problema de movimiento.
+  Un objeto se mueve a lo largo de un eje de coordenadas con una velocidad de 
+  \[
+  v(t)=2-3t+t^2\text{\ \ unidades por segundo.}
+  \]
+  Su posición inicial (posición en el instante $t=0$) es de 2 unidades a la derecha del origen.
+  Hallar la posición del objeto 4 segundos más tarde.
+
+  Sea $s(t)$ la (coordenada de la) posición del objeto en el instante $t$.
+  Sabemos que $s(0)=2$ y que $s'(t)=v(t)$, luego
+  \[
+  s(t)=\int v(t)\dt = \int (2-3t+t^2 )\dt = 2t -\frac32 t^2 +\frac{t^3}3 + C.
+  \]
+  Para conocer la constante $C$ utilizaremos que $s(0)=2$:
+  \[
+  2=s(0)=2\cdot 0 -\frac32 0^2 +\frac{0^3}3 + C = C.
+  \]
+  Luego $C=2$ y la posición del objeto a tiempo $t$ es $\D 2t -\frac32 t^2 +\frac{t^3}3 +2$. A tiempo $t=4$ es 
+  \[
+  s(4)=2\cdot 4 -\frac32 4^2 +\frac{4^3}3 +2=\frac{22}3.
+  \]
+  Pasados 4 segundos se encuentra a $\D\frac{22}3$ unidades a la derecha del origen.
+  En la figura se reresenta esquemáticamente el movimiento del objeto.
+
+  \begin{center}
+    \includegraphics[width=.7\textwidth]{pics/movimiento.png}
+  \end{center}
+
+\end{example}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
