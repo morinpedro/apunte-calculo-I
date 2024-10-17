@@ -696,13 +696,87 @@ $$ \area(\Omega)=\int_a^b f(x)\dx.$$
 \begin{example}
   Hallar el área de la región comprendida entre la curva $y=4-x^2$ y el eje $x$.
 
-  En este caso no nos dicen entre qué valores hay que tomar $x$. Entonces, tenemos que ver las intersecciones entre la curva $y=4-x^2$ y el eje $x$. Las intersecciones se encuentran en $x=-2$ y $x=2$.
+  En este caso no nos dicen entre qué valores hay que tomar $x$. Entonces, tenemos que ver las intersecciones entre la curva $y=4-x^2$ y el eje $x$. Las intersecciones se encuentran en puntos con abscisas $x=-2$ y $x=2$ (ver figura).
   Luego calculamos el área integrando entre $-2$ y $2$:
   \[
   \int_{-2}^2 (4-x^2)\dx = \Big[ 4\, x-\frac13 x^3 \Big]_{-2}^2
   = \frac{32}3.
   \]
 \end{example}
+
+Consideremos ahora el área de la región $\Omega$ de la siguiente figura:
+
+\centerline{\includegraphics[width=.9\textwidth]{pics/areas-2.png}}
+
+La frontera superior de $\Omega$ es la gráfica de la función no negativa $f$, y su frontera inferior es la gráfica de otra función no negativa $g$. Podemos obtener el área de $\Omega$ calculando el área de $\Omega_1$ y restándole el área de $\Omega_2$:
+\begin{align*}
+  \area(\Omega)&=\area(\Omega_1)-\area(\Omega_2)\\
+  &= \int_a^b f(x)\dx - \int_a^b g(x)\dx.
+\end{align*}
+Por la linealidad de la integral, tenemos que
+\begin{equation}\label{eq:area entre dos curvas}
+  \area(\Omega) = \int_a^b \big[f(x)-g(x)\big]\dx.
+\end{equation}
+
+\begin{example}
+  Hallemos el área de la región limitada por arriba por $y=x+2$ y por debajo por $y=x^2$.
+
+  \noindent
+  \begin{minipage}{.65\textwidth}
+    El primer paso consiste en hallar los puntos de interseccipon de las dos curvas:
+    \[
+    x+2=x^2 \iff x^2-x-2=0 \iff x=-1 \text{ o } x=2.
+    \]
+    Por lo tanto las abscisas de los puntos de intersección son $x=-1$ y $x=-2$.
+    Luego, el área de la región de interés es
+    \begin{align*}
+      \int_{-1}^2 \big[(x+2)-x^2\big]\dx 
+      &= \Big[\frac{x^2}2+2x-\frac{x^3}3\Big]_{-1}^2
+      \\ 
+      &= \big[ 2 + 4 - \frac83\big]-\big[\frac12-2+\frac13\big]=\frac92.
+    \end{align*}
+  \end{minipage}
+  \begin{minipage}{.34\textwidth}
+    \includegraphics[width=.95\textwidth]{pics/areas-3.png}
+  \end{minipage}
+  \end{example}
+
+  Hemos establecido la fórmula~\eqref{eq:area entre dos curvas} suponiendo que $f$ y $g$ son ambas no negarivas, pero esta hipótesis es innecesaria. La fórmula es válida para cualquier región $\Omega$ que tenga a $y=f(x)$ como frontera superior y a $y=g(x)$ como frontera inferior.
+  Para ver esto, tomemos $\Omega$ como la figura de la izquierda y $\Omega'$ como la figura de la derecha:
+
+  \begin{center}
+    \includegraphics[width=.4\textwidth]{pics/areas-4a.png}
+    \hfil
+    \includegraphics[width=.4\textwidth]{pics/areas-4b.png}
+  \end{center}
+
+  La figura $\Omega'$ es la misma que $\Omega$, pero trasladada hacia arriba $C$ unidades, y por lo tanto tienen la misma área. Entonces
+  \[
+  \area(\Omega)=\area(\Omega')
+  =\int_a^b \Big[\big(f(x)+C\big)-\big(g(x)+C\big)\Big]\dx
+  =\int_a^b \Big[f(x)-g(x)\Big]\dx.
+  \]
+
+  \begin{example}
+    Consideramos ahora el problema de hallar el área de la figura de la derecha.
+
+    \noindent
+    \begin{minipage}{.55\textwidth}
+      Usando la fórmula~\eqref{eq:area entre dos curvas} tenemos:
+      \begin{align*}
+        \area(\Omega) 
+        &= \int_{\pi/4}^{5\pi/4} \big[\sen x-\cos x]\dx 
+        \\
+        &= \Big[-\cos x-\sen x\Big]_{\pi/4}^{5\pi/4}
+        \\ 
+        &= 2\sqrt{2}.
+      \end{align*}
+    \end{minipage}
+    \begin{minipage}{.44\textwidth}
+      \includegraphics[width=.95\textwidth]{pics/areas-5.png}
+    \end{minipage}    
+  \end{example}
+
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
