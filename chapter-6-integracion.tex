@@ -777,6 +777,35 @@ Por la linealidad de la integral, tenemos que
     \end{minipage}    
   \end{example}
 
+  \begin{example}
+    Consideramos ahora el problema de hallar el área comprendida entre la curva $y=4x$ y la curva $y=x^3$, desde $x=-2$ hasta $x=2$.
+
+    \noindent
+    \begin{minipage}{.55\textwidth}
+      Observamos que $y=x^3$ es la frontera \emph{superior} entre $x=-2$ y $x=0$, mientras que $y=x^3$ es la frontera \emph{inferior} entre $x=0$ y $x=2$.
+      Luego,
+      \begin{align*}
+        \area
+        &= 
+        \int_{-2}^0 \big[x^3-4x\big]\dx 
+        +
+        \int_0^2 \big[4x-x^3\big]\dx 
+        \\
+        &= 
+        \Big[\frac{x^4}4-2x^2\Big]_{-2}^0
+        +
+        \Big[4x-x^3\Big]_0^2 
+        \\
+        &= \big[0-(-4)\big]+[4-0]=8
+      \end{align*}
+    \end{minipage}
+    \begin{minipage}{.44\textwidth}
+      \includegraphics[width=.95\textwidth]{pics/areas-6.png}
+    \end{minipage}    
+  \end{example}
+
+  
+
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
