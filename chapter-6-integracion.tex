@@ -932,6 +932,43 @@ Así, por ejemplo
 
 \section{Integración por sustitución}
 
+La integración por sustitución, también conocida como \emph{cambio de variables} no es otra cosa que la utilización de la regla de la cadena en sentido inverso para hallar una antiderivada.
+Recordamos que si $F$ y $g$ son diferenciables, con $F'(u)=f(u)$, entonces
+\[
+(F\circ g)'(x) = \dd[]{}{x} F\big(g(x)) = F'(g(x))\, g'(x) = f(g(x))\, g'(x).
+\]
+Por lo tanto, 
+\[
+\int_a^b f(g(x))\, g'(x)\dx = \Big[F(g(x))\Big]_a^b = F(g(b))-F(g(a)).
+\]
+
+Por ejemplo:
+\[
+\int_0^\pi \cos(x^2+1)\, 2x \dx = \Big[\sen(x^2+1)\Big]_0^\pi = 
+\sen(\pi^2+1)-\sen(0^2+1).
+\]
+En el ejemplo recién presentado hemos detectado que $\cos(u)$ es la derivada de $\sen(u)$, y que $2x$ es la derivada de $u=x^2+1$.
+
+También podemos usar la regla de sustitución para calcular una integral indefinida. Esto es lo más usual, y suele hacerse de la siguiente manera:
+\[
+\int f(\underbrace{g(x)}_u) \, \underbrace{g'(x)\dx}_{\du} = 
+\int f(u) \du = F(u)+C = F(g(x))+C.
+\]
+Por ejemplo, 
+\[
+\int (\underbrace{x^2-1}_u)^4\, \underbrace{2x\dx}_{\du} = \int u^4 \du 
+= \frac{u^5}5 + C
+= \frac{(x^2-1)^5}5 + C.
+\]
+Podemos verificar esto derivando la última expresión:
+\[
+\dd[]{}{x} \left(\frac{(x^2-1)^5}5 + C\right) =
+\frac{5(x^2-1)^4\,2x}5 = (x^2-1)^4\, 2x.
+\]
+
+\begin{example}
+  
+\end{example}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
