@@ -851,7 +851,7 @@ En base a la tabla de derivadas y a los ejercicios del capítulo anterior tenemo
   
   $\D \int \frac1x\dx = \ln|x| + C$
   
-  $\D \int a^x \dx = \ln a\, a^x  + C$, si $a>0$
+  $\D \int a^x \dx = \ln a\cdot a^x  + C$, si $a>0$
   
   $\D \int \sen x\dx = -\cos x + C$
   
@@ -967,7 +967,119 @@ Podemos verificar esto derivando la última expresión:
 \]
 
 \begin{example}
+  Calcular $\D \int \sen x\,\cos x\dx$.
+
+  El problema aquí es \emph{darse cuenta} qué parte de la fórmula puede ser $u$ y qué parte será $\du$. 
+  Si recordamos que $\sen'x = \cos x$, vemos que podemos hacer la sustitución $u=\sen x$ y $\du = \cos x\dx$, entonces
+  \[
+  \int \underbrace{\sen x}_u\,\underbrace{\cos x\dx}_{\du} = \int u \du = \frac{u^2}2 + C 
+  \underbrace{=}_{u=\sen x} \frac{\sen^2 x}{2}+ C.
+  \]
+  Conviene siempre hacer la verificación:
+  \[
+  \dd[]{}{x}\Big(\frac{\sen^2 x}{2}+ C\Big) = \frac{2 \sen x \, \cos x}2 = \sen x\,\cos x.
+  \]
+\end{example}
+
+\begin{example}
+  Calcular $\D \int \frac{1}{(3+5x)^2}\dx$. 
   
+  Aquí no es tan obvio que aparezca $u$ y $\du$, pero con un poco de práctica se aprende.
+  Si tomamos $u=(3+5x)$, entonces $\du = 5\dx$, pero ese $5$ no está. Usando la linealidad de la integral, como $5$ es una constante, podemos hacer lo siguiente:
+  \begin{align*}
+    \int \frac{1}{(3+5x)^2}\dx &= \int \frac55 \frac{1}{(3+5x)^2}\dx
+    = \frac15 \int \frac{1}{(\underbrace{3+5x}_u)^2} \underbrace{5\dx}_{\du}
+    = \frac15 \int \frac{1}{u^2} \du 
+    \\
+    &= \frac15 \int u^{-2} \du
+    = \frac15 \Big(\frac{u^{-1}}{-1}+C\Big)
+    = \frac15 \Big(-\frac{1}{u}+C\Big)
+    \\
+    &= -\frac{1}{5u}+\frac{C}5
+    = -\frac{1}{5u}+C'
+    = -\frac{1}{5(3+5x)^2}+C'.
+  \end{align*}
+\end{example}
+
+Si tenemos que calcular una integral definida utilizando el método de sustitución, hay dos formas (por lo menos).
+La primera es la siguiente: calcular primero la integral indefinida (basta con una antiderivada) y luego utilizarla para integrar.
+
+\begin{example}
+  Calcular $\D \int_0^2 (x^2-1) \, (x^3-3x+2)^3 \dx$.
+
+  Hacemos aquí la sustitución $u=x^3-3x+2$ y $\du = 3x^2-3\dx=3(x^2-1)\dx$,
+  y miramos la integral indefinida:
+  \begin{align*}
+    \int (x^2-1) \, (x^3-3x+2)^3 \dx &= \frac13 \int  (x^3-3x+2)^3\, 3(x^2-1) \dx
+    \\
+    &=\frac13\int u^3 \du = \frac{u^4}{12} + C = \frac{(x^3-3x+2)^4}{12} + C.
+  \end{align*}
+  Es decir, hemos encontrado que $\frac{(x^3-3x+2)^4}{12}$ es una antiderivada del integrando.
+  Luego
+  \begin{align*}
+    \int_0^2 (x^2-1) \, (x^3-3x+2)^3 \dx 
+    &= \Big[
+      \frac{(x^3-3x+2)^4}{12}
+      \Big]_0^2
+      \\
+      &= \frac{(2^3-3\cdot 2+2)^4}{12} - \frac{(0^3-3\cdot 0+2)^4}{12}
+      \\
+      &=   \frac{(8-6+2)^4}{12} - \frac{2^4}{12} = 20.
+  \end{align*}  
+\end{example}
+
+La segunda forma será vista luego del siguiente teorema:
+
+\begin{theorem} 
+  Si $f$ es continua y $g$ es tal que $g'$ es continua, entonces
+  \[
+  \int_a^b f(g(x))\, g'(x)\dx = \int_{g(a)}^{g(b)} f(u)\du.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Sea $F$ una antiderivada de $f$. Entonces $F'(u)=f(u)$ y 
+  \begin{align*}
+    \int_a^b f(g(x))\, g'(x)\dx 
+    &= \int_a^b F'(g(x))\, g'(x)\dx \\
+    &= \Big[ F(g(x))\Big]_a^b = F(g(b))-F(g(a)) 
+    \\
+    &= \Big[ F(u)\Big]_{g(a)}^{g(b)} = \int_{g(a)}^{g(b)} f(u) \du. 
+    \qedhere
+  \end{align*}
+\end{proof}
+
+Lo importante a notar en esta fórmula, es que si aplicamos la regla de sustitución en una integral \emph{definida}, también hay que sustituir en los extremos de integración.
+
+\begin{example}
+  Calcular $\D\int_0^{1/2} \cos^3 \pi x\,\sen\pi x\dx$.
+  Hacemos la sustitución $u=\cos\pi x$ y $\du = -\pi \sen\pi x \dx$:
+  \begin{align*}
+    \int_0^{1/2} \cos^3 \pi x\,\sen\pi x\dx 
+    &= -\frac1\pi \int_0^{1/2} \cos^3 \pi x\,(-\pi\,\sen\pi x)\dx \\
+    &= -\frac1\pi \int_{\cos \pi 0}^{\cos \pi 1/2} u^3 \du 
+    = -\frac1\pi \int_{1}^{0} u^3 \du \\
+    &= -\frac1\pi  \Big[\frac{u^4}{4}\Big]_{1}^{0} 
+    = -\frac1\pi  \Big[\frac{0^4}{4}-\frac{1^4}{4}\Big]_{1}^{0} 
+    = -\frac1\pi  \Big[0-\frac{1}{4}\Big]
+    = \frac{1}{4\pi}.
+  \end{align*}
+\end{example}
+
+Para finalizar la sección, veamos un último ejemplo de sustitución en una integral indefinida 
+
+\begin{example}
+  Calcular $\D\int 2x \sqrt{x-1}\dx$.
+
+  Aquí tenemos $x$ fuera de la raíz y $x-1$ dentro de la raíz. Parece que no podríamos hacer nada. Sin embargo, si hacemos la sustitución $u=x-1$ (nos queda $x=u+1$) y $\du = \dx$:
+  \begin{align*}
+    \int 2\underbrace{x}_{u+1} \sqrt{\underbrace{x-1}_u}\underbrace{\dx}_{\du}
+    &= \int 2 (u+1)\sqrt{u}\du = 2 \int u^{3/2}+u^{1/2}\du
+    \\
+    &= 2\Big[ \frac{u^{5/2}}{5/2} + \frac{u^{3/2}}{3/2}\Big]
+    = \frac45 u^{5/2} + \frac43 u^{3/2}
+    =  \frac45 (x-1)^{5/2} + \frac43 (x-1)^{3/2}.
+  \end{align*}
 \end{example}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
@@ -977,6 +1089,29 @@ Podemos verificar esto derivando la última expresión:
 \end{enumerate}  
 
 \section{Integración por partes}
+% sección 9.3 de Noriega
+
+En la sección anterior hemos visto cómo la regla de la cadena para la derivada de una composición nos permite calcular derivadas de funciones más complejas.
+También hay una regla de integración asociada con la regla de la derivada de un producto.
+
+Sean $u$ y $v$ dos funciones derivables. Por la Proposición~\ref{P:derivada del producto} tenemos que
+\[
+(uv)'=u'v + u v',
+\]
+o sea 
+\[
+  u'v =(uv)'- u v'.
+\]
+Entonces resulta que 
+$$
+\int u'v \dx = \int (uv)' \dx - \int u v'\dx.
+$$
+Como una antiderivada de $(uv)'$ es $uv$, tenemos que
+$$
+\int u'v \dx = \int (uv)' \dx - \int u v'\dx.
+$$
+
+Veamos cómo se puede aplicar esta regla en ejemplos concretos.
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
