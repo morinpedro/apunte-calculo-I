@@ -1141,8 +1141,87 @@ $$
 Veamos cómo se puede aplicar esta regla en ejemplos concretos.
 
 \begin{example}
-  
+  Calcular $\D\int x\,\ln x\dx$.
+
+  Aquí hacemos $u=\ln x$ y $v'=x$. Luego $\D u'=\frac1x$ y $\D v=\frac{x^2}2$. Luego
+  \[
+  \int x \ln x\dx 
+  = \ln x \, \frac{x^2}2 - \int \frac1x \frac{x^2}{2}\dx
+  = \ln x \, \frac{x^2}2 - \int \frac{x}{2}\dx
+  = \ln x \, \frac{x^2}2 - \frac{x^2}{4} + C.
+  \]  
 \end{example}
+
+\begin{example}
+  Calcular $\D \int x e^x\dx$.
+
+  En este ejemplo, la idea es aprovechar que $\dd[]{x}{x}=1$ y entonces tomamos $u=x$, y $v'=e^x$. Luego, $u'=1$ y $v=e^x$:
+  \[
+  \int x\, e^x\dx = x\,e^x - \int 1 e^x\dx = x\, e^x - e^x+C = (x-1)e^x+C.
+  \]
+\end{example}
+
+\begin{example}
+  Calcular $\D \int x^2 e^x\dx$.
+
+  En este ejemplo, la idea es repetir dos veces la fórmula para poder \emph{deshacernos} de la potencia de $x$. Tomamos primero $u=x^2$, y $v'=e^x$. Luego, $u'=2x$ y $v=e^x$:
+  \[
+  \int x^2\, e^x\dx 
+  = x^2\,e^x - \int 2x e^x\dx 
+  = x^2\,e^x - 2\int x e^x\dx .
+  \]
+  Llegado a este punto nos tocaría aplicar nuevamente la integración por partes en el último término, pero como lo hemos hecho en el ejemplo anterior, podemos copiar la fórmula de allí.
+  \[
+  \int x^2\, e^x\dx 
+  = x^2\,e^x - 2\int x e^x\dx 
+  = x^2\,e^x - 2(x\, e^x - e^x) + C
+  = (x^2-2x+2)\,e^x + C.
+  \]
+\end{example}
+
+Veamos un último ejemplo.
+
+\begin{example}
+  Calcular $\D \int e^x\, \cos x \dx$.
+
+  Aquí integraremos por partes dos veces. Primero escribimos
+  $u=e^x$ y $v'=\cos x$, con $u'=e^x$ y $v=\sen x$. Esto nos da
+  \[
+  \int e^x\,\cos x \dx 
+  = e^x \,\sen x - \int e^x \,\sen x\dx .
+  \]
+  Ahora hacemos integración por partes en $\D \int e^x \, \sen x \dx$.
+  En este caso, tomamos $u=e^x$ y $v'=\sen x$, con $u'=e^x$ y $v=-\cos x$. Luego
+  \[
+  \int e^x\,\sen x \dx 
+  = e^x (-\cos x) - \int e^x (-\cos x)\dx 
+  = -e^x \,\cos x + \int e^x \, \cos x \dx .
+  \]
+  Juntando todo,
+  \[
+    \int e^x\,\cos x \dx 
+    = e^x \,\sen x -\Big[-e^x \,\cos x + \int e^x \, \cos x \dx \Big]
+    = e^x \,\sen x +e^x \,\cos x - \int e^x \, \cos x \dx .
+  \]
+  Es decir
+  \[
+    \int e^x\,\cos x \dx 
+    = e^x\big(\sen x+\cos x) - 
+    \int e^x\,\cos x \dx .
+  \]
+  Por lo tanto 
+  \[
+    2\int e^x\,\cos x \dx 
+    = e^x\big(\sen x+\cos x),
+  \]
+  y finalmente 
+  \[
+    \int e^x\,\cos x \dx 
+    = \frac{e^x}2\big(\sen x+\cos x) + C.
+  \]
+\end{example}
+
+
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
