@@ -658,6 +658,30 @@ $$
   Para ver fácilmente que esto no es cierto, basta con observar que el lado izquierdo es un número y el lado derecho es una expresión variable, que aún depende de $x$.
 \end{remark}
 
+
+
+A continuación vemos un ejemplo más de cálculo de la derivada de una integral, cuando el extremo derecho no es $x$ sino una expresión que depende de $x$.
+
+
+\begin{example}
+  Calcular $\dd[]{}{x} \int_0^{x^2+1} \frac{\sen t}{t^4+t^2+1} \dt$.
+
+  Aquí tenemos una composición de funciones. Si llamamos $\D f(y)=\int_0^{y} \frac{\sen t}{t^4+t^2+1} \dt$, y $g(x)=x^2+1$, entonces 
+  \[
+    \int_0^{x^2+1} \frac{\sen t}{t^4+t^2+1} \dt = f\circ g(x).
+  \]
+  Luego, por la regla de la cadena,
+  \[
+    \dd[]{}{x} \int_0^{x^2+1} \frac{\sen t}{t^4+t^2+1} \dt
+    = (f\circ g)'(x) = f'(g(x))\, g'(x).
+  \]
+  Ahora sí, por el teorema fundamental del cálculo $f'(y)= \frac{\sen y}{y^4+y^2+1}$, y $g'(x)=2x$. Entonces
+  \[
+    \dd[]{}{x} \int_0^{x^2+1} \frac{\sen t}{t^4+t^2+1} \dt
+    = \frac{\sen (x^2+1)}{(x^2+1)^4+(x^2+1)^2+1} \, 2\, x.
+  \]
+\end{example}
+
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
@@ -804,8 +828,6 @@ Por la linealidad de la integral, tenemos que
     \end{minipage}    
   \end{example}
 
-  
-
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
@@ -817,7 +839,7 @@ Por la linealidad de la integral, tenemos que
 
 Consideremos una función continua $f$. Si $F$ es una antiderivada de $f$ en $[a,b]$, entonces
 \[
-\int_a^b f(x)\dx = \Big[F(x)\Big]_a^b.
+\int_a^b f(x)\dx = \Big[F(x)\Big]_a^b = F(b)-F(a).
 \]
 Si $C$ es una constante, 
 \[
@@ -1122,15 +1144,18 @@ Tenemos entonces el siguiente Teorema.
 \end{theorem}
 
 \begin{proof}
-  Por la regla de la derivada del producto, Proposición~\ref{P:derivada del producto} tenemos que $(uv)'(x)=u'(x)v(x) + u(x) v'(x)$. Luego, $(uv)(x)=u(x)v(x)$ es una antiderivada de $u'(x)v(x) + u(x) v'(x)$. Por la regla de Barrow tenemos que
+  Por la regla de la derivada del producto, Proposición~\ref{P:derivada del producto} tenemos que $(uv)'(x)=u'(x)v(x) + u(x) v'(x)$. Luego, $(uv)(x)=u(x)v(x)$ es una antiderivada de $u'(x)v(x) + u(x) v'(x)$. Por la linealidad de la integral y por la regla de Barrow tenemos que
   \begin{align*}
-  \int_a^b u'(x)v(x) + u(x) v'(x) \dx
-  = \int_a^b (uv)'(x)\dx 
+  \int_a^b u'(x)v(x) \dx+ \int_a^b u(x) v'(x) \dx
+  &=\int_a^b u'(x)v(x) + u(x) v'(x) \dx
+  \\
+  &= \int_a^b (uv)'(x)\dx 
   = \Big[(uv)(x)\Big]_a^b  
-  = \Big[u(x)v(x)\Big]_a^b  
-  = u(b)v(b)-u(a)v(a).
-  \qedhere
+  \\
+  &= \Big[u(x)v(x)\Big]_a^b  
+  = u(b)v(b)-u(a)v(a),
   \end{align*}
+  de donde se deduce inmediatamente la afirmación del teorema.
 \end{proof}
 
 Otra forma de escribir la \emph{fórmula de integración por partes} es la siguiente:
@@ -1155,7 +1180,7 @@ Veamos cómo se puede aplicar esta regla en ejemplos concretos.
 \begin{example}
   Calcular $\D \int x e^x\dx$.
 
-  En este ejemplo, la idea es aprovechar que $\dd[]{x}{x}=1$ y entonces tomamos $u=x$, y $v'=e^x$. Luego, $u'=1$ y $v=e^x$:
+  En este ejemplo, la idea es aprovechar que $\dd[]{x}{x}=1$ y que $\dd[]{e^x}{x}=e^x$. Entonces tomamos $u=x$, y $v'=e^x$. Luego, $u'=1$ y $v=e^x$:
   \[
   \int x\, e^x\dx = x\,e^x - \int 1 e^x\dx = x\, e^x - e^x+C = (x-1)e^x+C.
   \]
@@ -1198,11 +1223,11 @@ Veamos un último ejemplo.
   = -e^x \,\cos x + \int e^x \, \cos x \dx .
   \]
   Juntando todo,
-  \[
+  \begin{align*}
     \int e^x\,\cos x \dx 
-    = e^x \,\sen x -\Big[-e^x \,\cos x + \int e^x \, \cos x \dx \Big]
-    = e^x \,\sen x +e^x \,\cos x - \int e^x \, \cos x \dx .
-  \]
+    &= e^x \,\sen x -\Big[-e^x \,\cos x + \int e^x \, \cos x \dx \Big]\\
+    &= e^x \,\sen x +e^x \,\cos x - \int e^x \, \cos x \dx .
+  \end{align*}
   Es decir
   \[
     \int e^x\,\cos x \dx 
@@ -1230,9 +1255,90 @@ Veamos un último ejemplo.
 \end{enumerate}  
 
 
+\section{Algunas propiedades adicionales de la integral}
 
-\section{Integrales impropias}
+En esta sección veremos algunas propiedades generales importantes de la integral definida. En todos los resultados presentados en esta sección estamos suponiendo que $a<b$.
 
+\begin{lemma}\label{L:integral ge 0}
+  Si $f$ es continua a trozos y $f(x)\ge 0$, para todo $x\in [a,b]$, entonces 
+  \[
+  \int_a^b f(x)\dx \ge 0.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Hacemos la demostración para el caso en que $f$ es continua.
+  Como $f$ es continua en $[a,b]$, alcanza su mínimo, digamos en un punto $x_m$, donde $f(x_m)\ge 0$ por hipótesis. Tomemos ahora la partición $P=\{x_0=a<x_1=b\}$.
+  Luego 
+  \[
+  L(P,f)=f(x_m) (b-a)=\ell \ge 0.
+  \]
+  Por lo tanto la integral, que es un número mayor o igual a todas las sumas inferiores tiene que ser también mayor o igual que $\ell\ge0$ y por lo tanto es no negativa.
+\end{proof}
+
+\begin{lemma}\label{L:integral > 0}
+  Si $f$ es continua a trozos y $f(x)> 0$, para todo $x\in [a,b]$, entonces
+  \[
+  \int_a^b f(x)\dx > 0.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Hacemos la demostración para el caso en que $f$ es continua.
+  Como $f$ es continua en $[a,b]$, alcanza su mínimo, digamos en un punto $x_m$, donde $f(x_m)>0$ por hipótesis. Tomemos ahora la partición $P=\{x_0=a<x_1=b\}$.
+  Luego 
+  \[
+  L(P,f)=f(x_m) (b-a)=\ell > 0.
+  \]
+  Por lo tanto la integral, que es un número mayor o igual a todas las sumas inferiores tiene que ser también mayor o igual que $\ell>0$ y por lo tanto es positiva.
+\end{proof}
+
+\begin{proposition}
+  Si $f$ y $g$ son continuas a trozos y $f(x)\le g(x)$ para todo $x\in[a,b]$, entonces
+  \[
+  \int_a^b f(x)\dx 
+  \le \int_a^b g(x)\dx 
+  \]
+\end{proposition}
+
+\begin{proof}
+  Aplicar el Lema~\ref{L:integral ge 0} a la función $h(x)=g(x)-f(x)$.
+\end{proof}
+
+\begin{proposition}\ref{P:integral monotona}
+  Si $f$ y $g$ son continuas a trozos y $f(x) < g(x)$ para todo $x\in[a,b]$, entonces
+  \[
+  \int_a^b f(x)\dx 
+  \le \int_a^b g(x)\dx 
+  \]
+\end{proposition}
+
+\begin{proof}
+  Aplicar el Lema~\ref{L:integral > 0} a la función $h(x)=g(x)-f(x)$.
+\end{proof}
+
+De la misma manera que el valor absoluto de una suma es menor o igual que la suma de los valores absolutos:
+\[
+|f_1+f_2+\dots+f_n| \le |f_1|+|f_2|+\dots+|f_n| ,
+\]
+el valor absoluto de una integral es menor o igual que la integral del valor absoluto.
+
+\begin{corollary}
+  Si $f$ es continua a trozos en $[a,b]$ entonces
+  \[
+  \Big| \int_a^b f(x)\dx \Big| \le \int_a^b |f(x)|\dx.
+  \]
+\end{corollary}
+
+\begin{proof}
+  Dado que $\D -|f(x)|\le f(x)\le |f(x)|$, la Proposición~\ref{L:integral monotona} nos dice que
+  \[
+    -\int_a^b |f(x)|\dx 
+    \le \int_a^b f(x)\dx 
+    \le \int_a^b |f(x)|\dx .
+  \]
+  Este par de desigualdades equivale a la afirmación que queremos demostrar.
+\end{proof}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
@@ -1241,7 +1347,9 @@ Veamos un último ejemplo.
 \end{enumerate}
 
 
-\section{Algunas propiedades adicionales de la integral}
+
+\section{Integrales impropias}
+
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
