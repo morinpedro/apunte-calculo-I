@@ -78,7 +78,7 @@ Sumando, obtenemos
 \begin{equation}
   \label{eq:L<I<U}
 m_1 \Delta x_1 + m_2 \Delta x_2 + \dots + m_n \Delta x_N
-\le \area(\Omega_i) \le
+\le \area(\Omega) \le
 M_1 \Delta x_1 + M_2 \Delta x_2 + \dots + M_n \Delta x_N.
 \end{equation}
 La suma $m_1 \Delta x_1 + m_2 \Delta x_2 + \dots + m_n \Delta x_N$ es una \emph{suma inferior de $f$} 
@@ -392,19 +392,32 @@ El siguiente teorema es bastante obvio si pensamos en la interpretación geomét
   que implica lo que queríamos demostrar.
   \end{proof}
 
-  Hasta ahora sólo hemos definido integrales \emph{de izquierda a derecha}: desde un número $a$ hasta un número $b$, con $b>a$. También puede integrarse en sentido opuesto, a través de la siguiente definición:
-  \[
-  \int_b^a f(x)\dx 
-  = -\int_a^b f(x)\dx .
-  \]
-  Además, la integral cuando los extremos de integración coinciden se define como cero:
-  \[
-  \int_c^c f(x)\dx = 0.
-  \]
-  De esta manera, la siguiente condición se cumple independientemente del orden en que se encuentren $a$, $b$ y $c$:
-  \[
-    \int_a^c f(x)\dx + \int_c^b f(x)\dx=\int_a^b f(x)\dx .
-  \]
+  \begin{definition}
+    A partir de este último teorema, hacemos las siguientes definiciones, que de alguna manera generalizan la definición de integral.
+    \begin{enumerate}
+      \item Si $f:[a,b]\to \R$ tiene una discontinuidad de salto en $c\in (a,b)$ pero es continua en $(a,c)$ y en $(c,b)$, entonces
+      \[
+      \int_a^b f(x)\dx = \int_a^c f(x)\dx + \int_c^b f(x)\dx.
+      \]
+      \item Hasta ahora sólo hemos definido integrales \emph{de izquierda a derecha}: desde un número $a$ hasta un número $b$, con $b>a$. También puede integrarse en sentido opuesto, a través de la siguiente definición:
+      \[
+      \int_b^a f(x)\dx 
+      = -\int_a^b f(x)\dx .
+      \]
+      \item Además, la integral cuando los extremos de integración coinciden se define como cero:
+      \[
+      \int_c^c f(x)\dx = 0.
+      \]
+        \end{enumerate}
+  \end{definition}
+
+  \begin{remark}
+    A partir de las últimas definiciones, observamos que la siguiente igualdad
+      \[
+        \int_a^c f(x)\dx + \int_c^b f(x)\dx=\int_a^b f(x)\dx ,
+      \]
+    se cumple independientemente del orden en que se encuentren $a$, $b$ y $c$.
+  \end{remark}
 
 \noindent
 \begin{minipage}{.4\textwidth}  Dada una función continua $f$, definimos 
@@ -1160,7 +1173,11 @@ Tenemos entonces el siguiente Teorema.
 
 Otra forma de escribir la \emph{fórmula de integración por partes} es la siguiente:
 $$
-\int u'v \dx = uv - \int u v'\dx.
+\int u'v \dx = uv - \int u v'\dx,
+$$
+y si llamamos $\du = u'(x)\dx$ y $\dv = v'(x)\dx$ tenemos
+$$
+\int v \du = uv - \int u \dv.
 $$
 
 Veamos cómo se puede aplicar esta regla en ejemplos concretos.
@@ -1293,7 +1310,7 @@ En esta sección veremos algunas propiedades generales importantes de la integra
   Por lo tanto la integral, que es un número mayor o igual a todas las sumas inferiores tiene que ser también mayor o igual que $\ell>0$ y por lo tanto es positiva.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{P:integral monotona}
   Si $f$ y $g$ son continuas a trozos y $f(x)\le g(x)$ para todo $x\in[a,b]$, entonces
   \[
   \int_a^b f(x)\dx 
@@ -1305,17 +1322,106 @@ En esta sección veremos algunas propiedades generales importantes de la integra
   Aplicar el Lema~\ref{L:integral ge 0} a la función $h(x)=g(x)-f(x)$.
 \end{proof}
 
-\begin{proposition}\ref{P:integral monotona}
+\begin{proposition}
   Si $f$ y $g$ son continuas a trozos y $f(x) < g(x)$ para todo $x\in[a,b]$, entonces
   \[
   \int_a^b f(x)\dx 
-  \le \int_a^b g(x)\dx 
+  < \int_a^b g(x)\dx 
   \]
 \end{proposition}
 
 \begin{proof}
   Aplicar el Lema~\ref{L:integral > 0} a la función $h(x)=g(x)-f(x)$.
 \end{proof}
+
+\begin{theorem}[Teorema del Valor Medio del Cálculo Integral]\label{T:TVM-integral}
+  Si $f$ es una función continua en $[a,b]$ entonces existe $c\in(a,b)$ tal que 
+  \[
+  \int_a^b f(x)\dx = f(c)\cdot(b-a).
+  \]
+\end{theorem}
+
+\begin{proof}
+  Si $M$ y $m$ denotan el máximo de la función $f$ en el intervalo $[a,b]$, entonces $m\le f(x)\le M$ para todo $x\in[a,b]$, luego, por la última proposición
+  \[
+  \int_a^b m\dx
+  \le \int_a^b f(x)\dx
+  \le \int_a^b M\dx.
+  \]
+  Como la integral de una constante es la constante por la longitud del intervalo, tenemos que
+  \[
+    m\cdot(b-a)
+    \le \int_a^b f(x)\dx
+    M\cdot(b-a).
+  \]
+  Dividiendo por $b-a>0$ tenemos
+  \[
+  m \le \frac{\int_a^b f(x)\dx}{b-a}\le M.
+  \]
+  Es decir que el número $d=\frac{\int_a^b f(x)\dx}{b-a}$ está entre el máximo y el mínimo de $f$. Luego, por el teorema del valor intermedio para funciones continuas, existe $c\in(a,b)$ tal que $f(c)=d$ es igual a ese número. Luego
+  \[
+  f(c) = \frac{\int_a^b f(x)\dx}{b-a},
+  \]
+  o, lo que es lo mismo
+  \[
+  \int_a^b f(x)\dx = f(c)\cdot(b-a).
+  \qedhere
+  \]
+\end{proof}
+
+\begin{remark}
+  La cantidad $\D \frac{\int_a^b f(x)\dx}{b-a}$ se llama \emph{valor medio} o \emph{promedio} de $f$ en el intervalo $[a,b]$. Coincide con el valor por el que hay que multiplicar la longitud del intervalo para obtener el valor de la integral de $f$.
+\end{remark}
+
+\begin{theorem}[Segundo teorema del valor medio para integrales]
+Si $f$ y $g$ son funciones continuas en $[a,b]$ y $g$ es no negativa, entonces existe $c\in(a,b)$ para el cual se verifica que
+\[
+\int_a^b f(x)g(x)\dx = g(c) \int_a^b f(x)\dx.
+\] 
+\end{theorem}
+
+\begin{proof}
+  La demostración de este teorema es similar a la del teorema anterior. 
+  Si $M$ y $m$ denotan el máximo de la función $f$ en el intervalo $[a,b]$, entonces $m\le f(x)\le M$ para todo $x\in[a,b]$, y como $g(x)\ge 0$ para todo $x$, se cumple que
+  \[
+  m\,g(x)\le f(x)g(x)\le M\,g(x), \quad\text{para todo $x\in[a,b]$.}
+  \]
+  Por la Proposición~\ref{P:integral monotona}
+  \[
+  \int_a^b m\,g(x)\dx
+  \le \int_a^b f(x)g(x)\dx
+  \le \int_a^b M\,g(x)\dx,
+  \]
+  y en consecuencia,
+  \[
+    m\,\int_a^b g(x)\dx
+  \le \int_a^b f(x)g(x)\dx
+  \le M\,\int_a^b g(x)\dx.
+  \]
+  Como $g$ es no negativa, $\int_a^b g(x)\dx\ge 0$. 
+  Si $\int_a^b g(x)\dx=0$, entonces es porque $g(x)=0$, para todo $x\in[a,b]$.
+  Luego $\int_a^b f(x)g(x)\dx=0$ y el teorema se verifica para todo $c\in(a,b)$.
+  
+  Si $\int_a^b g(x)\dx > 0$, dividimos la última desigualdad por esta cantidad y tenemos
+  \[
+    m
+    \le \frac{\int_a^b f(x)g(x)\dx}{\int_a^b g(x)\dx}
+    M.
+  \]
+  Es decir que el número $d=\frac{\int_a^b f(x)g(x)\dx}{\int_a^b g(x)\dx}$ está entre el máximo y el mínimo de $f$. Luego, por el teorema del valor intermedio para funciones continuas, existe $c\in(a,b)$ tal que $f(c)=d$ es igual a ese número. Luego
+  \[
+  f(c) = \frac{\int_a^b f(x)g(x)\dx}{\int_a^b g(x)\dx},
+  \]
+  o, lo que es lo mismo
+  \[
+  \int_a^b f(x)g(x)\dx = f(c)\int_a^b g(x)\dx.
+  \qedhere
+  \]
+\end{proof}
+
+\begin{remark}
+  La cantidad $\D\frac{\int_a^b f(x)g(x)\dx}{\int_a^b g(x)\dx}$ que aparece en la última demostración se llama valor medio o promedio \emph{ponderado por $g$} de $f$ en el intervalo $[a,b]$.
+\end{remark}
 
 De la misma manera que el valor absoluto de una suma es menor o igual que la suma de los valores absolutos:
 \[
@@ -1331,7 +1437,7 @@ el valor absoluto de una integral es menor o igual que la integral del valor abs
 \end{corollary}
 
 \begin{proof}
-  Dado que $\D -|f(x)|\le f(x)\le |f(x)|$, la Proposición~\ref{L:integral monotona} nos dice que
+  Dado que $\D -|f(x)|\le f(x)\le |f(x)|$, la Proposición~\ref{P:integral monotona} nos dice que
   \[
     -\int_a^b |f(x)|\dx 
     \le \int_a^b f(x)\dx 
@@ -1340,6 +1446,7 @@ el valor absoluto de una integral es menor o igual que la integral del valor abs
   Este par de desigualdades equivale a la afirmación que queremos demostrar.
 \end{proof}
 
+
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
@@ -1347,8 +1454,9 @@ el valor absoluto de una integral es menor o igual que la integral del valor abs
 \end{enumerate}
 
 
-
-\section{Integrales impropias}
+\begin{comment}
+  
+\section{Cálculo de volúmenes}
 
 
 
@@ -1358,19 +1466,44 @@ el valor absoluto de una integral es menor o igual que la integral del valor abs
   \input{ejercicios-ch-6-s-8.tex}
 \end{enumerate}
 
+\section{Integrales impropias}
 
-\section{El método de integración por fracciones simples}
 
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
+  \input{ejercicios-ch-6-s-9.tex}
 \end{enumerate}
+
+
+% \section{El método de integración por fracciones simples}
+
+
+% \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+
+% \begin{enumerate}
+%   \input{ejercicios-ch-6-s-10.tex}
+% \end{enumerate}
 
 
 
 \subsection*{Ejercicios del capítulo~\getcurrentref{chapter}}
 
 
+\begin{enumerate}
+  \input{ejercicios-ch-6-s-1.tex}
+  \input{ejercicios-ch-6-s-2.tex}
+  \input{ejercicios-ch-6-s-3.tex}
+  \input{ejercicios-ch-6-s-4.tex}
+  \input{ejercicios-ch-6-s-5.tex}
+  \input{ejercicios-ch-6-s-6.tex}
+  \input{ejercicios-ch-6-s-7.tex}
+  \input{ejercicios-ch-6-s-8.tex}
+  \input{ejercicios-ch-6-s-9.tex}
+  % \input{ejercicios-ch-6-s-10.tex}
+\end{enumerate}
 
+
+\end{comment}
