@@ -533,8 +533,8 @@ es una antiderivada de $f$.
 A partir del \emph{Teorema Fundamental del Cálculo} llegamos a un método que nos permite calcular integrales. Podemos calcular $\D\int_a^b f(t)\dt$ hallando una antiderivada de $f$.
 
 \begin{theorem}[Regla de Barrow]
-   Sea $f$ una función continua en $[a,b]$. Si $G$ es una antiderivada de $f$ en $[a,b]$, entonces
-   $$ \int_a^b f(t)\dt = G(b)-G(a). $$
+  Sea $f$ una función continua en $[a,b]$. Si $G$ es una antiderivada de $f$ en $[a,b]$, entonces
+  $$ \int_a^b f(t)\dt = G(b)-G(a). $$
 \end{theorem}
 
 \begin{proof}
@@ -1454,12 +1454,160 @@ el valor absoluto de una integral es menor o igual que la integral del valor abs
 \end{enumerate}
 
 
-\begin{comment}
   
 \section{Cálculo de volúmenes}
 
+En esta sección utilizaremos integrales para hallar volúmenes de ciertos sólidos tridimensionales.
+
+Para comenzar, sea $\Omega$ una región plana.
+Un \emph{cilindro recto con sección transversal $\Omega$} es un sólido formado por la traslación de $\Omega$ a lo largo de una recta, o \emph{eje}, que es perpendicular a ella.
+
+\begin{center}
+  \includegraphics[width=.6\textwidth]{pics/cilindro.png}
+\end{center}
+
+Sea $A=\area(\Omega)$. Si un cilindro recto está formado por la traslación de la región $\Omega$ a lo largo de una distancia $h$, entonces el volumen del cilindro viene dado por 
+\[
+V = A\cdot h.
+\]
+Algunos ejemplos familiares son un cilindro circular recto de radio \( r \) y altura \( h \), y una caja rectangular de longitud \( l \), ancho \( w \) y altura \( h \).
+
+\begin{center}
+  \includegraphics[width=.6\textwidth]{pics/cilindro-prisma.png}
+\end{center}
+
+\noindent
+\begin{minipage}{.65\textwidth}
+Para calcular el volumen de un sólido más general, introducimos un eje de coordenadas y examinamos las secciones transversales del sólido perpendiculares a dicho eje. En la figura de la derecha hemos representado un sólido y un eje de coordenadas considerado como eje \( x \).
+Como en la figura, suponemos que el sólido está enteramente situado entre \( x = a \) y \( x = b \). En la figura se puede ver una sección arbitraria del sólido, perpendicular al eje \( x \). En lo sucesivo, por \( A(x) \) designamos el área de la sección transversal que tiene coordenada \( x \).
+
+Si el área de la sección transversal, \( A(x) \), varía continuamente con \( x \), podemos hallar el volumen \( V \) del sólido mediante la integración de dicha función entre \( a \) y \( b \):
+\begin{equation} \label{eq:volumen}
+V = \int_a^b A(x) \, dx.
+\end{equation}
+
+\end{minipage}
+\begin{minipage}{.34\textwidth}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{pics/volumen-1.png}
+  \end{center}
+\end{minipage}
+
+\begin{example}
+  Hallar el volumen de una pirámide cuya altura es \( h \) y cuya base es un cuadrado con lados de longitud \( r \).
 
 
+  \noindent\begin{minipage}{.6\textwidth}
+    Situamos el eje \( x \) perpendicular a la base, con el origen en el centro de la base. La sección transversal con coordenada \( x \) es un cuadrado. Sea \( s \) la longitud del lado de ese cuadrado. Entonces, por triángulos semejantes (ver figura), tenemos
+    \[
+    \frac{\frac{1}{2}s}{h - x} = \frac{\frac{1}{2}r}{h},
+    \]
+    y por tanto
+    \[
+    s = \frac{r}{h}(h - x).
+    \]
+  
+  \end{minipage}
+  \begin{minipage}{.39\textwidth}
+    \begin{center}
+      \includegraphics[width=.9\textwidth]{pics/piramide.png}
+    \end{center}
+  \end{minipage}
+  
+  Luego el área del cuadrado en la coordenada $x$ es $A(x) = s^2 = (r^2/h^2)(h-x)^2$.
+
+Por lo tanto, el volumen resulta:
+\begin{align*}
+  V &= \int_0^h A(x) dx = \frac{r^2}{h^2} \int_0^h (h-x)^2 dx\\
+&= \frac{r^2}{h^2} \left[-\frac{(h-x)^3}{3}\right]_0^h = \frac{1}{3} \pi r^2 h.
+\end{align*}
+
+\end{example}
+
+\begin{example}
+La base de un sólido es la región delimitada por la elipse
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
+\]
+
+Hallar el volumen de dicho sólido sabiendo que la sección transversal perpendicular al eje $x$ es un triángulo isósceles con base en la región y altura igual a la mitad de la base.
+
+\noindent\begin{minipage}{.6\textwidth}
+  Sea $x$ como en la figura de la derecha. La sección transversal de coordenada $x$ es un triángulo isósceles de lado $PQ$ y altura $\frac{1}{2}PQ$. La ecuación de la elipse puede escribirse como
+  \[
+  y^2 = \frac{b^2}{a^2}(a^2 - x^2).
+  \]
+  
+  Dado que
+  \[
+  \text{longitud de } PQ = 2y = \frac{2b}{a}\sqrt{a^2 - x^2},
+  \]
+  el área del triángulo isósceles será:
+  \[
+  A(x) = \frac{1}{2}bh = \frac{1}{2} \left(\frac{2b}{a}\sqrt{a^2 - x^2}\right) \left(\frac{b}{a}\sqrt{a^2 - x^2}\right) = \frac{b^2}{a^2}(a^2 - x^2).
+  \]
+\end{minipage}
+\begin{minipage}{.39\textwidth}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{pics/volumen-2.png}
+  \end{center}
+\end{minipage}
+
+Podemos hallar el volumen del sólido integrando $A(x)$ desde $x = -a$ hasta $x = a$:
+\begin{align*}
+V &= \int_{-a}^{a} A(x) dx = 2 \int_{0}^{a} A(x) dx \quad \text{por simetría}
+\\
+&= \frac{2b^2}{a^2} \int_{0}^{a} (a^2 - x^2) dx
+\\
+&= \frac{2b^2}{a^2} \left[ a^2x - \frac{x^3}{3} \right]_0^a = \frac{4}{3}ab^2.
+\end{align*}
+
+\end{example}
+
+
+
+\begin{example}
+  La base de un sólido es la región comprendida entre las parábolas
+  \[
+  x = y^2 \quad \text{y} \quad x = 3 - 2y^2.
+  \]
+  
+  Hallar el volumen del sólido sabiendo que las secciones transversales perpendiculares al eje $x$ son cuadrados.
+    
+  
+  \noindent\begin{minipage}{.6\textwidth}
+    Las dos parábolas se cortan en (1, 1) y (1, -1) (figura 6.2.7). Entre $x = 0$ y $x = 1$, la sección transversal de coordenada $x$ tiene por área
+    \[
+    A(x) = (2y)^2 = 4y^2 = 4x.
+    \]
+    (Aquí lo que medimos es el área determinada por la primera parábola $x = y^2$.) El volumen del sólido entre $x = 0$ y $x = 1$ es
+\[
+V_1 = \int_0^1 4x \, dx = \left[ 2x^2 \right]_0^1 = 2.
+\]
+
+  \end{minipage}
+  \begin{minipage}{.39\textwidth}
+    \begin{center}
+      \includegraphics[width=.9\textwidth]{pics/volumen-3.png}
+    \end{center}
+  \end{minipage}
+
+Entre $x = 1$ y $x = 3$, la sección transversal de coordenada $x$ tiene por área
+\[
+A(x) = (2y)^2 = 4y^2 = 2(3-x) = 6 - 2x.
+\]
+
+(Aquí lo que medimos es el área determinada por la segunda parábola $x = 3 - 2y^2$.) El volumen del sólido entre $x = 1$ y $x = 3$ es
+\[
+V_2 = \int_1^3 (6-2x) \, dx = \left[ 6x - x^2 \right]_1^3 = 4.
+\]
+
+El volumen total es
+\[
+V_1 + V_2 = 6.
+\]
+\end{example}
+  
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
@@ -1505,5 +1653,3 @@ el valor absoluto de una integral es menor o igual que la integral del valor abs
   % \input{ejercicios-ch-6-s-10.tex}
 \end{enumerate}
 
-
-\end{comment}
