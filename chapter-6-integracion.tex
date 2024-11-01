@@ -1596,8 +1596,8 @@ Entre $x = 1$ y $x = 3$, la sección transversal de coordenada $x$ tiene por ár
 \[
 A(x) = (2y)^2 = 4y^2 = 2(3-x) = 6 - 2x.
 \]
-
-(Aquí lo que medimos es el área determinada por la segunda parábola $x = 3 - 2y^2$.) El volumen del sólido entre $x = 1$ y $x = 3$ es
+(Aquí lo que medimos es el área determinada por la segunda parábola $x = 3 - 2y^2$.) 
+El volumen del sólido entre $x = 1$ y $x = 3$ es
 \[
 V_2 = \int_1^3 (6-2x) \, dx = \left[ 6x - x^2 \right]_1^3 = 4.
 \]
@@ -1608,6 +1608,65 @@ V_1 + V_2 = 6.
 \]
 \end{example}
   
+\subsubsection*{Sólidos de revolución}
+
+Supongamos que $f$ es no negativa y continua en $[a, b]$. Si giramos la región por debajo de la gráfica de $f$ alrededor del eje $x$, obtenemos un sólido, que se llama \emph{sólido de revolución}.
+
+\begin{center}
+  \includegraphics[width=.8\textwidth]{pics/solido-de-revolucion.png}
+\end{center}
+
+Como la sección transversal con abscise $x$ es un círculo de radio $f(x)$, su área es $A(x) = \pi [f(x)]^2$.
+Luego, el volumen de este sólido está dado por la fórmula
+\begin{equation}
+V = \int_a^b \pi [f(x)]^2 \, dx.
+\label{eq:volumen_solido_revolucion}
+\end{equation}
+
+\begin{example}
+  Podemos generar un cono cuyo radio de base sea $r$ y cuya altura sea $h$ haciendo girar alrededor del eje $x$ la región debajo de la gráfica de 
+$$f(x) = \frac{r}{h}x, \quad 0 \leq x \leq h.$$
+
+\begin{center}
+  \includegraphics[width=.8\textwidth]{pics/cono-de-revolucion.png}
+\end{center}
+
+Aplicando la fórmula recién vista, obtenemos
+\[
+\text{volumen del cono} = \int_0^h \pi \left[\frac{r}{h}x\right]^2 dx = \frac{\pi r^2}{h^2} \int_0^h x^2 dx
+= \frac{\pi r^2}{h^2} \left[\frac{x^3}{3}\right]_0^h = \frac{1}{3}\pi r^2 h.
+\]
+\end{example}
+
+\begin{example} $ $
+
+\noindent
+\begin{minipage}{.3\textwidth}
+Hallar el volumen del sólido generado por revolución de la región limitada por 
+$y = x^{2/3} + 1, 0 \leq x \leq 8$, alrededor del eje y.
+\end{minipage} 
+\begin{minipage}{.69\textwidth}
+\begin{center}
+  \includegraphics[width=.8\textwidth]{pics/volumen-raro-revolucion.png}
+\end{center}
+\end{minipage}
+
+Primero resolvemos $y = x^{2/3} + 1, 0 \leq x \leq 8$, expresando $x$ como una función de $y$:
+\[
+x^{2/3} = y - 1
+\]
+\[
+x = (y - 1)^{3/2}, 1 \leq y \leq 5.
+\]
+
+Luego, aplicando la fórmula~\eqref{eq:volumen_solido_revolucion}, obtenemos
+\begin{align*}
+  V &= \int_1^5 \pi[g(y)]^2 dy = \pi \int_1^5 [(y - 1)^{3/2}]^2 dy
+  \\
+  &= \pi \int_1^5 (y - 1)^3 dy = \pi \left[\frac{(y - 1)^4}{4}\right]_1^5 = 64\pi.
+\end{align*}
+\end{example}
+
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
@@ -1616,7 +1675,175 @@ V_1 + V_2 = 6.
 
 \section{Integrales impropias}
 
+En todo nuestro estudio de la teoría y las aplicaciones de la integral definida
+\[
+\int_a^b f(x) dx,
+\]
+hemos supuesto que el intervalo $[a, b]$ era finito y que la función $f$ estaba acotada en $[a, b]$. En el contexto desarrollado aquí, se dice que tales integrales son propias. En esta sección utilizaremos un proceso de paso al límite para calcular integrales en aquellos casos en que el intervalo sea infinito o en aquellos en que la función sea no acotada. Tales integrales se denominan integrales impropias.
 
+\subsection{Integrales sobre intervalos infinitos}
+
+Empezamos considerando una función $f$ continua en un intervalo no acotado $[a, \infty)$. Para cada número $b > a$ podemos formar la integral
+\[
+\int_a^b f(x) dx.
+\]
+Si esta integral tiende a un límite $L$ cuando $b \to \infty$,
+\[
+\lim_{b \to \infty} \int_a^b f(x) dx = L,
+\]
+escribiremos
+\[
+\int_a^\infty f(x) dx = L,
+\]
+y diremos que la integral impropia $\int_a^\infty f(x) dx$ converge a $L$.
+
+En caso contrario, diremos que 
+la integral impropia $\int_a^\infty f(x) dx$ diverge.
+
+Análogamente, si $f$ es continua en el intervalo no acotado $(-\infty, b]$, entonces, para cada número $a < b$, podemos formar la integral definida
+\[ \int_a^b f(x) dx \]
+y calcular
+\[ \lim_{a \to -\infty} \int_a^b f(x) dx. \]
+Si este límite existe y es igual a $L$, entonces
+la integral impropia $\int_{-\infty}^b f(x) dx$ converge a $L$;
+de lo contrario,
+la integral impropia $\int_{-\infty}^b f(x) dx$ diverge.
+
+\begin{example}
+  Calcular:
+  \begin{multicols}{2}
+    \begin{enumerate}[(a)]
+      \item $\D \int_0^\infty e^{-2x} \dx$
+      \item $\D \int_1^\infty \frac{1}{x} \dx$
+      \item $\D \int_1^\infty \frac{1}{x^2} \dx$
+      \item $\D  \int_{-\infty}^\infty \cos{\pi x} \dx $
+    \end{enumerate}
+  \end{multicols}
+
+  Veamos: 
+  \begin{align*}
+    \text{(a)}\quad&
+    \int_0^\infty e^{-2x} dx 
+    = \lim_{b \to \infty} \int_0^b e^{-2x} dx 
+    = \lim_{b \to \infty} \left[-\frac{e^{-2x}}{2}\right]_0^b 
+    = \lim_{b \to \infty} \left(-\frac{1}{2e^{2b}} + \frac{1}{2}\right) 
+    = \frac{1}{2}.
+    \\
+    \text{(b)}\quad&
+    \int_1^\infty \frac{1}{x}\dx = \lim_{b \to \infty} \int_1^b \frac{1}{x}\dx = \lim_{b \to \infty} \ln{b} = \infty.
+    \\
+    \text{(c)}\quad&
+    \int_1^\infty \frac{dx}{x^2} = \lim_{b \to \infty} \int_1^b \frac{dx}{x^2} = \lim_{b \to \infty} \left[-\frac{1}{x}\right]_1^b = \lim_{b \to \infty} \left(1 - \frac{1}{b}\right) = 1.
+  \end{align*}
+
+  (d) Observar primero que
+  \[
+\int_a^\infty \cos{\pi x} dx = \left[\frac{1}{\pi}\sen{\pi x}\right]_a^\infty = -\frac{1}{\pi}\sen{\pi a}.
+\]
+Cuando $a$ tiende a $-\infty$, $\sen{\pi a}$ oscila entre $-1$ y $1$.
+Luego la integral oscila entre $\frac{1}{\pi}$ y $-\frac{1}{\pi}$ y no converge.
+\end{example}
+
+Las fórmulas habituales para áreas y volúmenes se extienden al caso no acotado por medio de
+las integrales impropias.
+
+\begin{example}
+Sea $p$ un número positivo. Si $\Omega$ es la región entre el eje $x$ y la gráfica de 
+\[
+f(x) = \frac{1}{x^p}, \quad x \geq 1,
+\]
+entonces
+
+\noindent
+\begin{minipage}{.4\textwidth}
+  \[
+\text{área de } \Omega = \begin{cases}
+\frac{1}{p-1}, & \text{si } p > 1 \\
+\infty, & \text{si } p \leq 1.
+\end{cases}
+\]
+\end{minipage}
+\begin{minipage}{.59\textwidth}
+  \begin{center}
+  \includegraphics[width=.9\textwidth]{pics/area-bajo-x-a-la-p.png}
+  \end{center}
+\end{minipage}
+
+Veamos:
+\[
+\area(\Omega) 
+= \int_1^{+\infty} \frac1{x^p} \dx 
+= \lim_{b\to+\infty}\int_1^b \frac1{x^p} \dx .
+\]
+Para $p\neq 1$,
+\[
+  \lim_{b\to+\infty}\int_1^b \frac1{x^p} \dx 
+  = \lim_{b\to+\infty} \Big[ \frac{1}{1-p} x^{1-p}\Big]_1^b
+  = \lim_{b\to+\infty} \frac{b^{1-p}-1}{1-p}
+  = \begin{cases}
+    \frac{1}{p-1}, \quad&\text{si } p>1,
+    \\
+    +\infty, \quad&\text{si } p<1.
+  \end{cases}
+\]
+Si $p=1$,
+\[
+  \lim_{b\to+\infty}\int_1^b \frac1{x^p} \dx 
+  \lim_{b\to+\infty}\int_1^b \frac1{x} \dx 
+  = \lim_{b\to+\infty} \Big[ \ln(x)\Big]_1^b
+  = \lim_{b\to+\infty} \ln b = +\infty.
+\]
+\end{example}
+
+\begin{example}
+  Ejemplo 3 Sabemos que la región debajo de la gráfica de 
+\[
+f(x) = \frac{1}{x}, \quad x \geq 1
+\]
+tiene área infinita. Supongamos que se hace girar esta región de área infinita alrededor del eje $x$.
+
+\centerline{\includegraphics[width=.8\textwidth]{pics/revolucion-1-sobre-x.png}}
+
+¿Cuál es el volumen del sólido resultante? Aunque pueda resultar sorprendente, el volumen no es infinito. De hecho, vale $\pi$. Esto se puede comprobar usando la fórmula~\eqref{eq:volumen_solido_revolucion}:
+\[
+V = \int_1^\infty \pi [f(x)]^2 dx = \pi \int_1^\infty \frac{dx}{x^2} = \pi \lim_{b \to \infty} \int_1^b \frac{dx}{x^2} = \pi \lim_{b \to \infty} \left[-\frac{1}{x}\right]_1^b = \pi \lim_{b \to \infty} \left(1 - \frac{1}{b}\right) = \pi.
+\]
+\end{example}
+
+A menudo resulta difícil determinar la convergencia o divergencia de una integral impropia
+dada mediante métodos directos, esto es, calculando primero la integral definida y luego el límite. En tales casos se puede obtener alguna información suplementaria comparándola con integrales cuyo comportamiento es conocido.
+
+\begin{proposition}
+  Supongamos que $f$ y $g$ son continuas, y que 
+  \[
+  0 \le f(x) \le g(x),\qquad\text{para todo $x>a$.}
+  \]
+  Entonces
+  \begin{enumerate}
+    \item Si $\int_a^{+\infty} g(x) \dx$ converge, entonces $\int_a^{+\infty} f(x) \dx$ converge.
+    \item Si $\int_a^{+\infty} f(x) \dx=+\infty$ diverge, entonces $\int_a^{+\infty} g(x) \dx=+\infty$.
+  \end{enumerate}
+\end{proposition}
+
+Esta proposición es similar a la proposición~\ref{P:series comparacion} que permite demostrar la convergencia o divergencia de series de términos positivos.
+
+\begin{proof}
+  Si $b>a$, entonces $\D\int_a^{x} f(t) \dt\le \int_a^{x} g(t) \dt$.
+  Como $f$ y $g$ son no negativas, entonces 
+  \[
+  F(x) = \int_a^x f(t)\dt
+  \quad\text{y}\quad
+  G(x) = \int_a^x g(t)\dt
+  \]
+  son funciones crecientes, y $F(x)\le G(x)$ para todo $x>a$.
+
+  \begin{enumerate}
+    \item Si $\int_a^{+\infty} g(x) \dx$, entonces quiere decir que existe $\lim_{x\to+\infty}G(x)\dx$ y por lo tanto es acotada. Como $F(x)\le G(x)$ para todo $x>a$, resulta que $F$ es acotada. Al ser creciente, existe 
+    $\lim_{x\to+\infty} F(x)$ y luego $\int_a^{+\infty} f(x) \dx$ converge.
+
+    \item Si $\int_a^{+\infty} f(x) \dx$ diverge, entonces quiere decir que $\lim_{x\to+\infty}F(x)\dx=+\infty$. Como $F(x)\le G(x)$ para todo $x>a$, resulta que también $\lim_{x\to+\infty} G(x)=+\infty$ y luego $\int_a^{+\infty} g(x) \dx=+\infty$.
+  \end{enumerate}
+\end{proof}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
