@@ -1842,8 +1842,108 @@ Esta proposición es similar a la proposición~\ref{P:series comparacion} que pe
     $\lim_{x\to+\infty} F(x)$ y luego $\int_a^{+\infty} f(x) \dx$ converge.
 
     \item Si $\int_a^{+\infty} f(x) \dx$ diverge, entonces quiere decir que $\lim_{x\to+\infty}F(x)\dx=+\infty$. Como $F(x)\le G(x)$ para todo $x>a$, resulta que también $\lim_{x\to+\infty} G(x)=+\infty$ y luego $\int_a^{+\infty} g(x) \dx=+\infty$.
+    \qedhere
   \end{enumerate}
 \end{proof}
+
+\begin{example}
+  Determinar la convergencia de la integral $\D \int_1^{+\infty} \frac{1}{\sqrt{1+x^3}}\dx$.
+
+  Observamos que el denominador de comporta como $\D {x^{3/2}}$ para $x$ tendiendo a infinito. Más aún
+  \[
+  \frac{1}{\sqrt{1+x^3}}
+  \le 
+  \frac{1}{\sqrt{x^3}}
+  =
+  \frac{1}{x^{3/2}}.
+  \]
+  Como $\D\int_1^{+\infty }\frac{1}{x^{3/2}}\dx$ converge, también converge $\D \int_1^{+\infty} \frac{1}{\sqrt{1+x^3}}\dx$.
+\end{example}
+
+\begin{example}
+  Determinar la convergencia de la integral $\D \int_1^{+\infty} \frac{1}{\sqrt{1+x^2}}\dx$.
+  
+  Observamos que el denominador de comporta como $\D{x}}$ para $x$ tendiendo a infinito. 
+  Más aún, como $1+x^2 \le 1+2x+x^2=(1+x)^2$, para todo $x>1$, resulta que
+  \[
+  \sqrt{1+x^2} \le 1+x \le 2x, \quad \text{para todo $x>1$.}
+  \]
+  Luego
+  \[
+  \frac{1}{\sqrt{1+x^2}} \ge \frac1{1+x} \ge \frac1{2x}, \quad \text{para todo $x>1$.}
+  \]
+  Como $\D\int_1^{+\infty} \frac1{2x}\dx$ diverge, resulta que $\D \int_1^{+\infty} \frac{1}{\sqrt{1+x^2}}\dx$ diverge.
+\end{example}
+
+\begin{definition}
+Supongamos ahora que $f$ es continua en $(-\infty,+\infty)$. Se dice que \emph{la integral impropia}
+\[
+\int_{-\infty}^{\infty} f(x)\dx
+\]  
+converge, si y sólo sí convergen las siguientes dos integrales:
+\[
+\int_{-\infty}^{0} f(x)\dx
+\qquad\text{y}\qquad
+\int_{0}^{+\infty} f(x)\dx.
+\]  
+En ese caso, definimos
+\[
+\int_{-\infty}^{\infty} f(x)\dx = 
+\int_{-\infty}^{0} f(x)\dx
++
+\int_{0}^{+\infty} f(x)\dx.
+\]  
+\end{definition}
+
+\begin{example}
+  Determinar si converge o diverge la integral impropia $\D \int_{-\infty}^{+\infty} \frac{e^x}{1+e^{2x}}\dx$. Si converge, dar su valor.
+
+  Consideremos primero la integral indefinida $\D \int \frac{e^x}{1+e^{2x}}\dx$. Por sustitución, con $u=e^x$ y $du = e^x\dx$ resulta
+  \[
+  \int \frac{e^x}{1+e^{2x}}\dx = \int \frac1{1+u^2}\du
+  = \arctan u + C = \arctan(e^x) + C.
+  \]
+  Luego, 
+  \begin{align*}
+  \int_{-\infty}^{0}  \frac{e^x}{1+e^{2x}}\dx 
+  &= 
+  \lim_{a\to-\infty}\int_{a}^{0}  \frac{e^x}{1+e^{2x}}\dx 
+  \\
+  &= 
+  \lim_{a\to-\infty}\Big[\arctan(e^x)\Big]_{a}^{0}
+  = \lim_{a\to-\infty}\big( \arctan(e^0)-\arctan(e^a) \big)
+  \\
+  &= \lim_{a\to-\infty} \big( \arctan(1) -\arctan(e^a) \big)
+  = \arctan(1) - \lim_{a\to-\infty}\arctan(e^a)  
+  \\
+  &= \arctan(1) - \lim_{a\to-\infty}\arctan(0)
+  = \frac\pi4 - 0 = \frac\pi4.
+  \end{align*}
+  Análogamente,
+  \begin{align*}
+  \int_{0}^{+\infty}  \frac{e^x}{1+e^{2x}}\dx 
+  &= 
+  \lim_{b\to+\infty}\int_{0}^{b}  \frac{e^x}{1+e^{2x}}\dx 
+  \\
+  &= 
+  \lim_{b\to+\infty}\Big[\arctan(e^x)\Big]_{0}^{b}
+  = \lim_{b\to+\infty}\big( \arctan(e^b)-\arctan(e^0) \big)
+  \\
+  &= \lim_{b\to+\infty} \big( \arctan(e^b) -\arctan(1) \big)
+  =  \lim_{b\to+\infty}\arctan(e^b)  - \arctan(1)
+  \\
+  &= \lim_{y\to+\infty}\arctan(y) - \arctan(1)
+  = \frac\pi2 - \pi4 = \frac\pi4.
+  \end{align*}
+  Por lo tanto,
+  \[
+  \int_{-\infty}^{+\infty} \frac{e^x}{1+e^{2x}}\dx
+  = \int_{-\infty}^{0} \frac{e^x}{1+e^{2x}}\dx + \int_{0}^{+\infty} \frac{e^x}{1+e^{2x}}\dx 
+  = \frac{\pi}4 + \frac{\pi}4 = \frac{\pi}2.
+  \]
+\end{example}
+
+\subsection{Integrales de funciones no acotadas}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
