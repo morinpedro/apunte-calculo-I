@@ -886,7 +886,7 @@ En base a la tabla de derivadas y a los ejercicios del capítulo anterior tenemo
   
   $\D \int \frac1x\dx = \ln|x| + C$
   
-  $\D \int a^x \dx = \ln a\cdot a^x  + C$, si $a>0$
+  $\D \int a^x \dx = \frac{a^x}{\ln a}  + C$, si $a>0$
   
   $\D \int \sen x\dx = -\cos x + C$
   
@@ -1863,7 +1863,7 @@ Esta proposición es similar a la proposición~\ref{P:series comparacion} que pe
 \begin{example}
   Determinar la convergencia de la integral $\D \int_1^{+\infty} \frac{1}{\sqrt{1+x^2}}\dx$.
   
-  Observamos que el denominador de comporta como $\D{x}}$ para $x$ tendiendo a infinito. 
+  Observamos que el denominador de comporta como $\D{x}$ para $x$ tendiendo a infinito. 
   Más aún, como $1+x^2 \le 1+2x+x^2=(1+x)^2$, para todo $x>1$, resulta que
   \[
   \sqrt{1+x^2} \le 1+x \le 2x, \quad \text{para todo $x>1$.}
@@ -1944,6 +1944,153 @@ En ese caso, definimos
 \end{example}
 
 \subsection{Integrales de funciones no acotadas}
+
+\noindent
+\begin{minipage}{.6\textwidth}
+Las integrales impropias también pueden aparecer en intervalos acotados. Supongamos que $f$ es continua en el intervalo semiabierto $[a, b)$ pero no está acotada en $b$.
+
+
+Para cada número $c < b$, podemos formar la integral definida
+\[\int_{a}^{c}f(x)dx.\]
+\end{minipage}
+\begin{minipage}{.39\textwidth}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{pics/integral-de-funcion-no-acotada.png}
+  \end{center}
+\end{minipage}
+
+Si 
+\[\lim_{c\rightarrow b^{-}}\int_{a}^{c}f(x)dx=L\]
+existe, decimos que la integral impropia $\int_{a}^{b}f(x)dx$ converge a $L$.
+De lo contrario, la integral impropia diverge.
+
+Análogamente, si $f$ es continua en $(a, b]$ y no acotada en $a$, consideramos el límite
+
+\[\lim_{c\rightarrow a^{+}}\int_{c}^{b}f(x)dx.\]
+
+Si este límite existe y tiene el valor $L$, entonces la integral impropia $\int_{a}^{b}f(x)dx$ converge a $L$.
+
+De lo contrario, la integral impropia diverge.
+
+\begin{example}
+Calcular $\D \int_0^1 \frac{1}{(1-x)^{2/3}}\dx$.
+
+La función $\D \frac{1}{(1-x)^{2/3}}$ tiene una discontinuidad en $x=1$.
+      Luego
+      \begin{align*}
+        \int_0^1 \frac{1}{(1-x)^{2/3}}\dx 
+        &= 
+        \lim_{c\to 1^-} \int_0^c \frac{1}{(1-x)^{2/3}} \dx 
+        = 
+        \lim_{c\to 1^-} \int_0^c (1-x)^{-2/3} \dx 
+        \\
+        &= 
+        \lim_{c\to 1^-} \Big[-3(1-x)^{1/3}\Big]_0^c
+        = 
+        \lim_{c\to 1^-} \big[-3(1-c)^{1/3}+3(1-0)^{1/3}\big]
+        \\
+        &= 
+        \big[-3(0)^{1/3}+3 \cdot 1^{1/3}\big] = 3.
+      \end{align*}
+\end{example}
+
+\begin{example}
+  Calcular $\D \int_0^2 \frac{2}{x} \dx$.
+    La función $\D \frac{1}{x}$ tiene una discontinuidad en $x=0$.
+      Luego
+      \begin{align*}
+        \int_0^2 \frac{1}{x}\dx 
+        &= \lim_{c\to 0^+} \int_c^2 \frac{1}{x}\dx
+        = \lim_{c\to 0^+} \Big[\ln x\Big]_c^2
+        \\
+        &= \lim_{c\to 0^+} \Big[ \ln 2 - \ln c \Big]
+        = \ln 2 - (-\infty) = +\infty.
+      \end{align*}
+\end{example}
+
+Supongamos ahora que $f$ es continua en un intervalo $[a,b]$, excepto en algún punto $c$ de $(a,b)$, y que $f(x) \to \pm \infty$ cuando $x \to c^{+}$ o cuando $x \to c^{-}$. Diremos que la integral impropia 
+\[\int_{a}^{b}f(x)\dx\]
+converge si las dos integrales 
+\[\int_{a}^{c}f(x)\dx \quad \text{y} \quad \int_{c}^{b}f(x)\dx\]
+convergen. En ese caso:
+\[
+\int_a^b f(x) \dx = \int_{a}^{c}f(x)\dx + \int_{c}^{b}f(x)\dx.
+\]
+
+\begin{example}
+  Para evaluar
+$\D\int_{1}^{4} \frac{dx}{(x-2)^2}$, 
+necesitamos calcular
+
+\noindent
+\begin{minipage}{.6\textwidth}
+  \[\lim_{c \to 2^{-}} \int_{1}^{c} \frac{dx}{(x-2)^2} \quad \text{y} \quad \lim_{c \to 2^{+}} \int_{c}^{4} \frac{dx}{(x-2)^2}\]
+Como se puede comprobar, ninguno de estos límites existe y por lo tanto la integral impropia $\D\int_{1}^{4} \frac{dx}{(x-2)^2}$ diverge.
+    
+\end{minipage}
+\begin{minipage}{.39\textwidth}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{pics/integral-impropia-discontinuidad-doble.png}
+  \end{center}
+\end{minipage}
+
+Observemos que si ignoramos el carácter impropio de la integral, podemos llegar a la conclusión errónea siguiente
+\[\int_{1}^{4} \frac{dx}{(x-2)^2} = \left[-\frac{1}{x-2}\right]_{1}^{4} =
+-\frac{1}{4-2} +\frac{1}{1-2}=  -\frac{3}{2}.\]
+\end{example}
+
+\begin{example}
+Calcular $\D\int_{-2}^{1} \frac{dx}{x^{4/5}}$.
+
+Dado que $1/x^{4/5} \to \infty$ cuando $x \to 0^{-}$ y cuando $x \to 0^{+}$, la integral dada es impropia. Por tanto, necesitamos calcular
+\[\lim_{c \to 0^{-}} \int_{-2}^{c} \frac{dx}{x^{4/5}} \quad \text{y} \quad \lim_{c \to 0^{+}} \int_{c}^{1} \frac{dx}{x^{4/5}}.\]
+Luego
+\[\int_{-2}^{0} \frac{dx}{x^{4/5}} = \lim_{c \to 0^{-}} \int_{-2}^{c} \frac{dx}{x^{4/5}} = \lim_{c \to 0^{-}} \left[5x^{1/5}\right]_{c}^{2} = \lim_{c \to 0^{-}} \left[5(2)^{1/5} - 5c^{1/5}\right] = 5(2)^{1/5}\]
+y
+\[
+\int_{0}^{1} \frac{dx}{x^{4/5}} = \lim_{c \to 0^{+}} \int_{c}^{1} \frac{dx}{x^{4/5}} = \lim_{c \to 0^{+}} \left[5x^{1/5}\right]_{c}^{1} = \lim_{c \to 0^{+}} \left[5 - 5c^{1/5}\right] = 5.
+\]
+Así, la integral impropia converge y
+\[
+\int_{-2}^{1} \frac{dx}{x^{4/5}} 
+= \int_{0}^{1} \frac{dx}{x^{4/5}} 
++
+\int_{-2}^{0} \frac{dx}{x^{4/5}} 
+= 5 + 5(2)^{1/5} \approx 10.74.
+\]
+\end{example}
+
+Por último, mencionamos una conexión entre las integrales impropias y las series.
+
+\begin{theorem}
+  Si $f$ es continua, decreciente y positiva en $[1,+\infty)$, Entonces
+  \[
+  \text{la integral }\int_1^{+\infty} f(x)\dx
+  \text{ converge}
+  \quad\iff\quad
+  \text{la serie }\sum_{n=1}^\infty f(n)
+  \text{ converge}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Definimos la función $F:[1,+\infty)\to \R$ por $F(x) = \int_1^x f(t)\dt$.
+  Luego, la integral $\int_1^{+\infty} f(t)\dt$ converge si y sólo si existe $\lim_{x\to+\infty}F(x)$.
+  Observamos ahora que $F$ es creciente y por lo tanto el límite existe si y sólo si $F$ es acotada.
+
+  \begin{center}
+    \includegraphics[width=.8\textwidth]{pics/comparacion-serie-integral.png}
+  \end{center}
+
+  A partir del gráfico deducimos que
+  \[
+  \sum_{k=2}^n f(k) \le \int_1^n f(x)\dx = F(n) \le \sum_{k=1}^{n-1} f(k).
+  \]
+
+  Ahora, si la serie $\sum_{n=1}^\infty f(n)$, entonces la sucesión de sumas parciales (de la derecha) está acotada y también $F(x)$, por lo que la integral converge.
+
+  Si la serie diverge, entonces la sucesión de sumas parciales (de la izquierda) es no acotada y por lo tanto la integral diverge.
+\end{proof}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
