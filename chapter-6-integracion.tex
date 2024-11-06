@@ -1376,7 +1376,7 @@ En esta sección veremos algunas propiedades generales importantes de la integra
 \begin{theorem}[Segundo teorema del valor medio para integrales]
 Si $f$ y $g$ son funciones continuas en $[a,b]$ y $g$ es no negativa, entonces existe $c\in(a,b)$ para el cual se verifica que
 \[
-\int_a^b f(x)g(x)\dx = g(c) \int_a^b f(x)\dx.
+\int_a^b f(x)g(x)\dx = f(c) \int_a^b g(x)\dx.
 \] 
 \end{theorem}
 
@@ -1406,7 +1406,7 @@ Si $f$ y $g$ son funciones continuas en $[a,b]$ y $g$ es no negativa, entonces e
   \[
     m
     \le \frac{\int_a^b f(x)g(x)\dx}{\int_a^b g(x)\dx}
-    M.
+    \le M.
   \]
   Es decir que el número $d=\frac{\int_a^b f(x)g(x)\dx}{\int_a^b g(x)\dx}$ está entre el máximo y el mínimo de $f$. Luego, por el teorema del valor intermedio para funciones continuas, existe $c\in(a,b)$ tal que $f(c)=d$ es igual a ese número. Luego
   \[
