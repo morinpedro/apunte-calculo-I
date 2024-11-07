@@ -62,9 +62,9 @@ r_i \subset \Omega_i \subset R_i
 
 Dado que el área de un rectángulo es el producto de la base por la altura, obtenemos
 \[
-m_i\, (x_i-x_i-1)
+m_i\, (x_i-x_{i-1})
 \le \area(\Omega_i) \le
-M_i\, (x_i-x_i-1),
+M_i\, (x_i-x_{i-1}),
 \qquad\text{para $i=1,2,\dots,n$}.
 \]
 Definiendo $\Delta x_i=x_i-x_{i-1}$ tenemos que 
@@ -243,7 +243,7 @@ Ahora veamos algunos ejemplos sencillos que nos ayudarán a comprender la defini
     \[
     x_{i-1} \Delta x_i 
     \le \frac12 (x_i+x_{i-1})(x_i-x_{i-1}) 
-    = \frac12 (x_i^2-x_{i-1}^2) = 
+    = \frac12 (x_i^2-x_{i-1}^2)  
     \le x_i \Delta x_i.
     \]
     Sumando para $i$ de $1$ a $n$ obtenemos
@@ -1373,7 +1373,7 @@ En esta sección veremos algunas propiedades generales importantes de la integra
   La cantidad $\D \frac{\int_a^b f(x)\dx}{b-a}$ se llama \emph{valor medio} o \emph{promedio} de $f$ en el intervalo $[a,b]$. Coincide con el valor por el que hay que multiplicar la longitud del intervalo para obtener el valor de la integral de $f$.
 \end{remark}
 
-\begin{theorem}[Segundo teorema del valor medio para integrales]
+\begin{theorem}[Segundo teorema del valor medio para integrales]\label{T:TVM-integral-generalizado}
 Si $f$ y $g$ son funciones continuas en $[a,b]$ y $g$ es no negativa, entonces existe $c\in(a,b)$ para el cual se verifica que
 \[
 \int_a^b f(x)g(x)\dx = f(c) \int_a^b g(x)\dx.

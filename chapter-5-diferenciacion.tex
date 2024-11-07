@@ -369,7 +369,7 @@ Por la propiedad distributiva,
     \cdot \big[g(x_0)+g'(x_0)\, h + o(h)\big]
     \\
     ={}& f(x_0)\cdot g(x_0) 
-    + f'(x_0)\cdot g(x_0) 
+    + f'(x_0)\, h\cdot g(x_0) 
     + \underbrace{o(h) \cdot g(x_0) }_{o(h)}
     \\
     &+ f(x_0) \cdot g'(x_0) \, h
@@ -378,7 +378,7 @@ Por la propiedad distributiva,
     \\
     &
     + \underbrace{f(x_0) \cdot o(h)}_{o(h)}
-    + \underbrace{f'(x_0) \cdot o(h)}_{o(h)}
+    + \underbrace{f'(x_0)\, h \cdot o(h)}_{o(h)}
     + \underbrace{o(h) \cdot o(h)}_{o(h)}
     \\
     ={}& f(x_0)\cdot g(x_0) 
@@ -805,7 +805,7 @@ f\circ g'(x) = f'\big(g(x)\big) g'(x)
     Calculemos la derivada de $h(x) = \sen(x^2+x)$. Definimos $y=g(x)=x^2+x$ y $f(y) = \sen(y)$.
     Luego $f'(y)=\cos(y)$ y $g'(x)=2x+1$. Entonces
     \[
-    h'(x) = f\circ g'(x) = f'(y) g'(x) = \cos(y)\, (2x+1) = \cos(x^2+x)\, (2x+1).
+    h'(x) = (f\circ g)'(x) = f'(y) g'(x) = \cos(y)\, (2x+1) = \cos(x^2+x)\, (2x+1).
     \]
     En palabras podemos describir lo que hemos hecho de la siguiente forma:
     como la función es el seno de una expresión, la derivada es el coseno de la expresión, pero multiplicado por la derivada de esa expresión.
@@ -1171,7 +1171,7 @@ Veamos un último ejemplo:
 
 \begin{example}
     Consideremos ahora la función dada por $\D f(x)=\tan x=\frac{\sen x}{\cos x}$, cuyo dominio es todo $\R$ excepto los puntos de la forma $\frac\pi2+n\pi$, $n\in\Z$, que son los puntos donde se anula el denominador $\cos x$.
-    Quedó como ejercicio en una de las secciones anteriores calcular $\tan'(x)$, y la respuesta era
+    Quedó como ejercicio en una de las secciones anteriores calcular $\tan'(x)$, y la respuesta es
     \[
     \tan'(x)=\frac1{\cos^2x}.
     \]
@@ -1515,7 +1515,7 @@ Vemos a continuación un ejemplo de aplicación.
     \[
     a+b=\frac p2\quad\text{y}\quad \text{se maximice }a\cdot b.
     \]
-    Para encontrar este máximo, observamos que podemos despejar $a=\frac p2-b$ con lo que el área a maximizar resulta $\big(\frac p2-b\big)b$. Podemos llamar $x=b$ y observamos que los posibles valores de $x$ son $0<x<\pi/2$. Luego, queremos encontrar el máximo de la función
+    Para encontrar este máximo, observamos que podemos despejar $a=\frac p2-b$ con lo que el área a maximizar resulta $\big(\frac p2-b\big)b$. Podemos llamar $x=b$ y observamos que los posibles valores de $x$ son $0<x<p/2$. Luego, queremos encontrar el máximo de la función
     \[
     f:(0,p/2)\to \R,\qquad
     f(x)=\Big(\frac p 2 - x\Big)\cdot x.
