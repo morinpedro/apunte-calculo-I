@@ -1,1 +1,70 @@
-\item 
+\item Calcular las siguientes integrales impropias:
+\begin{multicols}{2}
+\begin{enumerate}
+  \item $\D \int_1^\infty \frac1{x^2} \dx$.
+  \item $\D \int_0^\infty \frac1{1+x^2} \dx$.
+  \item $\D \int_0^\infty e^{p\,x}  \dx$, $p>0$.
+  \item $\D \int_0^\infty e^{-p\,x}  \dx$, $p>0$.
+  \item $\D \int_0^8 \frac{dx}{x^{2/3}}$.
+  \item $\D \int_0^1 \frac{dx}{x^2}$.
+  \item $\D \int_0^2 \frac{x}{\sqrt{4-x^2}}  \dx$.
+  \item $\D \int_{-\infty}^\infty \frac1{1+x^0}  \dx$.
+  \item $\D \int_{-\infty}^0 x\,e^x  \dx$.
+  \item $\D \int_0^\infty e^{-x}\sen x  \dx$.
+  \item $\D \int_0^\infty \cos^2 x  \dx$.
+\end{enumerate}  
+\end{multicols}
+\item ?`Para qué valores de $\alpha>0$ es convergente la integral $\D \int_0^1 \frac1{x^\alpha}\dx$?
+\item ?`Para qué valores de $\alpha>0$ es convergente la integral $\D \int_1^{+\infty} \frac1{x^\alpha}\dx$?
+\item Demostrar por inducción que para todo $n\in\N_0$,
+\[
+\int_0^\infty x^n e^{-x}\dx = n!.
+\]
+\item ?`Para qué valores de $r>0$ es convergente la siguiente integral?
+\[
+\int_0^\infty x^r e^{-x}\dx = n!.
+\]
+(Ayuda: dividir la integral entre $0$ y $1$ y entre $1$ y $\infty$ y utilizar comparación con las integrales del ejercicio anterior).
+\item Sea $\Omega$ la región que se encuentra entre el eje $x$ y la gráfica de $y=e^{-x}$, para $x\in[0,+\infty)$.
+\begin{enumerate}
+  \item Bosquejar $\Omega$.
+  \item Hallar el área de $\Omega$.
+  \item Considerar el sólido de revolución que se obtiene al rotar $\Omega$ alrededor del eje $x$. Calcular su volumen.
+\end{enumerate}
+\item Sea $\Omega$ la región que se encuentra entre el eje $x$ y la gráfica de $y=1/x^2$, para $x\in[1,+\infty)$.
+\begin{enumerate}
+  \item Bosquejar $\Omega$.
+  \item Hallar el área de $\Omega$.
+  \item Considerar el sólido de revolución que se obtiene al rotar $\Omega$ alrededor del eje $x$. Calcular su volumen.
+\end{enumerate}
+\item Usar el criterio de comparación para determinar si las siguientes integrales convergen:
+\begin{multicols}{2}
+  \begin{enumerate}
+    \item $\D \int_1^\infty \frac{x}{\sqrt{1+x^5}}\dx$
+    \item $\D \int_1^\infty 2^{-x^2}\dx$
+    \item $\D \int_\pi^\infty \frac{\sen^2(2x)}{x^2}\dx$
+    \item $\D \int_1^\infty \frac{\ln x}{x^2}\dx$
+  \end{enumerate}
+  
+\end{multicols}
+
+\item Consideremos la serie armónica generalizada $\sum_{k=1}^\infty \frac1{k^p}$, para $p>1$ (que es convergente).
+Usar~\eqref{eq:cota-cola-serie} para demostrar que
+\[
+\frac{1}{(p-1)(n+1)^{p-1}}
+< \underbrace{\sum_{k=1}^\infty \frac1{k^p}}_S-\underbrace{\sum_{k=1}^n \frac1{k^p}}_{S_n}
+< \frac{1}{(p-1)n^{p-1}}.
+\]
+Este resultado proporciona cotas para el \emph{error} $e_n$ que se obtiene al sumar $S_n$ para aproximar la suma $S$ de la serie armónica generalizada.
+
+\item Consideremos la serie armónica generalizada $\sum_{k=1}^\infty \frac1{k^2}$.
+\begin{enumerate}
+  \item Si se desea utilizar $S_{100}$ para aproximar $\sum_{k=1}^\infty \frac1{k^2}$. ?`Cuáles serían las cotas del error cometido?
+  \item ?`Qué valor de $n$ habría que elegir para asegurar qu $|S-S_n| $ sea menor que $0.0001$?
+\end{enumerate}
+
+\item Consideremos la serie armónica generalizada $\sum_{k=1}^\infty \frac1{k^3}$.
+\begin{enumerate}
+  \item Si se desea utilizar $S_{100}$ para aproximar $\sum_{k=1}^\infty \frac1{k^3}$. ?`Cuáles serían las cotas del error cometido?
+  \item ?`Qué valor de $n$ habría que elegir para asegurar qu $|S-S_n| $ sea menor que $0.0001$?
+\end{enumerate}

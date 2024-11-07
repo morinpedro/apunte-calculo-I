@@ -2060,6 +2060,8 @@ Así, la integral impropia converge y
 \]
 \end{example}
 
+\subsection{Comparación entre integrales impropias y series}
+
 Por último, mencionamos una conexión entre las integrales impropias y las series.
 
 \begin{theorem}
@@ -2083,14 +2085,40 @@ Por último, mencionamos una conexión entre las integrales impropias y las seri
   \end{center}
 
   A partir del gráfico deducimos que
-  \[
-  \sum_{k=2}^n f(k) \le \int_1^n f(x)\dx = F(n) \le \sum_{k=1}^{n-1} f(k).
-  \]
+  \begin{equation}\label{eq:comparacion-serie-integral}
+    \sum_{k=2}^n f(k) \le \int_1^n f(x)\dx = F(n) \le \sum_{k=1}^{n-1} f(k).
+  \end{equation}
 
   Ahora, si la serie $\sum_{n=1}^\infty f(n)$, entonces la sucesión de sumas parciales (de la derecha) está acotada y también $F(x)$, por lo que la integral converge.
 
   Si la serie diverge, entonces la sucesión de sumas parciales (de la izquierda) es no acotada y por lo tanto la integral diverge.
 \end{proof}
+
+\begin{remark}
+  Tomando límite cuando $n\to \infty$ en~\eqref{eq:comparacion-serie-integral} vemos que
+  \[
+    \sum_{k=2}^\infty f(k) \le \int_1^\infty f(x)\dx \le \sum_{k=1}^{\infty} f(k),
+  \]
+  y si en lugar de sumar desde $k=2$ y $k=1$ sumamos desde $k=n+2$ y $k=n+1$, obtenemos
+  \[
+    \sum_{k=n+2}^\infty f(k) \le \int_{n+1}^\infty f(x)\dx \le \sum_{k=n+1}^{\infty} f(k).
+  \]
+
+  De aquí podemos deducir que
+  \begin{equation*}
+    \int_{n+1}^\infty f(x)\dx 
+    \le \sum_{k=n+1}^{\infty} f(k)
+    \le \int_{n}^\infty f(x)\dx.
+  \end{equation*}
+  Ya que $\D \sum_{k=n+1}^{\infty} f(k) = \sum_{k=1}^{\infty} f(k) - \sum_{k=n}^{\infty} f(k)$, esta última desigualdad nos permite saber cuán buena es la aproximación de $S=\sum_{k=1}^{\infty} f(k)$ cuando calculamos $S_n = \sum_{k=n}^{\infty} f(k)$.
+  Más precisamente:
+  \begin{equation}\label{eq:cota-cola-serie}
+    \int_{n+1}^\infty f(x)\dx 
+    \le S-S_n = |S-S_n| 
+    = \sum_{k=n+1}^{\infty} f(k) 
+    \le \int_{n}^\infty f(x)\dx.
+  \end{equation}
+\end{remark}
 
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
