@@ -871,7 +871,7 @@ Si no tenemos un interés especial en el intervalo $[a,b]$ y sólo queremos resa
 \int f(x)\dx = F(x)+C.
 \]
 Cuando se expresan de este modo, las antiderivadas se llaman \emph{integrales indefinidas}.
-La consstante $C$ se denomina \emph{constante de integración}; es una constante \emph{arbitraria} porque se le puede asignar cualquier valor real.
+La constante $C$ se denomina \emph{constante de integración}; es una constante \emph{arbitraria} porque se le puede asignar cualquier valor real.
 
 La integral indefinida de una función $f$, es $\int f(x)\dx$, y es una \emph{familia} de funciones: es la familia de \emph{todas} las antiderivadas de $f$. Por ejemplo:
 \[
@@ -1031,8 +1031,8 @@ Podemos verificar esto derivando la última expresión:
     = \frac15 \Big(-\frac{1}{u}+C\Big)
     \\
     &= -\frac{1}{5u}+\frac{C}5
-    = -\frac{1}{5u}+C'
-    = -\frac{1}{5(3+5x)^2}+C'.
+    = -\frac{1}{5u}+\tilde C
+    = -\frac{1}{5(3+5x)^2}+\tilde C.
   \end{align*}
 \end{example}
 
@@ -1185,7 +1185,8 @@ Veamos cómo se puede aplicar esta regla en ejemplos concretos.
 \begin{example}
   Calcular $\D\int x\,\ln x\dx$.
 
-  Aquí hacemos $u=\ln x$ y $v'=x$. Luego $\D u'=\frac1x$ y $\D v=\frac{x^2}2$. Luego
+  Aquí hacemos $u'= x$ y $v=\ln x$; luego $\D u=\frac{x^2}2$ y $\D v'=\frac1x$. 
+  Entonces
   \[
   \int x \ln x\dx 
   = \ln x \, \frac{x^2}2 - \int \frac1x \frac{x^2}{2}\dx
@@ -1197,7 +1198,7 @@ Veamos cómo se puede aplicar esta regla en ejemplos concretos.
 \begin{example}
   Calcular $\D \int x e^x\dx$.
 
-  En este ejemplo, la idea es aprovechar que $\dd[]{x}{x}=1$ y que $\dd[]{e^x}{x}=e^x$. Entonces tomamos $u=x$, y $v'=e^x$. Luego, $u'=1$ y $v=e^x$:
+  En este ejemplo, la idea es aprovechar que $\dd[]{x}{x}=1$ y que $\dd[]{e^x}{x}=e^x$. Entonces tomamos $u'=e^x$, y $v=x$. Luego, $u=e^x$ y $v'=1$:
   \[
   \int x\, e^x\dx = x\,e^x - \int 1 e^x\dx = x\, e^x - e^x+C = (x-1)e^x+C.
   \]
@@ -1206,7 +1207,7 @@ Veamos cómo se puede aplicar esta regla en ejemplos concretos.
 \begin{example}
   Calcular $\D \int x^2 e^x\dx$.
 
-  En este ejemplo, la idea es repetir dos veces la fórmula para poder \emph{deshacernos} de la potencia de $x$. Tomamos primero $u=x^2$, y $v'=e^x$. Luego, $u'=2x$ y $v=e^x$:
+  En este ejemplo, la idea es repetir dos veces la fórmula para poder \emph{deshacernos} de la potencia de $x$. Tomamos primero $u'=e^x$ y $v=x^2$; luego, $u=e^x$ y $v'=2x$:
   \[
   \int x^2\, e^x\dx 
   = x^2\,e^x - \int 2x e^x\dx 
@@ -1352,7 +1353,7 @@ En esta sección veremos algunas propiedades generales importantes de la integra
   \[
     m\cdot(b-a)
     \le \int_a^b f(x)\dx
-    M\cdot(b-a).
+    \le M\cdot(b-a).
   \]
   Dividiendo por $b-a>0$ tenemos
   \[
@@ -1716,7 +1717,7 @@ la integral impropia $\int_{-\infty}^b f(x) dx$ diverge.
       \item $\D \int_0^\infty e^{-2x} \dx$
       \item $\D \int_1^\infty \frac{1}{x} \dx$
       \item $\D \int_1^\infty \frac{1}{x^2} \dx$
-      \item $\D  \int_{-\infty}^\infty \cos{\pi x} \dx $
+      \item $\D  \int_{-\infty}^0 \cos{\pi x} \dx $
     \end{enumerate}
   \end{multicols}
 
@@ -1738,7 +1739,7 @@ la integral impropia $\int_{-\infty}^b f(x) dx$ diverge.
 
   (d) Observar primero que
   \[
-\int_a^\infty \cos{\pi x} dx = \left[\frac{1}{\pi}\sen{\pi x}\right]_a^\infty = -\frac{1}{\pi}\sen{\pi a}.
+\int_a^0 \cos{\pi x} dx = \left[\frac{1}{\pi}\sen{\pi x}\right]_a^0 = -\frac{1}{\pi}\sen{\pi a}.
 \]
 Cuando $a$ tiende a $-\infty$, $\sen{\pi a}$ oscila entre $-1$ y $1$.
 Luego la integral oscila entre $\frac{1}{\pi}$ y $-\frac{1}{\pi}$ y no converge.
