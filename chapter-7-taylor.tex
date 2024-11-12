@@ -2,9 +2,8 @@
 \chapter{Polinomios de Taylor}
 
 
-\section{Polinomios de Taylor}
 
-\subsection{Introducción y Definición}
+\section{Introducción y Definición}
 
 Sea $p(x)$ un polinomio de grado $n$, es decir
 \[
@@ -56,7 +55,7 @@ Motivados por esta igualdad, definimos
 \begin{definition}[Polinomio de Taylor]
  Si $f$ es una función $n$ veces derivable en $x=a$, se llama \emph{polinomio de Taylor} de $f$, de orden $n$ alrededor de $x=a$ al polinomio:
 \[
- p(x) = f(a) + f'(a) \, (x-a) + \frac{f''(a)}{2!}\, (x-a)^2 + \frac{f'''(a)}{3!}\, (x-a)^3 + \dots
+ p_n(x) = f(a) + f'(a) \, (x-a) + \frac{f''(a)}{2!}\, (x-a)^2 + \frac{f'''(a)}{3!}\, (x-a)^3 + \dots
 % + \frac{f^{(n-1)}(a)}{(n-1)!} \, (x-a)^{n-1}
  + \frac{f^{(n)}(a)}{n!} \, (x-a)^{n}.
 \]
@@ -144,7 +143,7 @@ p_5(x) &= 0 + 1 \cdot (x-1) + \frac{-1}{2!} \cdot (x-1)^2 + \frac{2}{3!} \cdot (
 ¿Puede imaginarse la forma del polinomio de Taylor de orden $n$ en este caso?
 \end{example}
 
-\subsection{Interpretación geométrica}
+\subsection*{Interpretación geométrica}
 
 Para ver qué representa geométricamente el polinomio de Taylor de una cierta función de grado $n$ alrededor de un punto dado, consideramos como ejemplo la función $f(x) = \sen(x)$ y graficamos en un mismo par de ejes, la función dada y sus polinomios de Taylor de orden 0 a 4 alrededor de $x=0$
 
@@ -160,7 +159,7 @@ Vemos que a medida que aumenta el orden la aproximación mejora pues las grafica
 
 También observamos que lejos de $x=0$ la aproximación es mala, pues todo polinomio $p(x)$ no-constante satisface $\lim_{x\to\infty} p(x) = \infty$.
 
-\subsection{Un ejemplo interesante}
+\subsection*{Un ejemplo interesante}
 Por otro lado, si consideramos la función 
 \[
  f(x) = \begin{cases}
@@ -177,14 +176,25 @@ En este caso no es cierto que $p_n(x)$ se aproxime cada vez más a $f(x)$ a medi
 
 \centerline{\includegraphics[width=.6\textwidth]{pics/taylor-patologico.png}}
 
-\subsection{Error de truncamiento}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-7-s-1.tex}
+\end{enumerate}
+
+
+\section{Error de truncamiento}
 
 Tratemos de estudiar ahora el error que se produce al aproximar $f$ por un polinomio de Taylor de orden $n$. Por simplicidad consideremos los polinomios de Taylor de una función $f$ alrededor de $x=0$.
 
-Observemos primero que si $f$ es derivable en $(-p,p)$ y $x \in (-p,p)$, entonces haciendo la sustitución $t = x - s$ resulta
+Observemos primero que si $f$ es derivable en $(-p,p)$ y $x \in (-p,p)$, entonces
 \[
- f(x) - f(0) = \int_0^x f'(s)\, ds = \int_0^x f'(x-t) \, dt.
+ f(x) - f(0) = \int_0^x f'(s)\, ds = \int_0^x f'(x-t) \, dt,
 \]
+donde en el último paso hemos hecho la sustitución $t=x-s$.
+
 Luego
 \begin{equation}\label{identidad}
  f(x) = f(0) + \int_0^x f'(x-t) \, dt.
@@ -243,7 +253,7 @@ donde $T_n$ es ahora
 \]
 }
 
-\subsection{Otra fórmula para el residuo}
+\subsection*{Otra fórmula para el residuo}
 
 Intentaremos ahora obtener una fórmula más sencilla y tal vez más útil para el residuo de Taylor. Para ello recordamos primero el teorema del valor medio generalizado del cálculo integral (Teorema~\ref{T:TVM-integral-generalizado}), que dice:
 
@@ -304,7 +314,7 @@ donde $\D M_n = \max_{[a-p,a+p]} |f^{(n)}|$, entonces
 \]
 Es decir
 \[
-\sum_{n=0}^\infty f^{(n)}(a) \frac{(x-a)^n}{n!} = f(x), ,\qquad \forall x \in [a-p,a+p].
+\sum_{n=0}^\infty f^{(n)}(a) \frac{(x-a)^n}{n!} = f(x), \qquad \forall x \in [a-p,a+p].
 \]
 \end{corollary}
 
@@ -312,7 +322,15 @@ Es decir
  La serie $\sum_{n=0}^\infty f^{(n)}(a) \frac{(x-a)^n}{n!}$ se llama \emph{serie de Taylor} de $f$ alrededor de $x=a$.
 \end{definition}
 
-\subsection{Una Aplicación de los polinomios de Taylor.\\ Cálculo de integrales aproximadas}
+
+
+\subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
+
+\begin{enumerate}
+\input{ejercicios-ch-7-s-2.tex}
+\end{enumerate}
+
+\section{Una Aplicación de los polinomios de Taylor.\\ Cálculo de integrales aproximadas}
 
 %\subsection{Integrando el polinomio de Taylor}
 
@@ -328,7 +346,7 @@ luego
 \[
 \begin{aligned}
  \int_5^6 f(x) \, dx \approx \int_5^6 p_2(x) \, dx &= \int_5^6 4 \, dx - \int_5^6 (x-5) \, dx + \frac32 \int_5^6 (x-5)^2\, dx \\
-&= 4 - \int_0^1 u \, du + \frac32 \int_0^1 u^2 \, du & &(\text{sustitución: }u = x-5) \\
+&= 4 - \int_0^1 u \, du + \frac32 \int_0^1 u^2 \, du \quad\qquad(\text{sustitución: }u = x-5) \\
 &= 4 - \frac12 + \frac32 \cdot \frac13 = 4.
 \end{aligned}
 \]
@@ -373,7 +391,7 @@ $
 \subsubsection*{Ejercicios de la sección~\getcurrentref{chapter}.\getcurrentref{section}}
 
 \begin{enumerate}
-\item 
+\input{ejercicios-ch-7-s-3.tex}
 \end{enumerate}
 
 \begin{comment}
@@ -565,4 +583,9 @@ Fácilmente puede verse que es equivalente a la presentada al principio.
 \subsection*{Ejercicios del capítulo~\getcurrentref{chapter}}
 
 
-
+\begin{enumerate}
+  \input{ejercicios-ch-7-s-1.tex}
+  \input{ejercicios-ch-7-s-2.tex}
+  \input{ejercicios-ch-7-s-3.tex}
+\end{enumerate}
+  
